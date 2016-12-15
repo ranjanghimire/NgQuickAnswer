@@ -5,6 +5,7 @@ import { NavController } from 'ionic-angular';
 import { DataService } from '../../shared/app.dataservice';
 import { AppUser } from '../../models/app.user';
 import { Configuration } from '../../app/app.constants'
+import { UserInfoPage } from '../user-info/user-info'
 
 @Component({
   selector: 'page-page1',
@@ -34,7 +35,7 @@ private myUserData : AppUser;
   }
 
   private goToUserInfo() : void{
-    //this.navCtrl.push(UserInfo);
+    this.navCtrl.push(UserInfoPage);
   }
 
 }

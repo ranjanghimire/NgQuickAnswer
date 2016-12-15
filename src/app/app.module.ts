@@ -5,12 +5,14 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { Configuration } from './app.constants';
 import { DataService } from '../shared/app.dataservice';
+import { UserInfoPage } from '../pages/user-info/user-info';
 
 @NgModule({
   declarations: [
     MyApp,
     Page1,
-    Page2
+    Page2,
+    UserInfoPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -19,7 +21,8 @@ import { DataService } from '../shared/app.dataservice';
   entryComponents: [
     MyApp,
     Page1,
-    Page2
+    Page2,
+    UserInfoPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService]
 })
