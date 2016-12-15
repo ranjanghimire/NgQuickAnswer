@@ -6,7 +6,6 @@ import { DataService } from '../../shared/app.dataservice';
 import { AppUser } from '../../models/app.user';
 import { Configuration } from '../../app/app.constants'
 
-
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
@@ -32,6 +31,10 @@ private myUserData : AppUser;
             .subscribe((data:AppUser[]) => this.retUsers = data,
                 error => console.log(error),
                 () => console.log('Loaded users to myUsers'));
+  }
+
+  private goToUserInfo() : void{
+    //this.navCtrl.push(UserInfo);
   }
 
 }
