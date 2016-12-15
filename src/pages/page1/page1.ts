@@ -35,7 +35,7 @@ private myUserData : AppUser;
   }
 
   private goToUserInfo() : void{
-    this.navCtrl.push(UserInfoPage);
+    this.navCtrl.push(UserInfoPage, {myUser: this.myUserData});
   }
 
 }

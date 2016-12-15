@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { AppUser } from '../../models/app.user';
 
-/*
-  Generated class for the UserInfo page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-user-info',
   templateUrl: 'user-info.html'
 })
 export class UserInfoPage {
 
-  constructor(public navCtrl: NavController) {}
+  myUser : AppUser;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.myUser = this.navParams.get('myUser');   
+    console.log('Hello UserInfoPage Page ' + this.myUser.fullName);
+  }
 
   ionViewDidLoad() {
-    console.log('Hello UserInfoPage Page');
+     
   }
 
 }
