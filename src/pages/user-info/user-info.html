@@ -7,12 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>UserInfo</ion-title>
+    <ion-title>My Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h2>{{ this.myUser.fullName }} </h2>
+    </ion-card-header>
+    <ion-card-content>
+      <p *ngIf="this.myUser.address.primaryAddress">Address: {{ this.myUser.address.primaryAddress}} {{this.myUser.address.secondaryAddress}} 
+        <a>Edit</a>
+      </p>      
+      <p>User Name: {{ this.myUser.userName }}
+      <p>Password: ******** <a>Change</a></p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

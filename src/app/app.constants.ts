@@ -8,17 +8,17 @@ export class Configuration {
     public ApiUrl: string = "/";
     public ServerWithApiUrl = this.Server + ':' + this.port + this.ApiUrl;
 
-    public myUser : AppUser = { "id": "",
+    public myUser : AppUser = { "id": "01ddg4244gdsg",
                       "userName": "rghimire",
                        "fullName": "Ranjan Ghimire",
                       "address": {
-                          "id" : "",
-                          "zipcode": "",  
-                          "primaryAddress": "",
-                          "secondaryAddress":"",
-                          "city": "",
-                          "state":"",
-                          "country":""
+                          "id" : "sghsldgh4221",
+                          "zipcode": "38002",  
+                          "primaryAddress": "9350 Triumph Cir",
+                          "secondaryAddress":"Apt 303",
+                          "city": "Memphis",
+                          "state":"TN",
+                          "country":"USA"
                       },
                       "askedQuestionIDs": [""],
                       "repliedAnswersIDs":[""],
