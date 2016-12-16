@@ -19,7 +19,11 @@
         
       <!--</ion-card-header>-->
       <ion-card-content>
-        <ion-card-title>{{question.topic}}</ion-card-title>
+        <!--<ion-card-title> -->
+        <p>
+          <button ion-button small outline>{{question.topic}}</button>  
+        </p>        
+        <!--</ion-card-title>  -->
         <p> {{question.mainQuestion}}
         </p>      
         <ion-row no-padding>
@@ -33,10 +37,20 @@
             <ion-col text-right>
               <button ion-button clear color="danger" small icon-left>
                 <ion-icon name='thumbs-up'></ion-icon>
-                Like
+                21
               </button>
             </ion-col> 
           </ion-row>
+
+          <ion-list>
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="http://alleduneeds.com/images/sample.png">
+              </ion-avatar>
+              <h2>Ranjan Ghimire</h2>
+              <p>5 hours ago</p>
+            </ion-item>
+          </ion-list>
       </ion-card-content>
     </ion-card>
  
