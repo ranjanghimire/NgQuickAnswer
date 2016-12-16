@@ -1,3 +1,5 @@
+import { Address } from './app.address';
+
 export class AppUser {
 
     id : string;

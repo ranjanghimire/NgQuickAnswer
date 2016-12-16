@@ -1,4 +1,4 @@
-class Address{
+export class Address{
     id : string;
 
 	zipcode : any;

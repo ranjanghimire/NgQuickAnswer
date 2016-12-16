@@ -2,10 +2,11 @@ import { Component} from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { DataService } from '../../shared/app.dataservice';
-import { AppUser } from '../../models/app.user';
+import { QuestionService } from '../../shared/app.questionservice';
+import { Question } from '../../models/app.question';
+import { AppUser } from '../../models/app.user'
+import { UserInfoPage } from '../user-info/user-info';
 import { Configuration } from '../../app/app.constants'
-import { UserInfoPage } from '../user-info/user-info'
 
 @Component({
   selector: 'page-page1',
@@ -13,29 +14,29 @@ import { UserInfoPage } from '../user-info/user-info'
 })
 export class Page1 {
 
-public retUsers : AppUser[];
+public retQuestions : Question[];
 
-//loading static user data from Configuration class
 private myUserData : AppUser;
 
-  constructor(public navCtrl: NavController, private _dataService : DataService, private _conf : Configuration) {
+
+  constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration) {
     this.myUserData = _conf.myUser;
   }
 
   ionViewDidEnter() {
-      //this.getAllUsers();
+      this.getAllQuestions();
   }
 
-  private getAllUsers() : void{
-    this._dataService
-            .getAllUsers()
-            .subscribe((data:AppUser[]) => this.retUsers = data,
+  private getAllQuestions() : void{
+    this._questionService
+            .getAllQuestions()
+            .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
                 () => console.log('Loaded users to myUsers'));
   }
 
-  private goToUserInfo() : void{
-    this.navCtrl.push(UserInfoPage, {myUser: this.myUserData});
+  goToUserInfo() : void{
+    this.navCtrl.push( UserInfoPage, { myUser : this.myUserData })
   }
 
 }

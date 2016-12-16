@@ -11,8 +11,7 @@ export class UserInfoPage {
   myUser : AppUser;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.myUser = this.navParams.get('myUser');   
-    console.log('Hello UserInfoPage Page ' + this.myUser.fullName);
+    this.myUser = this.navParams.get('myUser');       
   }
 
   ionViewDidLoad() {

@@ -14,8 +14,45 @@
 
 <ion-content padding>
 
-  <h3>{{myUserData.fullName}}</h3>
+  <!--<h3>Popular Questions</h3>-->
 
+  <ion-card *ngFor="let question of retQuestions">      
+      <ion-card-content>
+        <ion-card-title>
+          {{question.topic}}
+          </ion-card-title>
+        <p>
+          {{question.mainQuestion}}
+        </p>
+
+        <ion-row no-padding>
+            <ion-col>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='star'></ion-icon>
+                Like
+              </button>
+            </ion-col>            
+            <ion-col text-right>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='chatbubbles'></ion-icon>
+                View / Answer
+              </button>
+            </ion-col>
+          </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+
+
+
+<!--
+  <ion-list>
+    <button ion-item *ngFor="let question of retQuestions"> {{ question.mainQuestion }} </button>
+  </ion-list>
+-->
   <!--<h3>Ionic Menu Starter</h3>-->
  
  <!-- This is working -->

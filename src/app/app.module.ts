@@ -5,6 +5,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { Configuration } from './app.constants';
 import { DataService } from '../shared/app.dataservice';
+import { QuestionService } from '../shared/app.questionservice';
 import { UserInfoPage } from '../pages/user-info/user-info';
 
 @NgModule({
@@ -24,6 +25,6 @@ import { UserInfoPage } from '../pages/user-info/user-info';
     Page2,
     UserInfoPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService]
 })
 export class AppModule {}
