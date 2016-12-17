@@ -25,24 +25,10 @@
         </p>        
         <!--</ion-card-title>  -->
         <p> {{question.mainQuestion}}
-        </p>      
-        <ion-row no-padding>
-                       
-            <ion-col>
-              <button ion-button round small icon-left>
-                <ion-icon name='chatbubbles'></ion-icon>
-                Answers
-              </button>
-            </ion-col>
-            <ion-col text-right>
-              <button ion-button clear color="danger" small icon-left>
-                <ion-icon name='thumbs-up'></ion-icon>
-                21
-              </button>
-            </ion-col> 
-          </ion-row>
+        </p> 
 
-          <ion-list>
+        
+        <ion-list> 
             <ion-item>
               <ion-avatar item-left>
                 <img src="http://alleduneeds.com/images/sample.png">
@@ -51,6 +37,50 @@
               <p>5 hours ago</p>
             </ion-item>
           </ion-list>
+          
+        <ion-row no-padding>
+                       
+
+            <ion-col>
+              <button ion-button round small icon-left (click) = "toggleAnswers(question)">
+                <ion-icon name='chatbubbles'></ion-icon>
+                Answers
+              </button>
+            </ion-col>
+            <ion-col text-right>
+              <button ion-button clear color="danger" small icon-left>
+                <ion-icon name='thumbs-up'></ion-icon>
+                  <span *ngIf="question.votes">{{question.votes}}</span>
+              </button>
+            </ion-col> 
+          </ion-row>
+
+          <div *ngIf="question.showAnswersinUI">
+            <!--<ion-row no-padding *ngFor="let answer of question.answers">
+              <p> {{ answer.mainAnswer }} </p>
+            </ion-row> -->
+
+            <ion-card no-padding *ngFor="let answer of question.answers">
+              <ion-card-header>
+                
+                  <button ion-button clear small icon-left>
+                    <ion-icon name='contact'></ion-icon>                
+                    Akanksha
+                </button>
+              </ion-card-header>
+              <ion-card-content>
+                <p>{{ answer.mainAnswer }}</p>  
+                <br />              
+                <p text-right>
+                  <button ion-button outline small>View All Answers</button></p>
+              </ion-card-content>
+            </ion-card>  
+
+
+          </div>
+
+          
+          
       </ion-card-content>
     </ion-card>
  

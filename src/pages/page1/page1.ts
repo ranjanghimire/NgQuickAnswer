@@ -38,5 +38,9 @@ private myUserData : AppUser;
   goToUserInfo() : void{
     this.navCtrl.push( UserInfoPage, { myUser : this.myUserData })
   }
+  
+  toggleAnswers(question : Question) : void{
+    question.showAnswersinUI = !question.showAnswersinUI;
+  }
 
 }

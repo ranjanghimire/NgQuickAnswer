@@ -14,9 +14,13 @@ export class Question {
 
     weight : any;
 
+    votes : any;
+
     topic : string;
 
     tags : string[];
+
+    showAnswersinUI : boolean;
 
     isLocationSpecific : any;
 
@@ -27,6 +31,8 @@ export class Question {
     hasAcceptedAnswer : any;
 
     constructor (){
+
+        this.showAnswersinUI = false;
 
     }
 }
