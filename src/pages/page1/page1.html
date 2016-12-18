@@ -48,7 +48,7 @@
               </button>
             </ion-col>
             <ion-col text-right>
-              <button ion-button clear color="danger" small icon-left>
+              <button ion-button clear color="danger" small icon-left (click) = "incrementVotes(question)">
                 <ion-icon name='thumbs-up'></ion-icon>
                   <span *ngIf="question.votes">{{question.votes}}</span>
               </button>

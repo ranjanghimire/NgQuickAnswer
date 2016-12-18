@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
 import { Question } from '../../models/app.question';
-import { AppUser } from '../../models/app.user'
+import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
 import { Configuration } from '../../app/app.constants'
 import { NewQuestionPage } from '../new-question/new-question'
@@ -16,6 +16,8 @@ import { NewQuestionPage } from '../new-question/new-question'
 export class Page1 {
 
 public retQuestions : Question[];
+
+public retUpdateQuestion : Question;
 
 private myUserData : AppUser;
 
@@ -36,6 +38,13 @@ private myUserData : AppUser;
                 () => console.log('Loaded users to myUsers'));
   }
 
+  private updateQuestionById(updateQuestion: Question): void{
+    this._questionService.updateQuestionById(updateQuestion)
+        .subscribe((data:Question) => this.retUpdateQuestion = data,
+                error => console.log(error),
+                () => console.log('Updated the question votes in server.'));
+  }
+
   goToUserInfo() : void{
     this.navCtrl.push( UserInfoPage, { myUser : this.myUserData })
   }
@@ -46,6 +55,17 @@ private myUserData : AppUser;
 
   askNewQuestion() : void{
     this.navCtrl.push(NewQuestionPage);
+  }
+
+  incrementVotes(question) : void{
+    console.log("This question has " + question.votes + " votes.");
+    //TODO: Increment this question's vote in Ng. Then make a call to server for increment.
+    //The PUT request will do.
+
+    ++question.votes;
+
+    this.updateQuestionById(question);
+
   }
 
 }
