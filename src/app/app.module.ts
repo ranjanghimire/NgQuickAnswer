@@ -8,6 +8,7 @@ import { DataService } from '../shared/app.dataservice';
 import { QuestionService } from '../shared/app.questionservice';
 import { UserInfoPage } from '../pages/user-info/user-info';
 import  { NewQuestionPage} from '../pages/new-question/new-question';
+import { QuestionPublishedPage } from '../pages/question-published/question-published'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import  { NewQuestionPage} from '../pages/new-question/new-question';
     Page1,
     Page2,
     UserInfoPage,
-    NewQuestionPage
+    NewQuestionPage,
+    QuestionPublishedPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +28,8 @@ import  { NewQuestionPage} from '../pages/new-question/new-question';
     Page1,
     Page2,
     UserInfoPage,
-    NewQuestionPage
+    NewQuestionPage,
+    QuestionPublishedPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService]
 })

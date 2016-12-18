@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 import { Question } from '../../models/app.question';
 import { Configuration } from '../../app/app.constants';
 import { AppUser } from '../../models/app.user';
 import { Author } from '../../models/app.author';
-import { QuestionService } from '../../shared/app.questionservice';;
+import { QuestionService } from '../../shared/app.questionservice';
+import { QuestionPublishedPage } from '../question-published/question-published'
 
 /*
   Generated class for the NewQuestion page.
@@ -26,7 +27,7 @@ export class NewQuestionPage {
 
   askedQuestion : Question = new Question();
 
-  constructor(private _questionService : QuestionService,public navCtrl: NavController, private _conf : Configuration) {
+  constructor(private _questionService : QuestionService,public navCtrl: NavController, private _conf : Configuration, private viewCtrl: ViewController) {
     this.myUserData = _conf.myUser;
   }
 
@@ -35,14 +36,8 @@ export class NewQuestionPage {
   }
 
   logForm() : void{
-    //console.log("logForm() invoked");
-    //console.log(this.guid());
-
-    //console.log(this.askedQuestion.topic);
-    //console.log(this.askedQuestion.mainQuestion);
-
+    
     //TODO: Validate userInputs. 
-
    
     this.newAuthor  = new Author();
     this.newAuthor.appUserId = this.myUserData.id;
@@ -55,6 +50,7 @@ export class NewQuestionPage {
    
   }
 
+  //TODO: create new page for error() and show nice message.
   private postQuestion(question : Question) : void{
     this._questionService
             .postQuestion(question)
@@ -66,14 +62,13 @@ export class NewQuestionPage {
   goToAfterSubmitPage() : void{
     console.log("Question posted");
 
-    //this.nav
-     // .push(DetailsPage)
-     // .then(() => {
-        // first we find the index of the current view controller:
-      //  const index = this.viewCtrl.index;
-        // then we remove it from the navigation stack
-       // this.nav.remove(index);
-      //});
+    this.navCtrl
+    .push(QuestionPublishedPage)
+    .then(() => {
+      const index = this.viewCtrl.index;
+      this.navCtrl.remove(index);
+    });
+
   }
 
 }
