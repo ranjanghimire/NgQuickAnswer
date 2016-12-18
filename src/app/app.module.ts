@@ -7,13 +7,15 @@ import { Configuration } from './app.constants';
 import { DataService } from '../shared/app.dataservice';
 import { QuestionService } from '../shared/app.questionservice';
 import { UserInfoPage } from '../pages/user-info/user-info';
+import  { NewQuestionPage} from '../pages/new-question/new-question';
 
 @NgModule({
   declarations: [
     MyApp,
     Page1,
     Page2,
-    UserInfoPage
+    UserInfoPage,
+    NewQuestionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,7 +25,8 @@ import { UserInfoPage } from '../pages/user-info/user-info';
     MyApp,
     Page1,
     Page2,
-    UserInfoPage
+    UserInfoPage,
+    NewQuestionPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService]
 })

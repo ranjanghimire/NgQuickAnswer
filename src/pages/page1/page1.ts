@@ -7,6 +7,7 @@ import { Question } from '../../models/app.question';
 import { AppUser } from '../../models/app.user'
 import { UserInfoPage } from '../user-info/user-info';
 import { Configuration } from '../../app/app.constants'
+import { NewQuestionPage } from '../new-question/new-question'
 
 @Component({
   selector: 'page-page1',
@@ -41,6 +42,10 @@ private myUserData : AppUser;
   
   toggleAnswers(question : Question) : void{
     question.showAnswersinUI = !question.showAnswersinUI;
+  }
+
+  askNewQuestion() : void{
+    this.navCtrl.push(NewQuestionPage);
   }
 
 }

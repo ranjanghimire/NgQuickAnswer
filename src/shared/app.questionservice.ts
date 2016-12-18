@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { RequestOptions, Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
@@ -14,17 +14,26 @@ export class QuestionService{
 
     constructor(private _http: Http, private _configuration: Configuration) {
 
-        this.actionUrl = _configuration.ServerWithApiUrl + 'question';
+        this.actionUrl = _configuration.ServerWithApiUrl;
 
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Accept', 'application/json');
+        //this.headers.append('Accept', 'application/json');
     }
 
     public getAllQuestions = (): Observable<Question[]> => {
-        return this._http.get(this.actionUrl, this.headers)
+        return this._http.get(this.actionUrl + 'question', this.headers)
                 .map((response: Response) => <Question[]>response.json())
                 .catch(this.handleError);
+    }
+
+    public postQuestion(askedQuestion : Question): Observable<Question> {
+        let bodyString = JSON.stringify(askedQuestion);
+        let options = new RequestOptions({ headers: this.headers });
+
+        return this._http.post(this.actionUrl + 'question', bodyString, options)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); ;
     }
 
     private handleError(error: Response) {
