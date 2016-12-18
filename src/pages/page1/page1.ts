@@ -59,8 +59,10 @@ private myUserData : AppUser;
 
   incrementVotes(question) : void{
     console.log("This question has " + question.votes + " votes.");
-    //TODO: Increment this question's vote in Ng. Then make a call to server for increment.
-    //The PUT request will do.
+    
+    //TODO: Allow like only once. 
+    //User shouldn't be able to like multiple times.
+    //Also, server should know if a question has already been liked.
 
     ++question.votes;
 

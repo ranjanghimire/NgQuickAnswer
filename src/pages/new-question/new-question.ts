@@ -51,6 +51,7 @@ export class NewQuestionPage {
   }
 
   //TODO: create new page for error() and show nice message.
+  //TODO: Once question is asked, its id should be saved in User table.
   private postQuestion(question : Question) : void{
     this._questionService
             .postQuestion(question)
