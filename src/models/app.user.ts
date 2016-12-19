@@ -6,6 +6,8 @@ export class AppUser {
 
     userName : string;
 
+    password : string;
+
     fullName : string;
 
     address : Address;

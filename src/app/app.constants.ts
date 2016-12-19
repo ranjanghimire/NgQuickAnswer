@@ -11,6 +11,7 @@ export class Configuration {
     public myUser : AppUser = { "id": "01ddg4244gdsg",
                       "userName": "rghimire",
                        "fullName": "Ranjan Ghimire",
+                       "password": "",
                       "address": {
                           "id" : "sghsldgh4221",
                           "zipcode": "38002",  
