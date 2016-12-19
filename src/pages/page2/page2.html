@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-padding>
   <div class="aligner">
     <form> <!-- (ngSubmit)="loginUser()"> -->
         <ion-item>
@@ -20,9 +20,10 @@
           <!-- <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea> -->
           <ion-input placeholder="Password" type="password" name="password"></ion-input>
         </ion-item>
-        <br /><br />
+        <br /><br />        
         <button ion-button type="submit" block>SIGN IN</button>
-      </form>
+        <ion-row><a>Register</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>Forgot Password?</a></ion-row>       
+      </form><br />      
   </div>
 
 
