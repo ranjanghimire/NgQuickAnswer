@@ -1,3 +1,8 @@
 page-page2 {
-
+    .aligner {
+        display: flex;
+        align-items: center;
+        min-height: 24em;
+        justify-content: center;
+    }
 }

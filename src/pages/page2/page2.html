@@ -3,11 +3,30 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Page Two</ion-title>
+    <ion-title>Quick Answer</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <div class="aligner">
+    <form> <!-- (ngSubmit)="loginUser()"> -->
+        <ion-item>
+          <!--<ion-label>Topic:  </ion-label> -->
+          <!-- <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input> -->
+          <ion-input placeholder="UserName" type="text" name="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <!--<ion-label>Question: </ion-label> -->
+          <!-- <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea> -->
+          <ion-input placeholder="Password" type="password" name="password"></ion-input>
+        </ion-item>
+        <br /><br />
+        <button ion-button type="submit" block>SIGN IN</button>
+      </form>
+  </div>
+
+
+  <!--
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-left></ion-icon>
@@ -20,4 +39,5 @@
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
+  -->
 </ion-content>
