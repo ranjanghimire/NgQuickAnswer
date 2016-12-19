@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
+import { DataService } from '../../shared/app.dataservice';
+import { Page1 } from '../page1/page1'
 
 @Component({
   selector: 'page-page2',
@@ -10,16 +12,21 @@ import { AppUser } from '../../models/app.user';
 export class Page2 {
 
   private formUser : AppUser = new AppUser();
+
+  private retUser: AppUser;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {   
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _service: DataService) {   
 
   }
 
   loginUser() : void{
-    console.log("loginUser method invoked!");
-    console.log(this.formUser.userName);
-    console.log(this.formUser.password);
-
+   
+    this._service.findByUserNameAndPassword(this.formUser.userName, this.formUser.password)
+        .subscribe((data:AppUser) => this.retUser = data,
+                error => console.log(error), //TODO: Display a modal with error message
+                () => {
+                  this.navCtrl.setRoot(Page1);
+                });  
 
   }
 

@@ -28,6 +28,12 @@ export class DataService {
                 .catch(this.handleError);
     }
 
+    public findByUserNameAndPassword = (userName: string, password: string): Observable<AppUser> => {
+        return this._http.get(this.actionUrl + "/" + userName + "/" + password, this.headers)
+                .map((response: Response) => <AppUser>response.json())
+                .catch(this.handleError);
+    }
+
 
     // public GetAll = (): Observable<MyTypedItem[]> => {
     //     return this._http.get(this.actionUrl)
