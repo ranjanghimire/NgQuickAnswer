@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
+import { Page2 } from '../page2/page2';
 
 @Component({
   selector: 'page-user-info',
@@ -16,6 +17,11 @@ export class UserInfoPage {
 
   ionViewDidLoad() {
      
+  }
+
+  logout(): void{
+    localStorage.removeItem("myUser");
+    this.navCtrl.setRoot(Page2);
   }
 
 }
