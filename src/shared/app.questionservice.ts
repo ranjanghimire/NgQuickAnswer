@@ -27,6 +27,12 @@ export class QuestionService{
                 .catch(this.handleError);
     }
 
+    public getAllQuestionsByTopic = (topic: string): Observable<Question[]> => {
+        return this._http.get(this.actionUrl + 'question/topic/' + topic, this.headers)
+                .map((response: Response) => <Question[]>response.json())
+                .catch(this.handleError);
+    }
+
     public postQuestion(askedQuestion : Question): Observable<Question> {
         let bodyString = JSON.stringify(askedQuestion);
         let options = new RequestOptions({ headers: this.headers });

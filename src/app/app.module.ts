@@ -8,8 +8,9 @@ import { DataService } from '../shared/app.dataservice';
 import { QuestionService } from '../shared/app.questionservice';
 import { UserInfoPage } from '../pages/user-info/user-info';
 import  { NewQuestionPage} from '../pages/new-question/new-question';
-import { QuestionPublishedPage } from '../pages/question-published/question-published'
-import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answers-to-the-question'
+import { QuestionPublishedPage } from '../pages/question-published/question-published';
+import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answers-to-the-question';
+import { TopicQuestionsPage } from '../pages/topic-questions/topic-questions';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answe
     UserInfoPage,
     NewQuestionPage,
     QuestionPublishedPage,
-    AnswersToTheQuestionPage
+    AnswersToTheQuestionPage,
+    TopicQuestionsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -32,7 +34,8 @@ import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answe
     UserInfoPage,
     NewQuestionPage,
     QuestionPublishedPage,
-    AnswersToTheQuestionPage
+    AnswersToTheQuestionPage,
+    TopicQuestionsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService]
 })

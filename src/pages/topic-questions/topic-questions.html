@@ -1,32 +1,27 @@
+<!--
+  Generated template for the TopicQuestions page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
-  <ion-navbar color=primary>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-    <ion-buttons end>
-        <button ion-button (click)="goToUserInfo()">
-          <ion-icon name="contact" class=larger></ion-icon>
-        </button>
-    </ion-buttons>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ myTopic }}</ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
 
+<ion-content no-padding>
   <ion-card *ngFor="let question of retQuestions">
       <!--<ion-card-header>-->
         
       <!--</ion-card-header>-->
-      <ion-card-content>
-        <!--<ion-card-title> -->
-        <p>
-          <button ion-button small outline (click)="goToTopicQuestions(question.topic)">{{question.topic}}</button>  
-        </p>        
-        <!--</ion-card-title>  -->
-        <p> {{question.mainQuestion}}
+      <ion-card-content>        
+        <p> 
+          {{question.mainQuestion}}
         </p> 
-
         
         <ion-list> 
             <ion-item>
@@ -88,6 +83,5 @@
      <ion-fab right bottom>
         <button ion-fab mini color="primary" (click)="askNewQuestion()"><ion-icon name="add"></ion-icon></button>
      </ion-fab>
- 
- <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+
 </ion-content>

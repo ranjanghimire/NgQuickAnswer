@@ -6,9 +6,10 @@ import { QuestionService } from '../../shared/app.questionservice';
 import { Question } from '../../models/app.question';
 import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
-import { Configuration } from '../../app/app.constants'
-import { NewQuestionPage } from '../new-question/new-question'
-import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question'
+import { Configuration } from '../../app/app.constants';
+import { NewQuestionPage } from '../new-question/new-question';
+import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
+import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 
 @Component({
   selector: 'page-page1',
@@ -25,10 +26,10 @@ private myUserData : AppUser;
 
   constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration) {
     this.myUserData = _conf.myUser;
+    this.getAllQuestions();
   }
 
-  ionViewDidEnter() {
-      this.getAllQuestions();
+  ionViewDidEnter() {      
   }
 
   private getAllQuestions() : void{
@@ -36,7 +37,7 @@ private myUserData : AppUser;
             .getAllQuestions()
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
-                () => console.log('Loaded users to myUsers'));
+                () => console.log('Loaded questions'));
   }
 
   private updateQuestionById(updateQuestion: Question): void{
@@ -72,7 +73,11 @@ private myUserData : AppUser;
   }
 
   goToAnswersPage(question : Question) : void{
-    this.navCtrl.push( AnswersToTheQuestionPage, { question : question })
+    this.navCtrl.push( AnswersToTheQuestionPage, { question : question });
+  }
+
+  goToTopicQuestions(topic: string) : void{
+    this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
 }
