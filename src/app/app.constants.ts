@@ -8,27 +8,30 @@ export class Configuration {
     public ApiUrl: string = "/";
     public ServerWithApiUrl = this.Server + ':' + this.port + this.ApiUrl;
 
-    public myUser : AppUser = { "id": "01ddg4244gdsg",
-                      "userName": "rghimire",
-                       "fullName": "Ranjan Ghimire",
-                       "password": "",
-                      "address": {
-                          "id" : "sghsldgh4221",
-                          "zipcode": "38002",  
-                          "primaryAddress": "9350 Triumph Cir",
-                          "secondaryAddress":"Apt 303",
-                          "city": "Memphis",
-                          "state":"TN",
-                          "country":"USA"
-                      },
-                      "askedQuestionIDs": [""],
-                      "repliedAnswersIDs":[""],
-                      "vouchedByUsers":[],
-                      "loginTime":"",
-                      "desiredTags": [""],
-                      "desiredTopics":[""],
-                      "weight":"50",
-                      vouchCount:"250"                      
-                   };
+    //TODO: Check if localStorage is empty and do some validation
+    public myUser: AppUser = JSON.parse(localStorage.getItem("myUser"));
+
+    // public myUser : AppUser = { "id": "01ddg4244gdsg",
+    //                   "userName": "rghimire",
+    //                    "fullName": "Ranjan Ghimire",
+    //                    "password": "",
+    //                   "address": {
+    //                       "id" : "sghsldgh4221",
+    //                       "zipcode": "38002",  
+    //                       "primaryAddress": "9350 Triumph Cir",
+    //                       "secondaryAddress":"Apt 303",
+    //                       "city": "Memphis",
+    //                       "state":"TN",
+    //                       "country":"USA"
+    //                   },
+    //                   "askedQuestionIDs": [""],
+    //                   "repliedAnswersIDs":[""],
+    //                   "vouchedByUsers":[],
+    //                   "loginTime":"",
+    //                   "desiredTags": [""],
+    //                   "desiredTopics":[""],
+    //                   "weight":"50",
+    //                   vouchCount:"250"                      
+    //                };
 
 }

@@ -8,6 +8,7 @@ import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
 import { Configuration } from '../../app/app.constants'
 import { NewQuestionPage } from '../new-question/new-question'
+import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question'
 
 @Component({
   selector: 'page-page1',
@@ -68,6 +69,10 @@ private myUserData : AppUser;
 
     this.updateQuestionById(question);
 
+  }
+
+  goToAnswersPage(question : Question) : void{
+    this.navCtrl.push( AnswersToTheQuestionPage, { question : question })
   }
 
 }
