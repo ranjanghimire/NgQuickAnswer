@@ -21,12 +21,13 @@
 
     <ion-row *ngFor="let answer of myQuestion.answers">  <!-- list of answers -->
       <ion-card>
-          <ion-card-header *ngIf="answer.author">                
+          <!--<ion-card-header *ngIf="answer.author">                
               <button ion-button clear small icon-left>
                 <ion-icon name='contact'></ion-icon>                
-                    {{ answer.author }}
+                  {{ answer.author }} 
+                  
                 </button>
-          </ion-card-header>
+          </ion-card-header>-->
           <ion-card-content>
                 <p>{{ answer.mainAnswer }}</p>  
                 <br />              

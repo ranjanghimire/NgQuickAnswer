@@ -10,6 +10,7 @@ import { Configuration } from '../../app/app.constants';
 import { NewQuestionPage } from '../new-question/new-question';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
+import { NewAnswerPage } from '../new-answer-page/new-answer-page';
 
 @Component({
   selector: 'page-page1',
@@ -26,10 +27,11 @@ private myUserData : AppUser;
 
   constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration) {
     this.myUserData = _conf.myUser;
-    this.getAllQuestions();
+    
   }
 
   ionViewDidEnter() {      
+    this.getAllQuestions();
   }
 
   private getAllQuestions() : void{
@@ -78,6 +80,11 @@ private myUserData : AppUser;
 
   goToTopicQuestions(topic: string) : void{
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
+  }
+
+  goToNewAnswersPage(question: Question): void{
+    console.log('invoked goToNewAnswersPage');
+    this.navCtrl.push(NewAnswerPage, {question: question});
   }
 
 }

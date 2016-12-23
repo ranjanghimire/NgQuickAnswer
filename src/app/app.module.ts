@@ -6,11 +6,13 @@ import { Page2 } from '../pages/page2/page2';
 import { Configuration } from './app.constants';
 import { DataService } from '../shared/app.dataservice';
 import { QuestionService } from '../shared/app.questionservice';
+import { AnswerService } from '../shared/app.answerservice';
 import { UserInfoPage } from '../pages/user-info/user-info';
 import  { NewQuestionPage} from '../pages/new-question/new-question';
 import { QuestionPublishedPage } from '../pages/question-published/question-published';
 import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../pages/topic-questions/topic-questions';
+import { NewAnswerPage } from '../pages/new-answer-page/new-answer-page';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { TopicQuestionsPage } from '../pages/topic-questions/topic-questions';
     NewQuestionPage,
     QuestionPublishedPage,
     AnswersToTheQuestionPage,
-    TopicQuestionsPage
+    TopicQuestionsPage,
+    NewAnswerPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,8 +38,9 @@ import { TopicQuestionsPage } from '../pages/topic-questions/topic-questions';
     NewQuestionPage,
     QuestionPublishedPage,
     AnswersToTheQuestionPage,
-    TopicQuestionsPage
+    TopicQuestionsPage,
+    NewAnswerPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService, AnswerService]
 })
 export class AppModule {}

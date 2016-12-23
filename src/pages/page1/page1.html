@@ -41,7 +41,7 @@
         <ion-row no-padding>
                        
 
-            <ion-col>
+            <ion-col *ngIf="question.answers">
               <button ion-button round small icon-left (click) = "toggleAnswers(question)">
                 <ion-icon name='chatbubbles'></ion-icon>
                 Answers
@@ -51,8 +51,16 @@
               <button ion-button clear color="danger" small icon-left (click) = "incrementVotes(question)">
                 <ion-icon name='thumbs-up'></ion-icon>
                   <span *ngIf="question.votes">{{question.votes}}</span>
-              </button>
+              </button>              
             </ion-col> 
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button ion-button clear icon-left (click)="goToNewAnswersPage(question)">
+                  <ion-icon name='create'></ion-icon>
+                  Write an answer
+              </button>
+            </ion-col>
           </ion-row>
 
           <div *ngIf="question.showAnswersinUI">

@@ -12,7 +12,9 @@ export class AnswersToTheQuestionPage {
   private myQuestion : Question;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
     this.myQuestion = this.navParams.get("question");
+    
   }
 
   ionViewDidLoad() {
