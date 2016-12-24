@@ -64,7 +64,14 @@ private myUserData : AppUser;
   }
 
   incrementVotes(question) : void{
+
+    if(question.liked){
+      return;
+    }
+
     console.log("This question has " + question.votes + " votes.");
+
+    question.liked = true;
     
     //TODO: Allow like only once. 
     //User shouldn't be able to like multiple times.
