@@ -41,6 +41,7 @@ export class NewQuestionPage {
    
     this.newAuthor  = new Author();
     this.newAuthor.appUserId = this.myUserData.id;
+    this.newAuthor.appUserName = this.myUserData.userName;
 
     this.askedQuestion.author = this.newAuthor;
 

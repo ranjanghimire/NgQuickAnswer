@@ -4,6 +4,8 @@ export class Author{
 
     appUserId : string;
 
+    appUserName : string;
+
     constructor(){
 
     }

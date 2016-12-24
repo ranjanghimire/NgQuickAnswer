@@ -20,7 +20,7 @@ export class Page1 {
 
 public retQuestions : Question[];
 
-public retUpdateQuestion : Question;
+public retIncQuestion : Question;
 
 private myUserData : AppUser;
 
@@ -42,9 +42,10 @@ private myUserData : AppUser;
                 () => console.log('Loaded questions'));
   }
 
-  private updateQuestionById(updateQuestion: Question): void{
-    this._questionService.updateQuestionById(updateQuestion)
-        .subscribe((data:Question) => this.retUpdateQuestion = data,
+  //incrementLikesOfQuestion
+  private incrementLikesOfQuestion(question: Question, userId: string){
+    this._questionService.incrementLikesOfQuestion(question, userId)
+      .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),
                 () => console.log('Updated the question votes in server.'));
   }
@@ -70,7 +71,7 @@ private myUserData : AppUser;
 
     ++question.votes;
 
-    this.updateQuestionById(question);
+    this.incrementLikesOfQuestion(question, this.myUserData.id);
 
   }
 

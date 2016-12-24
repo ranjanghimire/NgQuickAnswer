@@ -46,6 +46,7 @@ export class NewAnswerPage {
     //Answer id should be populated in server
     this.newAuthor  = new Author();
     this.newAuthor.appUserId = this.myUserData.id;
+    this.newAuthor.appUserName = this.myUserData.userName;
     //Author id should be populated in Server
 
     this.newAnswer.author = this.newAuthor;
