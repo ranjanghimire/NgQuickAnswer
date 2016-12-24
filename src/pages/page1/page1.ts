@@ -3,6 +3,7 @@ import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
+import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { Question } from '../../models/app.question';
 import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
@@ -25,7 +26,7 @@ public retIncQuestion : Question;
 private myUserData : AppUser;
 
 
-  constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration) {
+  constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
     this.myUserData = _conf.myUser;
     
   }
@@ -35,8 +36,8 @@ private myUserData : AppUser;
   }
 
   private getAllQuestions() : void{
-    this._questionService
-            .getAllQuestions()
+    this._questionSeervicev2
+            .getAllQuestions(this.myUserData.id)
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
                 () => console.log('Loaded questions'));
@@ -87,5 +88,6 @@ private myUserData : AppUser;
     console.log('invoked goToNewAnswersPage');
     this.navCtrl.push(NewAnswerPage, {question: question});
   }
+
 
 }

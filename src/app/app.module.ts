@@ -6,6 +6,7 @@ import { Page2 } from '../pages/page2/page2';
 import { Configuration } from './app.constants';
 import { DataService } from '../shared/app.dataservice';
 import { QuestionService } from '../shared/app.questionservice';
+import { QuestionServicev2 } from '../shared/app.questionservicev2';
 import { AnswerService } from '../shared/app.answerservice';
 import { UserInfoPage } from '../pages/user-info/user-info';
 import  { NewQuestionPage} from '../pages/new-question/new-question';
@@ -41,6 +42,6 @@ import { NewAnswerPage } from '../pages/new-answer-page/new-answer-page';
     TopicQuestionsPage,
     NewAnswerPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService, AnswerService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService, AnswerService, QuestionServicev2]
 })
 export class AppModule {}

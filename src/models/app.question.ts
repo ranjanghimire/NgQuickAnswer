@@ -16,6 +16,8 @@ export class Question {
 
     votes : any;
 
+    liked: boolean;
+
     topic : string;
 
     tags : string[];
