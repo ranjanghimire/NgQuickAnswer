@@ -63,10 +63,18 @@ private myUserData : AppUser;
     this.navCtrl.push(NewQuestionPage);
   }
 
-  incrementVotes(question) : void{
+  decrementVotes(question: Question): void{
+    question.liked = false;
+    --question.votes;
+    //Name is increment but it works.
+    this.incrementLikesOfQuestion(question, this.myUserData.id);
+  }
+
+  incrementVotes(question: Question) : void{
 
     if(question.liked){
       //TODO: invoke decrementVotes and toggle class.
+      this.decrementVotes(question);
       return;
     }
 
