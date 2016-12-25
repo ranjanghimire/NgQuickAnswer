@@ -48,7 +48,13 @@ export class AnswersToTheQuestionPage {
   afterSubmit(answer: Answer): void{
       //Add the answer to the current list
       //Show a toast
-      this.myQuestion.answers.push(answer);
+      if(this.myQuestion.answers){
+        this.myQuestion.answers.push(answer);
+      }
+      else{
+        this.myQuestion.answers = [];
+        this.myQuestion.answers.push(answer);
+      }
       console.log('Answer submitted');
   }
 
