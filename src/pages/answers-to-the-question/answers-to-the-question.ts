@@ -62,4 +62,8 @@ export class AnswersToTheQuestionPage {
     console.log('Hello AnswersToTheQuestionPage Page');
   }
 
+  extractFirstLetter(userName: string){
+    return userName.charAt(0);
+  }
+
 }

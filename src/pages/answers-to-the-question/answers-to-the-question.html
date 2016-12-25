@@ -7,27 +7,34 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>All Answers</ion-title>
+    <ion-title>{{myQuestion.topic}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
     
     <ion-row> <!-- heading -->
-      <ion-col>{{ myQuestion.mainQuestion }}</ion-col>
+      <ion-col><p class="gm-main-content">{{ myQuestion.mainQuestion }}</p></ion-col>
     </ion-row>    
 
-    <ion-row *ngFor="let answer of myQuestion.answers">  <!-- list of answers -->
+
+    <div id="answerbox" *ngFor="let answer of myQuestion.answers">
+      <ion-row>
+        <ion-col>
+          <p class="gm-main-content">{{ answer.mainAnswer }}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-10><div class="gm-circle" *ngIf="answer.author.appUserName">{{ extractFirstLetter(answer.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+        <ion-col width-90><span class="gm-dim" *ngIf="answer.author.appUserName">{{ answer.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
+      </ion-row>
+    </div>
+
+
+    <!--<ion-row *ngFor="let answer of myQuestion.answers">  
       <ion-card>
-          <!--<ion-card-header *ngIf="answer.author">                
-              <button ion-button clear small icon-left>
-                <ion-icon name='contact'></ion-icon>                
-                  {{ answer.author }} 
-                  
-                </button>
-          </ion-card-header>-->
+        
           <ion-card-content>
                 <p>{{ answer.mainAnswer }}</p>  
                 <br />              
@@ -36,7 +43,7 @@
                 </p>
             </ion-card-content>
         </ion-card>
-    </ion-row>
+    </ion-row>-->
   
 
 </ion-content>
