@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question'; 
 import { QuestionService } from '../../shared/app.questionservice';
+import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { AppUser } from '../../models/app.user';
 
@@ -25,15 +26,16 @@ export class TopicQuestionsPage {
   public retQuestions : Question[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
-            private _conf : Configuration) {
+            private _conf : Configuration, private _questionservicev2: QuestionServicev2) {
     this.myTopic = this.navParams.get("topic");
-    this.getAllQuestionsByTopic(this.myTopic);
+    
     this.myUserData = this._conf.myUser;
+    this.getAllQuestionsByTopic(this.myTopic, this.myUserData.id);
   }
 
-  getAllQuestionsByTopic(topic: string): void{
-    this._questionService
-            .getAllQuestionsByTopic(topic)
+  getAllQuestionsByTopic(topic: string, userId: string): void{
+    this._questionservicev2
+            .getAllQuestionsByTopic(topic, userId)
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
                 () => console.log('Loaded questions'));
