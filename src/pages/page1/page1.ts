@@ -97,5 +97,9 @@ private myUserData : AppUser;
     this.navCtrl.push(NewAnswerPage, {question: question});
   }
 
+  extractFirstLetter(userName: string){
+    return userName.charAt(0);
+  }
+
 
 }

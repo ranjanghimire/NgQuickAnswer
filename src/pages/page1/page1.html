@@ -22,8 +22,8 @@
       <ion-col><p class="gm-main-content">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
     </ion-row>
     <ion-row>
-      <ion-col width-10><div class="gm-circle">R</div></ion-col><!--Use a round circle with First letter of username in front -->
-      <ion-col width-90><span class="gm-dim">rghimire</span></ion-col> <!-- UserName on left side. Make it dim. -->         
+      <ion-col width-10><div class="gm-circle" *ngIf="question.author.appUserName">{{ extractFirstLetter(question.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+      <ion-col width-90><span class="gm-dim" *ngIf="question.author.appUserName">{{ question.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
     </ion-row>
     <ion-row>
       <ion-col>       
