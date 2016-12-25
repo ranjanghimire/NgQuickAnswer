@@ -66,6 +66,7 @@ private myUserData : AppUser;
   incrementVotes(question) : void{
 
     if(question.liked){
+      //TODO: invoke decrementVotes and toggle class.
       return;
     }
 
