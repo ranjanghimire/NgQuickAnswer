@@ -8,12 +8,65 @@
 
   <ion-navbar color=primary>
     <ion-title>My Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-left (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+        Logout
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+  <div>
+    <ion-row>
+      <ion-col>
+        <div class="gm-circle align-center" *ngIf="myUser.userName" id="circleLetter-div">{{ extractFirstLetter(myUser.userName) | uppercase }}</div>  
+      </ion-col> <!-- round image -->
+    </ion-row>
+    <ion-row> 
+      <ion-col><div class="align-center gm-dim" style="margin-bottom:20px">{{myUser.userName | uppercase}}</div></ion-col> <!-- username -->
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="align-center" style="border-right: thin solid #ccc;">
+        <p class="gm-strong gm-dim">23</p>
+        <p class="gm-small-caps gm-dim">QUESTIONS</p>
+      </ion-col>
+
+      <ion-col class="align-center">
+        <p class="gm-strong gm-dim">12</p>
+        <p class="gm-small-caps gm-dim">ANSWERS</p>
+      </ion-col>
+
+      <ion-col class="align-center" style="border-left: thin solid #ccc;">
+        <p class="gm-strong gm-dim">11</p>
+        <p class="gm-small-caps gm-dim">LIKES</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-list inset>
+
+    <ion-item>
+      <ion-label>Full Name</ion-label>
+      <ion-input type="text" [(ngModel)]="myUser.fullName" name="fullName" placeholder="myUser.fullName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="myUser.password" name="password" placeholder="myUser.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button block>Update</button>
+    </ion-item>
+  </ion-list>
+
+  
+
+  <!--
   <ion-card>
     <ion-card-header>
       <h2>{{ this.myUser.fullName }} </h2>
@@ -29,5 +82,6 @@
       <p> <button ion-button clear (click)="logout()"> Logout </button> </p>
     </ion-card-content>
   </ion-card>
+  -->
 
 </ion-content>

@@ -24,4 +24,8 @@ export class UserInfoPage {
     this.navCtrl.setRoot(Page2);
   }
 
+  extractFirstLetter(userName: string){
+    return userName.charAt(0);
+  }
+
 }
