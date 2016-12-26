@@ -5,7 +5,7 @@ import { Question } from '../../models/app.question';
 import { Answer } from '../../models/app.answer';
 import { AppUser } from '../../models/app.user';
 import {Author} from '../../models/app.author';
-import { AnswerService } from '../../shared/app.answerservice';
+import { AnswerServicev2 } from '../../shared/app.answerservicev2';
 
 @Component({
   selector: 'page-answers-to-the-question',
@@ -19,7 +19,7 @@ export class AnswersToTheQuestionPage {
   private newAuthor : Author;
   private retQuestion: Question;
 
-  constructor(private _answerService: AnswerService, public navCtrl: NavController, public navParams: NavParams, private _conf : Configuration) {
+  constructor(private _answerService: AnswerServicev2, public navCtrl: NavController, public navParams: NavParams, private _conf : Configuration) {
     
     this.myQuestion = this.navParams.get("question");
     this.myUserData = _conf.myUser;
@@ -34,12 +34,12 @@ export class AnswersToTheQuestionPage {
 
     this.myAnswer.weight = 1;
 
-    this.postAnswer(this.myAnswer, this.myQuestion.id);
+    this.postAnswer(this.myAnswer, this.myQuestion.id, this.myUserData.id);
   }
 
-  private postAnswer(answer: Answer, id: string): void{
+  private postAnswer(answer: Answer, id: string, userId: string): void{
     this._answerService
-            .postAnswer(id, answer)
+            .postAnswer(id, answer, userId)
             .subscribe((data:Question) => this.retQuestion = data,
                 error => console.log(error),
                 () => this.afterSubmit(answer));
