@@ -4,7 +4,7 @@ import { Question } from '../../models/app.question';
 import { Configuration } from '../../app/app.constants';
 import { AppUser } from '../../models/app.user';
 import { Author } from '../../models/app.author';
-import { QuestionService } from '../../shared/app.questionservice';
+import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { QuestionPublishedPage } from '../question-published/question-published'
 
 /*
@@ -27,7 +27,7 @@ export class NewQuestionPage {
 
   askedQuestion : Question = new Question();
 
-  constructor(private _questionService : QuestionService,public navCtrl: NavController, private _conf : Configuration, private viewCtrl: ViewController) {
+  constructor(private _questionService : QuestionServicev2,public navCtrl: NavController, private _conf : Configuration, private viewCtrl: ViewController) {
     this.myUserData = _conf.myUser;
   }
 
@@ -55,7 +55,7 @@ export class NewQuestionPage {
   //TODO: Once question is asked, its id should be saved in User table.
   private postQuestion(question : Question) : void{
     this._questionService
-            .postQuestion(question)
+            .postQuestion(question, this.myUserData.id)
             .subscribe((data:Question) => this.retPostQuestion = data,
                 error => console.log(error),
                 () => this.goToAfterSubmitPage());

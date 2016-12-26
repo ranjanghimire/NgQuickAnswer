@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
@@ -30,6 +30,15 @@ export class QuestionServicev2{
         return this._http.get(this.actionUrl + 'question/topic/' + topic + "/userid/" + userId, this.headers)
                 .map((response: Response) => <Question[]>response.json())
                 .catch(this.handleError);
+    }
+
+    public postQuestion(askedQuestion : Question, userId: string): Observable<Question> {
+        let bodyString = JSON.stringify(askedQuestion);
+        let options = new RequestOptions({ headers: this.headers });
+
+        return this._http.post(this.actionUrl + 'question/userid/' + userId, bodyString, options)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }
 
     private handleError(error: Response) {
