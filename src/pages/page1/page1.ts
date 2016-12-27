@@ -120,5 +120,9 @@ private retTopics : String[];
     return userName.charAt(0);
   }
 
+  goToAllTopicsPage(topic: string): void{
+    //TODO: transfer to all topics page
+  }
+
 
 }

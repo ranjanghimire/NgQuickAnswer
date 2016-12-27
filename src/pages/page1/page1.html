@@ -16,9 +16,9 @@
 
   <div class="gm-container"> 
     <div *ngFor="let topic of retTopics">
-      <button class="extra-small" ion-button small outline round>{{ topic }}</button>         
+      <button class="extra-small" ion-button small outline round (click)="goToTopicQuestions(topic)">{{ topic }}</button>         
     </div>
-    <button class="extra-small" ion-button small round color="danger">See All</button>
+    <button class="extra-small" ion-button small round color="danger" (click)="goToAllTopicsPage(topic)">See All</button>
   </div>
 
   <div *ngFor="let question of retQuestions" id="questionbox">
