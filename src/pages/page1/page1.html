@@ -14,6 +14,20 @@
 
 <ion-content padding>
 
+  <div class="gm-container"> 
+    <button ion-button small outline round>Nikon d5500</button>
+    <button ion-button small outline round>Somerset Apartments</button>
+    <button ion-button small outline round>Sony TV</button>
+    <button ion-button small outline round>Sony a7</button>
+    <button ion-button small outline round>CNN</button>
+    <button ion-button small outline round>Fox News</button>
+    <button ion-button small outline round>Canon 80D</button>
+    <button ion-button small outline round>Fuji xT10</button>
+    <button ion-button small outline round>Nepal</button>
+    <button ion-button small outline round>Memphis</button>
+    <button ion-button small round>See All</button>
+  </div>
+
   <div *ngFor="let question of retQuestions" id="questionbox">
     <ion-row>
       <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->

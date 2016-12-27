@@ -37,11 +37,12 @@ page-page1{
         border-bottom:thin dotted #aaa;
     }
     #questionbox{
-        border-bottom: thin solid #ccc;
-        margin: 10px 0;
+        border-top: thin solid #ccc;
+        margin: 10px 0 -15px 0;
     }
 
-    .topic-button{
+    .topic-button{ 
+        margin-top:10px;
         border-bottom:thin solid #888;
         padding-left:0px;
         padding-right:0px;        
@@ -49,6 +50,14 @@ page-page1{
     .gm-red-heart{
         color:deepskyblue;
     }   
+    .gm-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        margin-bottom: 20px;
+    }
 
        
 }

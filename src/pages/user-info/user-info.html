@@ -30,7 +30,9 @@
       <ion-col><div class="align-center gm-dim" style="margin-bottom:20px">{{myUser.userName | uppercase}}</div></ion-col> <!-- username -->
     </ion-row>
 
+
     <ion-row>
+      <!--
       <ion-col class="align-center" style="border-right: thin solid #ccc;">
         <p class="gm-strong gm-dim">23</p>
         <p class="gm-small-caps gm-dim">QUESTIONS</p>
@@ -40,30 +42,31 @@
         <p class="gm-strong gm-dim">12</p>
         <p class="gm-small-caps gm-dim">ANSWERS</p>
       </ion-col>
-
-      <ion-col class="align-center" style="border-left: thin solid #ccc;">
+-->
+    <!--  <ion-col class="align-center" style="border-left: thin solid #ccc;">
         <p class="gm-strong gm-dim">11</p>
         <p class="gm-small-caps gm-dim">LIKES</p>
       </ion-col>
+      -->
     </ion-row>
   </div>
+  <div id="form-div">
+    <ion-list inset>
 
-  <ion-list inset>
+      <ion-item>
+        <ion-label>Full Name</ion-label>
+        <ion-input type="text" [(ngModel)]="myUser.fullName" name="fullName" placeholder="myUser.fullName"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Full Name</ion-label>
-      <ion-input type="text" [(ngModel)]="myUser.fullName" name="fullName" placeholder="myUser.fullName"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="myUser.password" name="password" placeholder="myUser.password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <button ion-button block>Update</button>
-    </ion-item>
-  </ion-list>
-
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="myUser.password" name="password" placeholder="myUser.password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button block>Update</button>
+      </ion-item>
+    </ion-list>
+  </div>
   
 
   <!--
