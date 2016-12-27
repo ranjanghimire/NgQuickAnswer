@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -13,6 +13,7 @@ import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { NewAnswerPage } from '../new-answer-page/new-answer-page';
 import { AllTopicsPage } from '../all-topics/all-topics';
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-page1',
@@ -29,9 +30,16 @@ private myUserData : AppUser;
 private retTopics : String[];
 
 
-  constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
+  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
     this.myUserData = _conf.myUser;
     
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 
   ionViewDidEnter() {      
@@ -89,19 +97,19 @@ private retTopics : String[];
       this.decrementVotes(question);
       return;
     }
+    else{
+      console.log("This question has " + question.votes + " votes.");
 
-    console.log("This question has " + question.votes + " votes.");
+      question.liked = true;
+      
+      //TODO: Allow like only once. 
+      //User shouldn't be able to like multiple times.
+      //Also, server should know if a question has already been liked.
 
-    question.liked = true;
-    
-    //TODO: Allow like only once. 
-    //User shouldn't be able to like multiple times.
-    //Also, server should know if a question has already been liked.
+      ++question.votes;
 
-    ++question.votes;
-
-    this.incrementLikesOfQuestion(question, this.myUserData.id);
-
+      this.incrementLikesOfQuestion(question, this.myUserData.id);
+    }
   }
 
   goToAnswersPage(question : Question) : void{

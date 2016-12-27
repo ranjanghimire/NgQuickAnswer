@@ -16,6 +16,7 @@ import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answe
 import { TopicQuestionsPage } from '../pages/topic-questions/topic-questions';
 import { NewAnswerPage } from '../pages/new-answer-page/new-answer-page';
 import { AllTopicsPage } from '../pages/all-topics/all-topics';
+import { PopoverPage } from '../pages/popover/popover';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AllTopicsPage } from '../pages/all-topics/all-topics';
     AnswersToTheQuestionPage,
     TopicQuestionsPage,
     NewAnswerPage,
-    AllTopicsPage
+    AllTopicsPage,
+    PopoverPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -44,7 +46,8 @@ import { AllTopicsPage } from '../pages/all-topics/all-topics';
     AnswersToTheQuestionPage,
     TopicQuestionsPage,
     NewAnswerPage,
-    AllTopicsPage
+    AllTopicsPage,
+    PopoverPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, QuestionService, AnswerService, QuestionServicev2, AnswerServicev2]
 })
