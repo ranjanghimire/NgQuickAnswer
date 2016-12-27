@@ -26,6 +26,12 @@ export class QuestionServicev2{
                 .catch(this.handleError);
     }
 
+    public findAllTopics = (): Observable<String[]> =>{
+        return this._http.get(this.actionUrl + 'topics', this.headers)
+                .map((response: Response) => <String[]>response.json())
+                .catch(this.handleError);
+    };
+
     public getAllQuestions = (userId: string): Observable<Question[]> => {
         return this._http.get(this.actionUrl + 'question/userid/' + userId, this.headers)
                 .map((response: Response) => <Question[]>response.json())

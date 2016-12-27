@@ -12,6 +12,7 @@ import { NewQuestionPage } from '../new-question/new-question';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { NewAnswerPage } from '../new-answer-page/new-answer-page';
+import { AllTopicsPage } from '../all-topics/all-topics';
 
 @Component({
   selector: 'page-page1',
@@ -120,8 +121,8 @@ private retTopics : String[];
     return userName.charAt(0);
   }
 
-  goToAllTopicsPage(topic: string): void{
-    //TODO: transfer to all topics page
+  goToAllTopicsPage(): void{
+    this.navCtrl.push(AllTopicsPage);
   }
 
 

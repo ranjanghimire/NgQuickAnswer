@@ -14,3 +14,19 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+//extra small buttons
+.extra-small{
+        height:16px;
+        font-size: 12px;
+        padding:8px;
+        margin: 5px;
+}
+.gm-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        margin-bottom: 20px;
+}
