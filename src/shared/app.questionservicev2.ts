@@ -20,6 +20,12 @@ export class QuestionServicev2{
         //this.headers.append('Accept', 'application/json');
     }
 
+    public findAllTopicsTen = (): Observable<String[]> =>{
+        return this._http.get(this.actionUrl + 'topics/ten', this.headers)
+                .map((response: Response) => <String[]>response.json())
+                .catch(this.handleError);
+    }
+
     public getAllQuestions = (userId: string): Observable<Question[]> => {
         return this._http.get(this.actionUrl + 'question/userid/' + userId, this.headers)
                 .map((response: Response) => <Question[]>response.json())

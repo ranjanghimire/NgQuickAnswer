@@ -25,6 +25,8 @@ public retIncQuestion : Question;
 
 private myUserData : AppUser;
 
+private retTopics : String[];
+
 
   constructor(public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
     this.myUserData = _conf.myUser;
@@ -33,6 +35,15 @@ private myUserData : AppUser;
 
   ionViewDidEnter() {      
     this.getAllQuestions();
+    this.findAllTopicsTen();
+  }
+
+  private findAllTopicsTen(): void{
+    this._questionSeervicev2.findAllTopicsTen()
+        .subscribe((data:String[]) => this.retTopics = data, 
+          error => console.log(error),
+          () => console.log('Loaded topics')
+        );
   }
 
   private getAllQuestions() : void{
