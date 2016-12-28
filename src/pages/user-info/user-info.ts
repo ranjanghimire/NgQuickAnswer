@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { Page2 } from '../page2/page2';
+import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 
 @Component({
   selector: 'page-user-info',
@@ -10,9 +11,29 @@ import { Page2 } from '../page2/page2';
 export class UserInfoPage {
 
   myUser : AppUser;
+  questionCount : any;
+  answerCount : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.myUser = this.navParams.get('myUser');       
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _questionServicev2: QuestionServicev2) {
+    this.myUser = this.navParams.get('myUser');   
+    this.getQuestionsCount(this.myUser.id);    
+    this.getAnswersCount(this.myUser.id);
+  }
+
+  getQuestionsCount(userId: string){
+    this._questionServicev2.countQuestionsByUserId(userId)
+      .subscribe((data:any) => this.questionCount = data, 
+          error => console.log(error),
+          () => console.log('Loaded question count')
+        );
+  }
+
+  getAnswersCount(userId: string){
+    this._questionServicev2.countAnswersByUserId(userId)
+      .subscribe((data:any) => this.answerCount = data, 
+          error => console.log(error),
+          () => console.log('Loaded answer count')
+        );
   }
 
   ionViewDidLoad() {

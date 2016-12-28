@@ -20,6 +20,21 @@ export class QuestionServicev2{
         //this.headers.append('Accept', 'application/json');
     }
 
+    //count of questions asked by user
+    public countQuestionsByUserId = (userId: string): Observable<any> =>{
+        return this._http.get(this.actionUrl + 'question/count/userid/' + userId, this.headers)
+            .map((response: Response) => <any> response.json())
+            .catch(this.handleError);
+    }
+
+    //count of answers replied by user
+    public countAnswersByUserId = (userId: string): Observable<any> =>{
+        return this._http.get(this.actionUrl + 'question/answer/count/userid/' + userId, this.headers)
+            .map((response: Response) => <any> response.json())
+            .catch(this.handleError);
+    }
+
+
     public findAllTopicsTen = (): Observable<String[]> =>{
         return this._http.get(this.actionUrl + 'topics/ten', this.headers)
                 .map((response: Response) => <String[]>response.json())
