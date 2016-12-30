@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { QuestionService } from '../../shared/app.questionservice';
 import { Question } from '../../models/app.question';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
+import { TopicQuestionsPage } from '../topic-questions/topic-questions';
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-user-questions',
@@ -17,7 +19,7 @@ export class UserQuestionsPage {
   private retIncQuestion: Question;
 
   constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2, 
-                private navParams: NavParams, private _questionService: QuestionService) {
+                private navParams: NavParams, private _questionService: QuestionService, private popoverCtrl: PopoverController) {
                     this.userId = this.navParams.get("userId");
                     this.getQuestionsAskedByUser();
                 }
@@ -71,6 +73,17 @@ export class UserQuestionsPage {
 
   extractFirstLetter(userName: string){
     return userName.charAt(0);
+  }
+
+  goToTopicQuestions(topic: string) : void{
+    this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
+  }
+
+   presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }

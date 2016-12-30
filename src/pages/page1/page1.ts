@@ -14,6 +14,7 @@ import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { NewAnswerPage } from '../new-answer-page/new-answer-page';
 import { AllTopicsPage } from '../all-topics/all-topics';
 import { PopoverPage } from '../popover/popover';
+import { UnansweredQuestionsPage } from '../unanswered-questions/unanswered-questions';
 
 @Component({
   selector: 'page-page1',
@@ -120,8 +121,7 @@ private retTopics : String[];
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
-  goToNewAnswersPage(question: Question): void{
-    console.log('invoked goToNewAnswersPage');
+  goToNewAnswersPage(question: Question): void{    
     this.navCtrl.push(NewAnswerPage, {question: question});
   }
 
@@ -131,6 +131,10 @@ private retTopics : String[];
 
   goToAllTopicsPage(): void{
     this.navCtrl.push(AllTopicsPage);
+  }
+
+  goToUnansweredQuestions(): void{
+    this.navCtrl.push(UnansweredQuestionsPage);
   }
 
 

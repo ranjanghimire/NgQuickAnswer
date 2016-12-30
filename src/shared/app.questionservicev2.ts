@@ -36,6 +36,14 @@ export class QuestionServicev2{
             .catch(this.handleError);
     }
 
+    //list of unanswered questions
+    //question/unanswered/userid/
+    public getUnansweredQuestions = (userId: string): Observable<any> =>{
+        return this._http.get(this.actionUrl + 'question/unanswered/userid/' + userId, this.headers)
+            .map((response: Response) => <any> response.json())
+            .catch(this.handleError); 
+    }
+
     //count of questions asked by user
     public countQuestionsByUserId = (userId: string): Observable<any> =>{
         return this._http.get(this.actionUrl + 'question/count/userid/' + userId, this.headers)

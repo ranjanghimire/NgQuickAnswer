@@ -4,29 +4,36 @@ import { Configuration } from '../../app/app.constants';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { QuestionService } from '../../shared/app.questionservice';
 import { Question } from '../../models/app.question';
+import { AppUser } from '../../models/app.user';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { PopoverPage } from '../popover/popover';
 
+/*
+  Generated class for the UnansweredQuestions page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+*/
 @Component({
-  selector: 'page-user-answers',
-  templateUrl: 'user-answers.html'
+  selector: 'page-unanswered-questions',
+  templateUrl: 'unanswered-questions.html'
 })
-export class UserAnswersPage {
+export class UnansweredQuestionsPage {
   
-  private userId : string;
   private retQuestions : Question[];
   private retIncQuestion: Question;
+  private myUser: AppUser;
 
   constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2, 
                 private navParams: NavParams, private _questionService: QuestionService, private popoverCtrl: PopoverController) {
-                    this.userId = this.navParams.get("userId");
-                    this.questionsRepliedByUser();
+                    this.myUser = this._conf.myUser;
+                    this.getUnansweredQuestions();
                 }
 
-  questionsRepliedByUser(): void{
+  getUnansweredQuestions(): void{
     this._questionSeervicev2
-            .questionsRepliedByUser(this.userId)
+            .getUnansweredQuestions(this.myUser.id)
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
                 () => console.log('loaded questions'));
@@ -40,7 +47,7 @@ export class UserAnswersPage {
     question.liked = false;
     --question.votes;
     //Name is increment but it works.
-    this.incrementLikesOfQuestion(question, this.userId);
+    this.incrementLikesOfQuestion(question, this.myUser.id);
   }
 
   incrementVotes(question: Question) : void{
@@ -61,7 +68,7 @@ export class UserAnswersPage {
 
     ++question.votes;
 
-    this.incrementLikesOfQuestion(question, this.userId);
+    this.incrementLikesOfQuestion(question, this.myUser.id);
 
   }
     private incrementLikesOfQuestion(question: Question, userId: string){
@@ -79,11 +86,10 @@ export class UserAnswersPage {
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
-   presentPopover(myEvent) {
+  presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
     });
   }
-
 }
