@@ -10,7 +10,7 @@
 
 <ion-content padding>
 
-  <div *ngFor="let question of retQuestions" id="questionbox">    
+  <div *ngFor="let question of retQuestions" class="questionbox">    
     <ion-row>
       <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
     </ion-row>

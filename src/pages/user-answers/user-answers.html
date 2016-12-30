@@ -1,9 +1,4 @@
-<!--
-  Generated template for the UserAnswers page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
@@ -14,5 +9,39 @@
 
 
 <ion-content padding>
+
+  <div *ngFor="let question of retQuestions" class="questionbox">    
+    <ion-row>
+      <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
+    </ion-row>
+    <ion-row>
+      <ion-col><p class="gm-main-content">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
+    </ion-row>
+    <ion-row>
+      <ion-col width-10><div class="gm-circle" *ngIf="question.author.appUserName">{{ extractFirstLetter(question.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+      <ion-col width-90><span class="gm-dim" *ngIf="question.author.appUserName">{{ question.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
+    </ion-row>
+    <ion-row>
+      <ion-col>       
+        <button class="gm-tab5px gm-dim gm-button" (click) = "goToAnswersPage(question)">
+          <!--<span><ion-icon name="chatbubbles"></ion-icon></span> -->
+          <span class="gm-tab5px" class="answers" *ngIf="question.answers">{{ question.answers.length }} Answers</span>
+          <span class="gm-tab5px" class="answers" *ngIf="!question.answers">Be the first to answer</span>
+        </button>
+      </ion-col> <!-- on the left -->
+      <ion-col style="margin-bottom:15px">
+        
+        <ion-buttons end>
+          <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
+          <button class="gm-button" (click) = "incrementVotes(question)">            
+            <ion-icon [ngClass]="{'gm-red-heart': question.liked }" name="heart"></ion-icon>
+          </button>      
+          <button class="gm-button">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-buttons>  
+      </ion-col> <!-- icons on the right: Heart, Three dots for more options -->
+    </ion-row>
+  </div>
 
 </ion-content>

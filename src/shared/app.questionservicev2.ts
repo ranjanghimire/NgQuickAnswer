@@ -28,6 +28,14 @@ export class QuestionServicev2{
             .catch(this.handleError);
     }
 
+    //list of replied questions by user
+    ///v2/question/answer/user/{userId}
+    public questionsRepliedByUser = (userId: string): Observable<Question[]> =>{
+        return this._http.get(this.actionUrl + 'question/answer/user/' + userId, this.headers)
+            .map((response: Response) => <Question[]> response.json())
+            .catch(this.handleError);
+    }
+
     //count of questions asked by user
     public countQuestionsByUserId = (userId: string): Observable<any> =>{
         return this._http.get(this.actionUrl + 'question/count/userid/' + userId, this.headers)

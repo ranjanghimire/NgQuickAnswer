@@ -52,16 +52,11 @@ export class UserInfoPage {
   }
 
   showAskedQuestions(): void{
-    console.log('invoked showAskedQuestions');
-
-    this.navCtrl.push(UserQuestionsPage, {userId: this.myUser.id})
-
-    //push to new page passing userId
-    //call the server API that shows all questions for given user ID     
+    this.navCtrl.push(UserQuestionsPage, {userId: this.myUser.id});
   }
 
   showRepliedAnswers(): void{
-    console.log('invoke showRepliedAnswers');
+    this.navCtrl.push(UserAnswersPage, {userId: this.myUser.id});
   }
 
 }
