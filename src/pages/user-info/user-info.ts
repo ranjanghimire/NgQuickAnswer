@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { Page2 } from '../page2/page2';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
+import { UserQuestionsPage } from '../user-questions/user-questions';
+import { UserAnswersPage } from '../user-answers/user-answers';
 
 @Component({
   selector: 'page-user-info',
@@ -47,6 +49,19 @@ export class UserInfoPage {
 
   extractFirstLetter(userName: string){
     return userName.charAt(0);
+  }
+
+  showAskedQuestions(): void{
+    console.log('invoked showAskedQuestions');
+
+    this.navCtrl.push(UserQuestionsPage, {userId: this.myUser.id})
+
+    //push to new page passing userId
+    //call the server API that shows all questions for given user ID     
+  }
+
+  showRepliedAnswers(): void{
+    console.log('invoke showRepliedAnswers');
   }
 
 }

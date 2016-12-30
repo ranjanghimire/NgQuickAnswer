@@ -30,3 +30,50 @@
         flex-flow: row wrap;
         margin-bottom: 20px;
 }
+.gm-red-heart{
+        color:deepskyblue;
+}
+.questionbox{
+        border-bottom: thin solid #ccc;
+        margin: 10px 0;
+}  
+.gm-main-content{
+        margin: 0px 0px;
+        font-family: Verdana, sans-serif;
+        font-size: 15px;
+        line-height: 22.5px;
+        padding-left: 5px;
+        
+}
+.gm-circle{
+        width:22px;
+        height:22px;
+        border-radius:11px;
+        font-size:18px;
+        color:#fff;
+        line-height:22px;
+        text-align:center;
+        background:#39CCCC;
+        margin-top:-2px;
+        margin-left: 5px;
+}
+.gm-dim{
+        color: #888;
+}
+.gm-button{
+        background-color: #fff;
+        color: #888;
+}    
+.gm-tab5px{
+        margin-left:5px;
+}
+.answers{
+        font-size:12px;
+        border-bottom:thin dotted #aaa;
+}
+
+.topic-button{
+        border-bottom:thin solid #888;
+        padding-left:0px;
+        padding-right:0px;        
+}

@@ -34,15 +34,17 @@
     <ion-row>
       
       <ion-col class="align-center" style="border-right: thin solid #ccc;">
-          <div>
+          <div (click)="showAskedQuestions()">
             <p class="gm-strong gm-dim">{{ questionCount }}</p>
             <p class="gm-small-caps gm-dim">QUESTIONS</p>
           </div>
       </ion-col>
 
       <ion-col class="align-center">
-        <p class="gm-strong gm-dim">{{ answerCount }}</p>
-        <p class="gm-small-caps gm-dim">ANSWERS</p>
+          <div (click)="showRepliedAnswers()">
+            <p class="gm-strong gm-dim">{{ answerCount }}</p>
+            <p class="gm-small-caps gm-dim">ANSWERS</p>
+          </div>
       </ion-col>
 
     <!--  <ion-col class="align-center" style="border-left: thin solid #ccc;">

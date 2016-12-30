@@ -24,7 +24,7 @@ export class AnswersToTheQuestionPage {
     this.myQuestion = this.navParams.get("question");
     this.myUserData = _conf.myUser;
   }
-
+  
   logAnswer(): void{
     this.newAuthor  = new Author();
     this.newAuthor.appUserId = this.myUserData.id;
