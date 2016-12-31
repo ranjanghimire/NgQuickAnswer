@@ -7,12 +7,36 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Search</ion-title>
-  </ion-navbar>
+    <ion-title>Quick Search</ion-title>    
+   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content> 
 
+  <div>
+    <ion-searchbar
+      [showCancelButton]="shouldShowCancel" 
+      (search)="onInput($event.target.value)"
+      (ionClear)="onClear($event.target.value)"
+      placeholder="Topic, category or question">
+  </ion-searchbar>
+  </div>
+
+  <ion-item-group>
+    <div *ngIf="topics.length > 0">
+      <ion-item-divider color="light">TOPICS</ion-item-divider>
+      <ion-item *ngFor="let topic of topics">{{ topic }}</ion-item>
+    </div>
+    <div *ngIf="categories.length > 0">
+      <ion-item-divider color="light">CATEGORIES</ion-item-divider>
+      <ion-item *ngFor="let category of categories">{{ category }}</ion-item>
+    </div>
+    <div *ngIf="mainQuestions.length > 0">
+      <ion-item-divider color="light">QUESTIONS</ion-item-divider>
+      <ion-item *ngFor="let ques of mainQuestions">{{ ques.mainQuestion }}</ion-item>
+    </div>
+
+  </ion-item-group>
 </ion-content>
