@@ -20,6 +20,8 @@ export class Question {
 
     topic : string;
 
+    category : string;
+
     tags : string[];
 
     showAnswersinUI : boolean;

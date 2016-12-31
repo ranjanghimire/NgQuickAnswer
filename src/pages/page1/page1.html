@@ -55,7 +55,18 @@
     <ion-row>
       <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
     </ion-row>
+    <div *ngIf="question.category">
+      <ion-row>
+        <ion-col>
+          <span class="category">Category: </span>
+          <button class="gm-dim gm-button">
+            <span class="answers">{{question.category}}</span>
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
     <ion-row>
+
       <ion-col><p class="gm-main-content">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
     </ion-row>
     <ion-row>

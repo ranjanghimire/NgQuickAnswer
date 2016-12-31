@@ -25,10 +25,15 @@ export class NewQuestionPage {
 
   private retPostQuestion : Question;
 
+  private categories : string[];
+
+  private selectedCategory : string;
+
   askedQuestion : Question = new Question();
 
   constructor(private _questionService : QuestionServicev2,public navCtrl: NavController, private _conf : Configuration, private viewCtrl: ViewController) {
     this.myUserData = _conf.myUser;
+    this.categories = _conf.categories;
   }
 
   ionViewDidLoad() {
@@ -46,6 +51,8 @@ export class NewQuestionPage {
     this.askedQuestion.author = this.newAuthor;
 
     this.askedQuestion.weight = 1;
+
+    this.askedQuestion.category = this.selectedCategory;
 
     this.postQuestion(this.askedQuestion);
    
