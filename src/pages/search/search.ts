@@ -47,11 +47,13 @@ export class SearchPage {
   }
 
   onInput(value): void{
-    this.topics = [];
-    this.categories = [];
-    this.mainQuestions = [];
-    console.log('onInput() invoked. Value is: ' + value);
-    this.searchByWord(value);
+    if(value.length > 0){
+      this.topics = [];
+      this.categories = [];
+      this.mainQuestions = [];
+      console.log('onInput() invoked. Value is: ' + value);
+      this.searchByWord(value);
+    }
   }
 
   onClear(value): void{
