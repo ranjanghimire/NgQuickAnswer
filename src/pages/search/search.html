@@ -27,7 +27,9 @@
   <ion-item-group>
     <div *ngIf="topics.length > 0">
       <ion-item-divider color="light">TOPICS</ion-item-divider>
-      <ion-item *ngFor="let topic of topics">{{ topic }}</ion-item>
+      <ion-item *ngFor="let topic of topics">
+        <span (click)="goToTopicQuestions(topic)">{{ topic }}</span>
+      </ion-item>
     </div>
     <div *ngIf="categories.length > 0">
       <ion-item-divider color="light">CATEGORIES</ion-item-divider>

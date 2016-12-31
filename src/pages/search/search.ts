@@ -4,6 +4,7 @@ import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { WordSearchDto } from '../../models/app.wordsearchdto';
 import { Question } from '../../models/app.question';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
+import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 
 @Component({
   selector: 'page-search',
@@ -89,6 +90,10 @@ export class SearchPage {
 
   goToAnswersPage(question : Question) : void{
     this.navCtrl.push( AnswersToTheQuestionPage, { question : question });
+  }
+
+  goToTopicQuestions(topic: string) : void{
+    this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
 }
