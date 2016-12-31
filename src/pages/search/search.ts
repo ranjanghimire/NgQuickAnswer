@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { WordSearchDto } from '../../models/app.wordsearchdto';
+import { Question } from '../../models/app.question';
+import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 
 @Component({
   selector: 'page-search',
@@ -10,6 +12,8 @@ import { WordSearchDto } from '../../models/app.wordsearchdto';
 export class SearchPage {
 
   private retWordSearchDto: WordSearchDto[];
+
+  private actQuestion: Question;
 
   private myInput: string;
 
@@ -39,6 +43,15 @@ export class SearchPage {
       if(question.category != null && question.category.toLowerCase().includes(word.toLowerCase())){
         this.categories.push(question.category);
       }
+
+      this.topics = this.topics.filter(function(elem, index, self) {
+          return index == self.indexOf(elem);
+      });
+
+      this.categories = this.categories.filter(function(elem, index, self) {
+          return index == self.indexOf(elem);
+      });
+
       if(question.mainQuestion != null && question.mainQuestion.toLowerCase().includes(word.toLowerCase())){
         this.mainQuestions.push(question);
       }
@@ -61,6 +74,21 @@ export class SearchPage {
     this.topics = [];
     this.categories = [];
     this.mainQuestions = [];
+  }
+
+  retrieveFullQuestionAndGoToAnswers(questionId: string){
+    //Retrieve full question from id. Then pass to Answers to the question page
+    console.log('retrieveFullQuestion invoked');
+
+    this._questionServicev2.getOneById(questionId)
+        .subscribe((data:Question) => this.actQuestion = data, 
+          error => console.log(error),
+          () => this.goToAnswersPage(this.actQuestion)
+        );
+  }
+
+  goToAnswersPage(question : Question) : void{
+    this.navCtrl.push( AnswersToTheQuestionPage, { question : question });
   }
 
 }
