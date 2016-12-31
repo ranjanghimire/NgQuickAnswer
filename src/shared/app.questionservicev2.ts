@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import { Configuration } from '../app/app.constants';
 import { Question } from '../models/app.question';
+import { WordSearchDto } from '../models/app.wordsearchdto';
 
 @Injectable()
 export class QuestionServicev2{
@@ -19,6 +20,14 @@ export class QuestionServicev2{
         this.headers.append('Content-Type', 'application/json');
         //this.headers.append('Accept', 'application/json');
     }
+
+    //SearchDTO call
+    public searchByWord = (word: string): Observable<WordSearchDto[]> => {
+        return this._http.get(this.actionUrl + 'topics/search/' + word, this.headers)
+                .map((response: Response) => <WordSearchDto[]> response.json())
+                .catch(this.handleError);
+    }
+
 
     //list of questions asked by this user
     ///v2/question/user/{userId}

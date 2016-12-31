@@ -13,6 +13,7 @@ import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { NewAnswerPage } from '../new-answer-page/new-answer-page';
 import { AllTopicsPage } from '../all-topics/all-topics';
+import { SearchPage } from '../search/search';
 import { PopoverPage } from '../popover/popover';
 import { UnansweredQuestionsPage } from '../unanswered-questions/unanswered-questions';
 
@@ -135,6 +136,10 @@ private retTopics : String[];
 
   goToUnansweredQuestions(): void{
     this.navCtrl.push(UnansweredQuestionsPage);
+  }
+
+  goToSearchPage(): void{
+    this.navCtrl.push(SearchPage);
   }
 
 

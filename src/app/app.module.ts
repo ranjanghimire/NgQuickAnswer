@@ -20,6 +20,7 @@ import { PopoverPage } from '../pages/popover/popover';
 import { UserQuestionsPage} from '../pages/user-questions/user-questions';
 import { UserAnswersPage } from '../pages/user-answers/user-answers';
 import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswered-questions';
+import { SearchPage } from '../pages/search/search';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswere
     PopoverPage,
     UserQuestionsPage,
     UserAnswersPage,
-    UnansweredQuestionsPage
+    UnansweredQuestionsPage,
+    SearchPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -56,7 +58,8 @@ import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswere
     PopoverPage,
     UserQuestionsPage,
     UserAnswersPage,
-    UnansweredQuestionsPage
+    UnansweredQuestionsPage,
+    SearchPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, QuestionServicev2, AnswerServicev2]
