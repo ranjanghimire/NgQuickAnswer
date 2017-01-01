@@ -34,6 +34,8 @@ export class AnswersToTheQuestionPage {
 
     this.myAnswer.weight = 1;
 
+    this.afterSubmit(this.myAnswer);
+
     this.postAnswer(this.myAnswer, this.myQuestion.id, this.myUserData.id);
   }
 
@@ -42,7 +44,7 @@ export class AnswersToTheQuestionPage {
             .postAnswer(id, answer, userId)
             .subscribe((data:Question) => this.retQuestion = data,
                 error => console.log(error),
-                () => this.afterSubmit(answer));
+                () => console.log('PostAnswer invoked'));
   }
 
   afterSubmit(answer: Answer): void{
