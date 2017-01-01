@@ -33,7 +33,7 @@ private retTopics : String[];
 
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
-    this.myUserData = _conf.myUser;
+    this.myUserData = this._conf.myUser;
     
   }
 
