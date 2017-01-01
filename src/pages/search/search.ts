@@ -5,6 +5,7 @@ import { WordSearchDto } from '../../models/app.wordsearchdto';
 import { Question } from '../../models/app.question';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
+import { CategoryQuestionsPage } from '../category-questions/category-questions';
 
 @Component({
   selector: 'page-search',
@@ -94,6 +95,10 @@ export class SearchPage {
 
   goToTopicQuestions(topic: string) : void{
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
+  }
+
+  goToCategoryQuestions(category: string): void{
+    this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
 
 }

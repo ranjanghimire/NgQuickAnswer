@@ -5,16 +5,16 @@ import { Question } from '../../models/app.question';
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
+import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { AppUser } from '../../models/app.user';
 
 @Component({
-  selector: 'page-topic-questions',
-  templateUrl: 'topic-questions.html'
+  selector: 'page-category-questions',
+  templateUrl: 'category-questions.html'
 })
-export class TopicQuestionsPage {
+export class CategoryQuestionsPage {
 
-
-  myTopic: string;
+  myCategory: string;
   public retIncQuestion : Question;
   private myUserData : AppUser;
 
@@ -22,24 +22,20 @@ export class TopicQuestionsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
             private _conf : Configuration, private _questionservicev2: QuestionServicev2) {
-    this.myTopic = this.navParams.get("topic");
+    this.myCategory = this.navParams.get("category");
     
     this.myUserData = this._conf.myUser;
-    this.getAllQuestionsByTopic(this.myTopic, this.myUserData.id);
+    this.getAllQuestionsByCategory(this.myCategory, this.myUserData.id);
   }
 
-  getAllQuestionsByTopic(topic: string, userId: string): void{
+  getAllQuestionsByCategory(topic: string, userId: string): void{
     this._questionservicev2
-            .getAllQuestionsByTopic(topic, userId)
+            .getAllQuestionsByCategory(topic, userId)
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
                 () => console.log('Loaded questions'));
   }
-
-  ionViewDidLoad() {
-    console.log('Hello TopicQuestionsPage Page');
-  }
-
+  
   toggleAnswers(question : Question) : void{
     question.showAnswersinUI = !question.showAnswersinUI;
   }
@@ -62,7 +58,7 @@ export class TopicQuestionsPage {
   incrementVotes(question: Question) : void{
 
     if(question.liked){
-      //TODO: invoke decrementVotes and toggle class.
+      
       this.decrementVotes(question);
       return;
     }
@@ -70,15 +66,15 @@ export class TopicQuestionsPage {
     console.log("This question has " + question.votes + " votes.");
 
     question.liked = true;
-    
-    //TODO: Allow like only once. 
-    //User shouldn't be able to like multiple times.
-    //Also, server should know if a question has already been liked.
-
+   
     ++question.votes;
 
     this.incrementLikesOfQuestion(question, this.myUserData.id);
 
+  }
+
+  goToTopicQuestions(topic: string) : void{
+    this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
   private incrementLikesOfQuestion(question: Question, userId: string){

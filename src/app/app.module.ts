@@ -21,6 +21,7 @@ import { UserQuestionsPage} from '../pages/user-questions/user-questions';
 import { UserAnswersPage } from '../pages/user-answers/user-answers';
 import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswered-questions';
 import { SearchPage } from '../pages/search/search';
+import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SearchPage } from '../pages/search/search';
     UserQuestionsPage,
     UserAnswersPage,
     UnansweredQuestionsPage,
-    SearchPage
+    SearchPage,
+    CategoryQuestionsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -59,7 +61,8 @@ import { SearchPage } from '../pages/search/search';
     UserQuestionsPage,
     UserAnswersPage,
     UnansweredQuestionsPage,
-    SearchPage
+    SearchPage,
+    CategoryQuestionsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, QuestionServicev2, AnswerServicev2]

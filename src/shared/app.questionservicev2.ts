@@ -92,6 +92,12 @@ export class QuestionServicev2{
                 .catch(this.handleError);
     }
 
+    public getAllQuestionsByCategory = (category: string, userId: string): Observable<Question[]> => {
+        return this._http.get(this.actionUrl + 'question/category/' + category + "/userid/" + userId, this.headers)
+                .map((response: Response) => <Question[]>response.json())
+                .catch(this.handleError);
+    }
+
     public getOneById = (questionId: string): Observable<Question> =>{
         return this._http.get(this.actionUrl + 'question/' + questionId, this.headers)
                 .map((response: Response) => <Question> response.json())

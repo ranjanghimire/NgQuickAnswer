@@ -33,7 +33,7 @@
     </div>
     <div *ngIf="categories.length > 0">
       <ion-item-divider color="light">CATEGORIES</ion-item-divider>
-      <ion-item *ngFor="let category of categories">{{ category }}</ion-item>
+      <ion-item *ngFor="let category of categories"><span (click)="goToCategoryQuestions(category)">{{ category }}</span></ion-item>
     </div>
     <div *ngIf="mainQuestions.length > 0">
       <ion-item-divider color="light">QUESTIONS</ion-item-divider>
