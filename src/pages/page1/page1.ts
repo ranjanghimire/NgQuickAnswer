@@ -37,8 +37,8 @@ private retTopics : String[];
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));    
   }
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+  presentPopover(myEvent, questionId: string) {
+    let popover = this.popoverCtrl.create(PopoverPage, { qId: questionId });
     popover.present({
       ev: myEvent
     });
