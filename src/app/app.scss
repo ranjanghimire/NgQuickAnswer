@@ -16,6 +16,12 @@
 // automatically applied to the <body> element in the app.
 
 //extra small buttons
+
+.gm-font{
+        font-family: Verdana, sans-serif;
+        font-size: 15px;
+}
+
 .extra-small{
         height:16px;
         font-size: 12px;
@@ -76,4 +82,9 @@
         border-bottom:thin solid #888;
         padding-left:0px;
         padding-right:0px;        
+}
+
+.no-bottom-margin-padding{
+        margin-bottom: 0px;
+        padding-bottom: 0px;
 }
