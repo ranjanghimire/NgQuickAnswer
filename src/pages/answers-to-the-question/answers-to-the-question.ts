@@ -15,9 +15,10 @@ export class AnswersToTheQuestionPage {
 
   private myQuestion : Question;
   private myUserData : AppUser;
-  private myAnswer : Answer = new Answer();
+  private myAnswer : Answer;
   private newAuthor : Author;
   private retQuestion: Question;
+  private _tmpAnswer: string;
 
   constructor(private _answerService: AnswerServicev2, public navCtrl: NavController, public navParams: NavParams, private _conf : Configuration) {
     
@@ -26,6 +27,7 @@ export class AnswersToTheQuestionPage {
   }
   
   logAnswer(): void{
+    this.myAnswer = new Answer();
     this.newAuthor  = new Author();
     this.newAuthor.appUserId = this.myUserData.id;
     this.newAuthor.appUserName = this.myUserData.userName;
@@ -33,6 +35,10 @@ export class AnswersToTheQuestionPage {
     this.myAnswer.author = this.newAuthor;
 
     this.myAnswer.weight = 1;
+
+    this.myAnswer.mainAnswer = this._tmpAnswer;
+
+    this._tmpAnswer = "";
 
     this.afterSubmit(this.myAnswer);
 

@@ -46,7 +46,7 @@ export class PopoverPage {
 
   presentToast() {
   let toast = this.toastCtrl.create({
-    message: 'Thanks! We will review the question and remove if necessary. ',
+    message: 'Thanks! Our team will review the question and remove if necessary. ',
     duration: 3000,
     position: 'bottom'
   });
