@@ -5,6 +5,7 @@ import { AppUser } from '../../models/app.user';
 import { CategoryDto } from '../../models/app.categorydto';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
+import { CategoryService } from '../../shared/app.categoryservice';
 
 /*
   Generated class for the AllTopics page.
@@ -24,11 +25,20 @@ export class AllTopicsPage {
   private catDto: CategoryDto[];
   private myCategory: string;
 
-  constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
-    this.myUserData = _conf.myUser;
-    this.categories = _conf.categories;
+  constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2,
+      private _catService: CategoryService) {
+    this.myUserData = _conf.myUser;    
     this.findAllTopics();
+    this.getAllCategories();
   }
+
+  getAllCategories(): void{
+         this._catService.getAllCategories()
+            .subscribe((data:string[]) => this.categories= data,
+            error => console.log(error),
+            () => console.log('Loaded categories')
+        );
+     }
 
   private findAllTopics(): void{
     this._questionSeervicev2.findAllTopics()

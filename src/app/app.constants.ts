@@ -10,14 +10,6 @@ export class Configuration {
     public ServerWithApiUrl = this.Server + ':' + this.port + this.ApiUrl;
 
     //TODO: Check if localStorage is empty and do some validation
-    public myUser: AppUser = JSON.parse(localStorage.getItem("myUser"));
-
-     public categories : string[] = [
-        "Electronics",
-        "Places",
-        "Camera",
-        "Hotels",
-        "Restaurants"
-    ];
+    public myUser: AppUser = JSON.parse(localStorage.getItem("myUser"));   
 
 }

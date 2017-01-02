@@ -5,6 +5,7 @@ import { Configuration } from '../../app/app.constants';
 import { AppUser } from '../../models/app.user';
 import { Author } from '../../models/app.author';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
+import { CategoryService } from '../../shared/app.categoryservice';
 import { QuestionPublishedPage } from '../question-published/question-published'
 
 /*
@@ -31,10 +32,19 @@ export class NewQuestionPage {
 
   askedQuestion : Question = new Question();
 
-  constructor(private _questionService : QuestionServicev2,public navCtrl: NavController, private _conf : Configuration, private viewCtrl: ViewController) {
+  constructor(private _questionService : QuestionServicev2,public navCtrl: NavController,
+       private _conf : Configuration, private viewCtrl: ViewController, private _catService: CategoryService) {
     this.myUserData = _conf.myUser;
-    this.categories = _conf.categories;
+    this.getAllCategories();
   }
+
+   getAllCategories(): void{
+         this._catService.getAllCategories()
+            .subscribe((data:string[]) => this.categories= data,
+            error => console.log(error),
+            () => console.log('Loaded categories')
+        );
+     }
 
   ionViewDidLoad() {
     console.log('Hello NewQuestionPage Page');
