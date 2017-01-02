@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import { Configuration } from '../app/app.constants';
 import { Question } from '../models/app.question';
+import { CategoryDto } from '../models/app.categorydto';
 import { WordSearchDto } from '../models/app.wordsearchdto';
 
 @Injectable()
@@ -79,6 +80,12 @@ export class QuestionServicev2{
                 .map((response: Response) => <String[]>response.json())
                 .catch(this.handleError);
     };
+
+    public listTopicsByCategory = (category: string): Observable<CategoryDto[]> =>{
+        return this._http.get(this.actionUrl + 'category/' + category, this.headers)
+                    .map((response: Response) => <CategoryDto[]>response.json())
+                    .catch(this.handleError);
+    }
 
     public getAllQuestions = (userId: string): Observable<Question[]> => {
         return this._http.get(this.actionUrl + 'question/userid/' + userId, this.headers)
