@@ -8,12 +8,6 @@ import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { CategoryService } from '../../shared/app.categoryservice';
 import { QuestionPublishedPage } from '../question-published/question-published'
 
-/*
-  Generated class for the NewQuestion page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-new-question',
   templateUrl: 'new-question.html'

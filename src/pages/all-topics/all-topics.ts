@@ -7,12 +7,6 @@ import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { CategoryService } from '../../shared/app.categoryservice';
 
-/*
-  Generated class for the AllTopics page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-all-topics',
   templateUrl: 'all-topics.html'
