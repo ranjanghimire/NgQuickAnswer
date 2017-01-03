@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question'; 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { AppUser } from '../../models/app.user';
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-topic-questions',
@@ -20,7 +21,7 @@ export class TopicQuestionsPage {
 
   public retQuestions : Question[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
+  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
             private _conf : Configuration, private _questionservicev2: QuestionServicev2) {
     this.myTopic = this.navParams.get("topic");
     
@@ -34,6 +35,13 @@ export class TopicQuestionsPage {
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
                 () => console.log('Loaded questions'));
+  }
+
+  presentPopover(myEvent, questionId: string) {
+    let popover = this.popoverCtrl.create(PopoverPage, { qId: questionId });
+    popover.present({
+      ev: myEvent
+    });
   }
 
   ionViewDidLoad() {
