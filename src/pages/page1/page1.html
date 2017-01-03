@@ -48,7 +48,9 @@
     <div *ngFor="let topic of retTopics">
       <button class="extra-small" ion-button small outline round (click)="goToTopicQuestions(topic)">{{ topic }}</button>         
     </div>
-    <button class="extra-small" ion-button small round color="danger" (click)="goToAllTopicsPage()">See All</button>
+    <div *ngIf="retTopics != null">
+      <button class="extra-small" ion-button small round color="danger" (click)="goToAllTopicsPage()">See All</button>
+    </div>
   </div>
 
   <div *ngFor="let question of retQuestions" id="questionbox">
