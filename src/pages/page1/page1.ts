@@ -16,6 +16,7 @@ import { AllTopicsPage } from '../all-topics/all-topics';
 import { SearchPage } from '../search/search';
 import { PopoverPage } from '../popover/popover';
 import { UnansweredQuestionsPage } from '../unanswered-questions/unanswered-questions';
+import { CategoryQuestionsPage } from '../category-questions/category-questions';
 
 @Component({
   selector: 'page-page1',
@@ -140,6 +141,10 @@ private retTopics : String[];
 
   goToSearchPage(): void{
     this.navCtrl.push(SearchPage);
+  }
+
+  goToCategoryQuestions(category: string): void{
+    this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
 
 

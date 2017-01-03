@@ -62,7 +62,9 @@
         <ion-col>
           <span class="category">Category: </span>
           <button class="gm-dim gm-button">
-            <span class="answers">{{question.category}}</span>
+            <span class="answers">
+              <span (click)="goToCategoryQuestions(question.category)">{{question.category}}</span>
+            </span>
           </button>
         </ion-col>
       </ion-row>
