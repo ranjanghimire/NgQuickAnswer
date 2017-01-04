@@ -21,7 +21,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding>
  
     <!--<div class="gm-container">
 
@@ -32,10 +32,30 @@
       
     </div>-->
 
-    <div class="gm-container"> 
-      
-      <div *ngFor="let topic of retTopics">
-        <button class="extra-small" ion-button small outline round (click)="goToTopicQuestions(topic)">{{ topic }}</button>         
-      </div>      
+    <div>       
+        <ion-item-group>   
+          <div *ngIf="retCatDto">
+            <div *ngFor="let retCt of retCatDto">                
+                <ion-item-divider style="width: 100%; margin:3px 0px 20px;background-color: deepskyblue; color: white">
+                  <div style="font-weight: 700" (click)="goToCategoryQuestions(retCt.category)">{{retCt.category}}</div>
+                </ion-item-divider>           
+                <!--<ion-item *ngFor="let tpc of retCt.topics">{{tpc}}</ion-item> -->
+                <div class="gm-container">
+                  <div *ngFor="let tpc of retCt.topics">
+                    <button class="extra-small" ion-button small outline round (click)="goToTopicQuestions(tpc)">{{ tpc }}</button>         
+                  </div>  
+                </div>
+
+            </div>
+          </div>
+
+        </ion-item-group>
+
+        <div class="gm-container" style="margin-top:20px;">
+          <div *ngFor="let topic of retTopics">
+            <button class="extra-small" ion-button small outline round (click)="goToTopicQuestions(topic)">{{ topic }}</button>         
+          </div>      
+        </div>
+
     </div>
 </ion-content>

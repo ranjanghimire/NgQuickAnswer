@@ -6,6 +6,7 @@ import { CategoryDto } from '../../models/app.categorydto';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { CategoryService } from '../../shared/app.categoryservice';
+import { CategoryQuestionsPage } from '../category-questions/category-questions';
 
 @Component({
   selector: 'page-all-topics',
@@ -17,12 +18,13 @@ export class AllTopicsPage {
   private retTopics : String[];
   private categories: string[];
   private catDto: CategoryDto[];
+  private retCatDto: CategoryDto[];
   private myCategory: string;
 
   constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2,
       private _catService: CategoryService) {
     this.myUserData = _conf.myUser;    
-    this.findAllTopics();
+    this.listTopTopicsByTopCategory();
     this.getAllCategories();
   }
 
@@ -34,11 +36,11 @@ export class AllTopicsPage {
         );
      }
 
-  private findAllTopics(): void{
-    this._questionSeervicev2.findAllTopics()
-        .subscribe((data:String[]) => this.retTopics = data, 
+  private listTopTopicsByTopCategory(): void{
+    this._questionSeervicev2.listTopTopicsByTopCategory()
+        .subscribe((data:CategoryDto[]) => this.retCatDto = data, 
           error => console.log(error),
-          () => console.log('Loaded topics')
+          () => console.log('listTopTopicsByTopCategory invoked!')
         );
   }
 
@@ -50,6 +52,7 @@ export class AllTopicsPage {
 
     if(this.myCategory != "All Categories"){
       this.retTopics = [];
+      this.retCatDto = [];
       this._questionSeervicev2.listTopicsByCategory(this.myCategory)
           .subscribe((data:CategoryDto[]) => this.catDto = data, 
           error => console.log(error),
@@ -57,7 +60,8 @@ export class AllTopicsPage {
         );
     }
     else{
-      this.findAllTopics();
+      this.retTopics = [];
+      this.listTopTopicsByTopCategory();
     }   
   }
 
@@ -67,6 +71,10 @@ export class AllTopicsPage {
         this.retTopics.push(t);
       }      
     }
+  }
+
+  goToCategoryQuestions(category: string): void{
+    this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
 
 }

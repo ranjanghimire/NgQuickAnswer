@@ -81,6 +81,12 @@ export class QuestionServicev2{
                 .catch(this.handleError);
     };
 
+    public listTopTopicsByTopCategory = (): Observable<CategoryDto[]> => {
+        return this._http.get(this.actionUrl + 'category', this.headers)
+                .map((response: Response) => <CategoryDto[]> response.json())
+                .catch(this.handleError);
+    }
+
     public reportQuestion = (questionId: string): Observable<Question> =>{
         return this._http.get(this.actionUrl + 'question/' + questionId + '/report', this.headers)
                 .map((response:Response) => <Question>response.json())
