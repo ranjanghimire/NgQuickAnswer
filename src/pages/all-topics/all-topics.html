@@ -36,8 +36,8 @@
         <ion-item-group>   
           <div *ngIf="retCatDto">
             <div *ngFor="let retCt of retCatDto">                
-                <ion-item-divider style="width: 100%; margin:3px 0px 10px;background-color:#708090; color: #fff">
-                  <div style="font-weight: 700"><span (click)="goToCategoryQuestions(retCt.category)">{{retCt.category}}</span></div>
+                <ion-item-divider style="width: 100%; margin:3px 0px 10px" color="light">
+                  <div><span (click)="goToCategoryQuestions(retCt.category)">{{retCt.category}}</span></div>
                 </ion-item-divider>           
                 <!--<ion-item *ngFor="let tpc of retCt.topics">{{tpc}}</ion-item> -->
                 <div class="gm-container" style="margin-bottom:10px;">

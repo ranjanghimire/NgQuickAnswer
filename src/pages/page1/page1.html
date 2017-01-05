@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color=primary>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle (click)="goToTop()">
       <ion-icon name="home"></ion-icon>
     </button>
     <ion-title>Quick Answer</ion-title>
@@ -14,7 +14,7 @@
     <div class="gm-toolbar">
       <ion-row>
         <ion-col>
-          <button class="extra-small gm-btn-white" ion-button small clear icon-left>
+          <button class="extra-small gm-btn-white" ion-button small clear icon-left (click)="refreshPage()">
             <ion-icon name="paper"></ion-icon>
               Feed
           </button>

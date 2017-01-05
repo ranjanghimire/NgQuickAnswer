@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { WordSearchDto } from '../../models/app.wordsearchdto';
 import { Question } from '../../models/app.question';
@@ -27,13 +27,23 @@ export class SearchPage {
   
   private mainQuestions: WordSearchDto[] = [];
 
-  constructor(public navCtrl: NavController, private _questionServicev2: QuestionServicev2) {}
+  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, private _questionServicev2: QuestionServicev2) {}
   
   private searchByWord(word: string): void{
+
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'Please wait ...'
+    });
+
+    loadingPopup.present();
+
     this._questionServicev2.searchByWord(word)
         .subscribe((data:WordSearchDto[]) => this.retWordSearchDto = data, 
           error => console.log(error),
-          () => this.populateVariables(word)
+          () => {
+            this.populateVariables(word)
+            loadingPopup.dismiss();
+          }
         );
   }
 
@@ -80,12 +90,13 @@ export class SearchPage {
 
   retrieveFullQuestionAndGoToAnswers(questionId: string){
     //Retrieve full question from id. Then pass to Answers to the question page
-    console.log('retrieveFullQuestion invoked');
-
+   
     this._questionServicev2.getOneById(questionId)
         .subscribe((data:Question) => this.actQuestion = data, 
           error => console.log(error),
-          () => this.goToAnswersPage(this.actQuestion)
+          () => {
+            this.goToAnswersPage(this.actQuestion);
+          }
         );
   }
 

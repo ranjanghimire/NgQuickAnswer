@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController } from 'ionic-angular';
+import { NavController, ViewController, LoadingController } from 'ionic-angular';
 import { Question } from '../../models/app.question';
 import { Configuration } from '../../app/app.constants';
 import { AppUser } from '../../models/app.user';
@@ -27,7 +27,8 @@ export class NewQuestionPage {
   askedQuestion : Question = new Question();
 
   constructor(private _questionService : QuestionServicev2,public navCtrl: NavController,
-       private _conf : Configuration, private viewCtrl: ViewController, private _catService: CategoryService) {
+       private loadingCtrl: LoadingController, private _conf : Configuration, 
+       private viewCtrl: ViewController, private _catService: CategoryService) {
     this.myUserData = _conf.myUser;
     this.getAllCategories();
   }
@@ -65,11 +66,21 @@ export class NewQuestionPage {
   //TODO: create new page for error() and show nice message.
   //TODO: Once question is asked, its id should be saved in User table.
   private postQuestion(question : Question) : void{
+    
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'Please wait ...'
+    });
+
+    loadingPopup.present();
+
     this._questionService
             .postQuestion(question, this.myUserData.id)
             .subscribe((data:Question) => this.retPostQuestion = data,
                 error => console.log(error),
-                () => this.goToAfterSubmitPage());
+                () => {
+                  loadingPopup.dismiss();
+                  this.goToAfterSubmitPage();
+                });
   }
 
   goToAfterSubmitPage() : void{

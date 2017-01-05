@@ -1,6 +1,6 @@
-import { Component} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 
-import { NavController, PopoverController } from 'ionic-angular';
+import { NavController, PopoverController, Content } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -24,6 +24,8 @@ import { CategoryQuestionsPage } from '../category-questions/category-questions'
 })
 export class Page1 {
 
+@ViewChild(Content) content: Content;
+
 public retQuestions : Question[];
 
 public retIncQuestion : Question;
@@ -33,9 +35,22 @@ private myUserData : AppUser;
 private retTopics : String[];
 
 
-  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, private _questionService : QuestionService, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2) {
+  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
+              private _questionService : QuestionService, private _conf : Configuration,
+              private _questionSeervicev2 : QuestionServicev2) {
     //this.myUserData = this._conf.myUser;
-    this.myUserData = JSON.parse(localStorage.getItem("myUser"));    
+    this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
+    this.getAllQuestions();
+    this.findAllTopicsTen();  
+  }
+
+  refreshPage(): void{    
+    this.getAllQuestions();
+    this.goToTop();
+  }
+
+  goToTop(): void{
+    this.content.scrollToTop();
   }
 
   presentPopover(myEvent, questionId: string) {
@@ -46,24 +61,25 @@ private retTopics : String[];
   }
 
   ionViewDidEnter() {      
-    this.getAllQuestions();
-    this.findAllTopicsTen();
+    
   }
 
   private findAllTopicsTen(): void{
+
     this._questionSeervicev2.findAllTopicsTen()
         .subscribe((data:String[]) => this.retTopics = data, 
           error => console.log(error),
-          () => console.log('Loaded topics')
+          () => console.log('loaded topics')
         );
   }
 
   private getAllQuestions() : void{
+   
     this._questionSeervicev2
             .getAllQuestions(this.myUserData.id)
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
-                () => console.log('Loaded questions'));
+                () => console.log('loaded questions'));
   }
 
   //incrementLikesOfQuestion
