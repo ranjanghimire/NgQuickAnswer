@@ -7,6 +7,7 @@ import { Configuration } from './app.constants';
 import { DataService } from '../shared/app.dataservice';
 import { QuestionService } from '../shared/app.questionservice';
 import { QuestionServicev2 } from '../shared/app.questionservicev2';
+import { QuestionServicev3 } from '../shared/app.questionservicev3';
 import { AnswerService } from '../shared/app.answerservice';
 import { AnswerServicev2 } from '../shared/app.answerservicev2';
 import { CategoryService } from '../shared/app.categoryservice';
@@ -68,6 +69,7 @@ import { CategoryQuestionsPage } from '../pages/category-questions/category-ques
     CategoryQuestionsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
-                QuestionService, AnswerService, QuestionServicev2, AnswerServicev2, CategoryService]
+                QuestionService, AnswerService, 
+                QuestionServicev3, QuestionServicev2, AnswerServicev2, CategoryService]
 })
 export class AppModule {}

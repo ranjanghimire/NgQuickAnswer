@@ -4,6 +4,7 @@ import { NavController, PopoverController, Content } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
+import { QuestionServicev3 } from '../../shared/app.questionservicev3';
 import { Question } from '../../models/app.question';
 import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
@@ -30,23 +31,33 @@ public retQuestions : Question[];
 
 public retIncQuestion : Question;
 
+public retMoreQuestions : Question[];
+
 private myUserData : AppUser;
 
 private retTopics : String[];
 
+private page: number;
+
+private size: number;
+
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
               private _questionService : QuestionService, private _conf : Configuration,
-              private _questionSeervicev2 : QuestionServicev2) {
+              private _questionSeervicev2 : QuestionServicev2, 
+              private _questionServicev3: QuestionServicev3) {
     //this.myUserData = this._conf.myUser;
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
+    this.page = 0;
+    this.size =15 ;
     this.getAllQuestions();
     this.findAllTopicsTen();  
   }
 
   refreshPage(): void{    
-    this.getAllQuestions();
     this.goToTop();
+    this.page = 0;
+    this.getAllQuestions();    
   }
 
   goToTop(): void{
@@ -60,8 +71,21 @@ private retTopics : String[];
     });
   }
 
-  ionViewDidEnter() {      
+  loadMore(): void{
     
+    //retMoreQuestions
+    this._questionServicev3
+            .pagedQuestionsAskedByUser(this.myUserData.id, String(this.page), String(this.size))
+            .subscribe((data:Question[]) => this.retMoreQuestions = data,
+                error => console.log(error),
+                () => {
+                  ++this.page;
+                  //this.retQuestions.(this.retMoreQuestions);
+                  for(var qu of this.retMoreQuestions){
+                    this.retQuestions.push(qu);
+                  }
+                }
+              );
   }
 
   private findAllTopicsTen(): void{
@@ -75,11 +99,11 @@ private retTopics : String[];
 
   private getAllQuestions() : void{
    
-    this._questionSeervicev2
-            .getAllQuestions(this.myUserData.id)
+    this._questionServicev3
+            .pagedQuestionsAskedByUser(this.myUserData.id, String(this.page), String(this.size))
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
-                () => console.log('loaded questions'));
+                () => ++this.page);
   }
 
   //incrementLikesOfQuestion
