@@ -57,7 +57,8 @@ private size: number = 10;
   refreshPage(): void{    
     this.goToTop();
     this.page = 0;
-    this.getAllQuestions();    
+    this.getAllQuestions();  
+    this.findAllTopicsTen();    
   }
 
   goToTop(): void{

@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question';
 import { Answer } from '../../models/app.answer';
 import { AppUser } from '../../models/app.user';
 import {Author} from '../../models/app.author';
 import { AnswerServicev2 } from '../../shared/app.answerservicev2';
+import { CategoryQuestionsPage } from '../category-questions/category-questions';
+import { UserInfoPage } from '../user-info/user-info';
+import { PopoverPage } from '../popover/popover';
+import { QuestionService } from '../../shared/app.questionservice';
+
 
 @Component({
   selector: 'page-answers-to-the-question',
@@ -19,9 +24,16 @@ export class AnswersToTheQuestionPage {
   private newAuthor : Author;
   private retQuestion: Question;
   private retIncAnsQuestion: Question;
+
+  private retIncQuestion: Question;
+  
   private _tmpAnswer: string;
 
-  constructor(private _answerService: AnswerServicev2, public navCtrl: NavController, public navParams: NavParams, private _conf : Configuration) {
+  constructor(private _answerService: AnswerServicev2, 
+        public popoverCtrl: PopoverController,public navCtrl: NavController,
+        public navParams: NavParams, 
+        private _questionService : QuestionService, 
+        private _conf : Configuration) {
     
     this.myQuestion = this.navParams.get("question");
     this.myUserData = _conf.myUser;
@@ -44,6 +56,42 @@ export class AnswersToTheQuestionPage {
     this.afterSubmit(this.myAnswer);
 
     this.postAnswer(this.myAnswer, this.myQuestion.id, this.myUserData.id);
+  }
+
+   private incrementLikesOfQuestion(question: Question, userId: string){
+    this._questionService.incrementLikesOfQuestion(question, userId)
+      .subscribe((data:Question) => this.retIncQuestion = data,
+                error => console.log(error),
+                () => console.log('Updated the question votes in server.'));
+  }
+
+    decrementVotes(question: Question): void{
+    question.liked = false;
+    --question.votes;
+    //Name is increment but it works.
+    this.incrementLikesOfQuestion(question, this.myUserData.id);
+  }
+
+  incrementVotes(question: Question) : void{
+
+    if(question.liked){
+      //TODO: invoke decrementVotes and toggle class.
+      this.decrementVotes(question);
+      return;
+    }
+    else{
+      console.log("This question has " + question.votes + " votes.");
+
+      question.liked = true;
+      
+      //TODO: Allow like only once. 
+      //User shouldn't be able to like multiple times.
+      //Also, server should know if a question has already been liked.
+
+      ++question.votes;
+
+      this.incrementLikesOfQuestion(question, this.myUserData.id);
+    }
   }
 
   decrementAnswerVotes(answer: Answer): void{
@@ -106,6 +154,21 @@ export class AnswersToTheQuestionPage {
 
   extractFirstLetter(userName: string){
     return userName.charAt(0);
+  }
+
+  goToCategoryQuestions(category: string): void{
+    this.navCtrl.push(CategoryQuestionsPage, {category: category});
+  }
+
+  goToUserInfo(theUserId: string) : void{
+    this.navCtrl.push( UserInfoPage, { myUserId : theUserId })
+  }
+
+  presentPopover(myEvent, questionId: string) {
+    let popover = this.popoverCtrl.create(PopoverPage, { qId: questionId });
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }

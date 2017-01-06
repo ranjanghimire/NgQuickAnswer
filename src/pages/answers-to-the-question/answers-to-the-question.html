@@ -17,12 +17,31 @@
     </ion-row>    
 
    
-  <div class="gm-heading" *ngIf="myQuestion.answers && myQuestion.answers.length > 1">
-      {{myQuestion.answers.length}} ANSWERS
-  </div>
-  <div class="gm-heading" *ngIf="myQuestion.answers && myQuestion.answers.length == 1">
-      {{myQuestion.answers.length}} ANSWER
-  </div>
+  <div *ngIf="myQuestion.category">
+      <ion-row>
+        <ion-col>          
+          <button class="gm-dim gm-button">
+            <span class="answers">
+              <span (click)="goToCategoryQuestions(myQuestion.category)">{{myQuestion.category}}</span>
+            </span>
+          </button>
+        </ion-col>
+
+        <ion-col>
+        
+        <ion-buttons end>
+          
+          <button class="gm-button" (click) = "incrementVotes(myQuestion)">            
+            <ion-icon [ngClass]="{'gm-red-heart': myQuestion.liked }" name="heart"></ion-icon>
+          </button>      
+          <button class="gm-button" (click)="presentPopover($event, myQuestion.id)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-buttons>  
+      </ion-col> 
+      </ion-row>
+    </div>
+  
 
 
     <div id="answerbox" *ngFor="let answer of myQuestion.answers">
