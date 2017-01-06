@@ -41,6 +41,19 @@
           <p class="gm-main-content">{{ answer.mainAnswer }}</p>
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-buttons end>
+            <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
+            <button class="gm-button">            
+              <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="heart"></ion-icon>
+            </button>      
+            <button class="gm-button">
+              <ion-icon name="more"></ion-icon>
+            </button>
+          </ion-buttons>  
+        </ion-col>
+      </ion-row>
       
     </div>
 
