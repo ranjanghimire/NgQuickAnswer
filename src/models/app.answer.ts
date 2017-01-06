@@ -8,6 +8,8 @@ export class Answer {
 
     author : Author;
 
+    liked: boolean;
+
     weight : any;
 
     isMarkedForAcceptance : any;
