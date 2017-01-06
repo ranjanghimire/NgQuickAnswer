@@ -2,11 +2,13 @@ import { Author } from './app.author'
 
 export class Answer {
 
-    id : string;
+    answerId : string;
 
     mainAnswer : string;
 
     author : Author;
+
+    votes : any;
 
     liked: boolean;
 

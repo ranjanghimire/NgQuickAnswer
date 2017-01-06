@@ -30,4 +30,13 @@ export class AnswerServicev2{
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }
+
+    public incrementLikes(answer: Answer, id: string): Observable<Question>{
+        let bodyString = JSON.stringify(answer);
+        let options = new RequestOptions({ headers: this.headers });
+
+        return this._http.put(this.actionUrl + 'answer/userid/' + id, bodyString, options)
+            .map((res: Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }

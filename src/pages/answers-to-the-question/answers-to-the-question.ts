@@ -18,6 +18,7 @@ export class AnswersToTheQuestionPage {
   private myAnswer : Answer;
   private newAuthor : Author;
   private retQuestion: Question;
+  private retIncAnsQuestion: Question;
   private _tmpAnswer: string;
 
   constructor(private _answerService: AnswerServicev2, public navCtrl: NavController, public navParams: NavParams, private _conf : Configuration) {
@@ -43,6 +44,39 @@ export class AnswersToTheQuestionPage {
     this.afterSubmit(this.myAnswer);
 
     this.postAnswer(this.myAnswer, this.myQuestion.id, this.myUserData.id);
+  }
+
+  decrementAnswerVotes(answer: Answer): void{
+    answer.liked = false;
+    --answer.votes;
+    //Name is increment but it works.
+
+    this.incrementLikesOfAnswer(answer, this.myUserData.id);
+  }
+
+  incrementAnswerVotes(answer) : void{
+
+    if(answer.liked){
+      //TODO: invoke decrementVotes and toggle class.
+      this.decrementAnswerVotes(answer);
+      return;
+    }
+    else{
+      console.log("This answer has " + answer.votes + " votes.");
+
+      answer.liked = true;
+   
+      ++answer.votes;
+
+      this.incrementLikesOfAnswer(answer, this.myUserData.id);
+    }
+  }
+
+  private incrementLikesOfAnswer(answer: Answer, userId: string): void{
+    this._answerService.incrementLikes(answer, userId)
+          .subscribe((data:Question) => this.retIncAnsQuestion = data, 
+          error=> console.log(error), 
+          () => console.log('Increased/Decreased likes of answer'))
   }
 
   private postAnswer(answer: Answer, id: string, userId: string): void{
