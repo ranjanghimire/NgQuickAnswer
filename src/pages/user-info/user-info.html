@@ -9,7 +9,7 @@
   <ion-navbar color=primary>
     <ion-title>My Profile</ion-title>
     <ion-buttons end>
-      <button ion-button icon-left (click)="logout()">
+      <button ion-button icon-left (click)="logout()" *ngIf="isLoggedInUser">
         <ion-icon name="exit"></ion-icon>
         Logout
       </button>
@@ -20,14 +20,14 @@
 
 
 <ion-content>
-  <div>
+  <div *ngIf="retrievedUser">
     <ion-row>
       <ion-col>
-        <div class="gm-circle align-center" *ngIf="myUser.userName" id="circleLetter-div">{{ extractFirstLetter(myUser.userName) | uppercase }}</div>  
+        <div class="gm-circle align-center" *ngIf="retrievedUser.userName" id="circleLetter-div">{{ extractFirstLetter(retrievedUser.userName) | uppercase }}</div>  
       </ion-col> <!-- round image -->
     </ion-row>
     <ion-row> 
-      <ion-col><div class="align-center gm-dim" style="margin-bottom:20px">{{myUser.userName | uppercase}}</div></ion-col> <!-- username -->
+      <ion-col><div class="align-center gm-dim" style="margin-bottom:20px">{{retrievedUser.userName | uppercase}}</div></ion-col> <!-- username -->
     </ion-row>
 
 
@@ -54,17 +54,17 @@
       -->
     </ion-row>
   </div>
-  <div id="form-div">
+  <div id="form-div" *ngIf="isLoggedInUser && retrievedUser">
     <ion-list inset>
 
       <ion-item>
         <ion-label>Full Name</ion-label>
-        <ion-input type="text" [(ngModel)]="myUser.fullName" name="fullName" placeholder="myUser.fullName"></ion-input>
+        <ion-input type="text" [(ngModel)]="retrievedUser.fullName" name="fullName" placeholder="retrievedUser.fullName"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="myUser.password" name="password" placeholder="myUser.password"></ion-input>
+        <ion-input type="password" [(ngModel)]="retrievedUser.password" name="password" placeholder="retrievedUser.password"></ion-input>
       </ion-item>
     </ion-list>
     <div padding style="margin-top:-15px;">
@@ -73,22 +73,5 @@
   </div>
   
 
-  <!--
-  <ion-card>
-    <ion-card-header>
-      <h2>{{ this.myUser.fullName }} </h2>
-    </ion-card-header>
-    <ion-card-content>
-      <div *ngIf="this.myUser.address">
-        <p *ngIf="this.myUser.address.primaryAddress">Address: {{ this.myUser.address.primaryAddress}} {{this.myUser.address.secondaryAddress}} 
-          <a>Edit</a>
-        </p>  
-      </div>    
-      <p>User Name: {{ this.myUser.userName }}
-      <p>Password: ******** <a>Change</a></p>
-      <p> <button ion-button clear (click)="logout()"> Logout </button> </p>
-    </ion-card-content>
-  </ion-card>
-  -->
 
 </ion-content>

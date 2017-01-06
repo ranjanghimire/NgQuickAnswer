@@ -39,7 +39,7 @@ private retTopics : String[];
 
 private page: number;
 
-private size: number;
+private size: number = 10;
 
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
@@ -49,7 +49,7 @@ private size: number;
     //this.myUserData = this._conf.myUser;
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
     this.page = 0;
-    this.size =15 ;
+    //this.size =20 ;
     this.getAllQuestions();
     this.findAllTopicsTen();  
   }
@@ -71,21 +71,30 @@ private size: number;
     });
   }
 
-  loadMore(): void{
-    
-    //retMoreQuestions
-    this._questionServicev3
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.refreshPage();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
+  }
+
+  loadMore(infiniteScroll): void{    
+      this._questionServicev3
             .pagedQuestionsAskedByUser(this.myUserData.id, String(this.page), String(this.size))
             .subscribe((data:Question[]) => this.retMoreQuestions = data,
                 error => console.log(error),
                 () => {
                   ++this.page;
-                  //this.retQuestions.(this.retMoreQuestions);
-                  for(var qu of this.retMoreQuestions){
-                    this.retQuestions.push(qu);
-                  }
+                  
+                  //for(var qu of this.retMoreQuestions){
+                    this.retQuestions.push(...this.retMoreQuestions);
+                  //}
+                  console.log('Async operation has ended');
+                  infiniteScroll.complete();
                 }
-              );
+              );    
   }
 
   private findAllTopicsTen(): void{
@@ -114,8 +123,8 @@ private size: number;
                 () => console.log('Updated the question votes in server.'));
   }
 
-  goToUserInfo() : void{
-    this.navCtrl.push( UserInfoPage, { myUser : this.myUserData })
+  goToUserInfo(theUserId: string) : void{
+    this.navCtrl.push( UserInfoPage, { myUserId : theUserId })
   }
   
   toggleAnswers(question : Question) : void{
