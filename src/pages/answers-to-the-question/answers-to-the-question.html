@@ -14,21 +14,34 @@
 
 <ion-content padding>
     
-    <ion-row> <!-- heading -->
-      <ion-col><p class="gm-main-content">{{ myQuestion.mainQuestion }}</p></ion-col>
+    <ion-row> <!-- heading -->     
+        <ion-col width-10><div class="gm-circle" *ngIf="myQuestion.author.appUserName" (click)="goToUserInfo(myQuestion.author.appUserId)">{{ extractFirstLetter(myQuestion.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+        <ion-col width-90><span class="gm-dim" *ngIf="myQuestion.author.appUserName" (click)="goToUserInfo(myQuestion.author.appUserId)">{{ myQuestion.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
+    </ion-row>  
+     <ion-row>
+      <ion-col><p class="gm-main-content" style="font-weight: 700">Q: {{ myQuestion.mainQuestion }}</p></ion-col>
     </ion-row>    
+
+   
+  <div class="gm-heading" *ngIf="myQuestion.answers && myQuestion.answers.length > 1">
+      {{myQuestion.answers.length}} ANSWERS
+  </div>
+  <div class="gm-heading" *ngIf="myQuestion.answers && myQuestion.answers.length == 1">
+      {{myQuestion.answers.length}} ANSWER
+  </div>
 
 
     <div id="answerbox" *ngFor="let answer of myQuestion.answers">
+      <ion-row>
+        <ion-col width-10><div class="gm-circle" *ngIf="answer.author.appUserName">{{ extractFirstLetter(answer.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+        <ion-col width-90><span class="gm-dim" *ngIf="answer.author.appUserName">{{ answer.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
+      </ion-row>
       <ion-row>
         <ion-col>
           <p class="gm-main-content">{{ answer.mainAnswer }}</p>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col width-10><div class="gm-circle" *ngIf="answer.author.appUserName">{{ extractFirstLetter(answer.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
-        <ion-col width-90><span class="gm-dim" *ngIf="answer.author.appUserName">{{ answer.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
-      </ion-row>
+      
     </div>
 
 
@@ -54,6 +67,7 @@
     <ion-list>
       <ion-item>
         <ion-icon class="gm-dim" name="create" item-left></ion-icon>
+          
           <ion-input type="text" [(ngModel)] = "_tmpAnswer" placeholder="Write your answer.."></ion-input>  
 
           <button ion-button clear icon-only item-right (click)="logAnswer()">
