@@ -19,6 +19,9 @@ export class Page2 {
     if (localStorage.getItem("myUser") != null){
       this.navCtrl.setRoot(Page1);
     }
+    else{
+      localStorage.clear();
+    }
   }
 
   loginUser() : void{
