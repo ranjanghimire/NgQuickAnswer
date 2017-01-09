@@ -8,6 +8,8 @@ export class Answer {
 
     author : Author;
 
+    toUser: string;
+
     votes : any;
 
     liked: boolean;

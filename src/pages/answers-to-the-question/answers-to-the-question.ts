@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question';
@@ -17,6 +17,8 @@ import { QuestionService } from '../../shared/app.questionservice';
   templateUrl: 'answers-to-the-question.html'
 })
 export class AnswersToTheQuestionPage {
+
+  @ViewChild('input') myInput ;
 
   private myQuestion : Question;
   private myUserData : AppUser;
@@ -139,6 +141,14 @@ export class AnswersToTheQuestionPage {
       //Add the answer to the current list
       //Show a toast
       if(this.myQuestion.answers){
+        //TODO: split if starts with @. Add the first word to answer's toUser
+        //Rest in answer's main answer
+
+        if (answer.mainAnswer.charAt(0) == '@'){
+          answer.toUser = answer.mainAnswer.substr(0,answer.mainAnswer.indexOf(' '));
+          answer.mainAnswer = answer.mainAnswer.substr(answer.mainAnswer.indexOf(' ')+1);
+        }
+
         this.myQuestion.answers.push(answer);
       }
       else{
@@ -169,6 +179,14 @@ export class AnswersToTheQuestionPage {
     popover.present({
       ev: myEvent
     });
+  }
+
+  reply(toUser: string): void{
+    console.log('reply(toUser) invoked!');
+    this._tmpAnswer = '@' + toUser + ' ';
+    setTimeout(() => {
+      this.myInput.setFocus();
+    },150);
   }
 
 }

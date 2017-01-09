@@ -51,10 +51,17 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <p class="gm-main-content">{{ answer.mainAnswer }}</p>
+          <p class="gm-main-content"><span style="font-weight: 700; font-size:12px;" *ngIf="answer.toUser">{{ answer.toUser }} </span>{{ answer.mainAnswer }}</p>
         </ion-col>
       </ion-row>
       <ion-row>
+        <ion-col>
+          <button class="gm-dim gm-button">
+            <span class="answers">
+              <span (click)="reply(answer.author.appUserName)">Reply</span>
+            </span>
+          </button>
+        </ion-col>
         <ion-col>
           <ion-buttons end>
             <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
@@ -79,7 +86,7 @@
       <ion-item>
         <ion-icon class="gm-dim" name="create" item-left></ion-icon>
           
-          <ion-input type="text" [(ngModel)] = "_tmpAnswer" placeholder="Write your answer.."></ion-input>  
+          <ion-input type="text" [(ngModel)] = "_tmpAnswer" #input name="_tmpAnswer" placeholder="Write your answer.."></ion-input>  
 
           <button ion-button clear icon-only item-right (click)="logAnswer()">
             <ion-icon name="paper-plane"></ion-icon>
