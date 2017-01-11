@@ -24,6 +24,7 @@ import { UserAnswersPage } from '../pages/user-answers/user-answers';
 import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswered-questions';
 import { SearchPage } from '../pages/search/search';
 import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
+import { ComposeMessagePage } from '../pages/compose-message/compose-message';
 
 
 
@@ -44,7 +45,8 @@ import { CategoryQuestionsPage } from '../pages/category-questions/category-ques
     UserAnswersPage,
     UnansweredQuestionsPage,
     SearchPage,
-    CategoryQuestionsPage
+    CategoryQuestionsPage, 
+    ComposeMessagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -66,7 +68,8 @@ import { CategoryQuestionsPage } from '../pages/category-questions/category-ques
     UserAnswersPage,
     UnansweredQuestionsPage,
     SearchPage,
-    CategoryQuestionsPage
+    CategoryQuestionsPage, 
+    ComposeMessagePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, 

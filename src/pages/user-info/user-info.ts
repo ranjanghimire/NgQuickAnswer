@@ -6,6 +6,7 @@ import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { DataService } from '../../shared/app.dataservice';
 import { UserQuestionsPage } from '../user-questions/user-questions';
 import { UserAnswersPage } from '../user-answers/user-answers';
+import { ComposeMessagePage } from '../compose-message/compose-message';
 
 @Component({
   selector: 'page-user-info',
@@ -80,7 +81,7 @@ export class UserInfoPage {
 
   goToComposeMessagePage(toUser: AppUser){
     //goto Compose Message page
-    console.log('Compose message invoked');
+    this.navCtrl.push(ComposeMessagePage, {toUser: toUser});
   }
 
 }
