@@ -46,8 +46,8 @@
 
     <div id="answerbox" *ngFor="let answer of myQuestion.answers">
       <ion-row>
-        <ion-col width-10><div class="gm-circle" *ngIf="answer.author.appUserName">{{ extractFirstLetter(answer.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
-        <ion-col width-90><span class="gm-dim" *ngIf="answer.author.appUserName">{{ answer.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
+        <ion-col width-10><div class="gm-circle" *ngIf="answer.author.appUserName" (click)="goToUserInfo(answer.author.appUserId)">{{ extractFirstLetter(answer.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+        <ion-col width-90><span class="gm-dim" *ngIf="answer.author.appUserName" (click)="goToUserInfo(answer.author.appUserId)">{{ answer.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
       </ion-row>
       <ion-row>
         <ion-col>

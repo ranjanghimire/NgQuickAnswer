@@ -1,4 +1,5 @@
 import { Address } from './app.address';
+import { Message } from './app.message';
 
 export class AppUser {
 
@@ -11,6 +12,8 @@ export class AppUser {
     fullName : string;
 
     address : Address;
+
+    messages : Message[];
 
     askedQuestionIDs : string[];
 

@@ -78,4 +78,9 @@ export class UserInfoPage {
     this.navCtrl.push(UserAnswersPage, {userId: this.retrievedUserId});
   }
 
+  goToComposeMessagePage(toUser: AppUser){
+    //goto Compose Message page
+    console.log('Compose message invoked');
+  }
+
 }

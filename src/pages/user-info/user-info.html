@@ -71,6 +71,10 @@
       <button ion-button block>Update</button>
     </div>
   </div>
+
+  <div *ngIf="!isLoggedInUser" padding>
+      <button ion-button block (click)="goToComposeMessagePage(retrievedUser)">Send Private Message</button>
+  </div>
   
 
 
