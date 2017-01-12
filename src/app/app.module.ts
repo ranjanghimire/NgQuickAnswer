@@ -25,6 +25,7 @@ import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswere
 import { SearchPage } from '../pages/search/search';
 import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
 import { ComposeMessagePage } from '../pages/compose-message/compose-message';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -73,6 +74,6 @@ import { ComposeMessagePage } from '../pages/compose-message/compose-message';
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, 
-                QuestionServicev3, QuestionServicev2, AnswerServicev2, CategoryService]
+                QuestionServicev3, QuestionServicev2, AnswerServicev2, CategoryService, DatePipe]
 })
 export class AppModule {}

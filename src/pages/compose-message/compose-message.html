@@ -9,5 +9,18 @@
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="submitForm()">
+    <ion-item>
+        <ion-label>To: </ion-label>
+        <ion-input placeholder="Topic" type="text" [(ngModel)]="toUser.userName" name="userName" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input placeholder="Subject" type="text" [(ngModel)]="subject" name="subject"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-textarea rows="4" placeholder="Your message.." [(ngModel)]="saveMessage" name="saveMessage"></ion-textarea>
+    </ion-item>
+      <button ion-button type="submit" block>Submit</button>
+      
+  </form>
 </ion-content>
