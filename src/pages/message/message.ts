@@ -24,5 +24,6 @@ export class MessagePage {
   goToUserInfo(theUserId: string) : void{
     this.navCtrl.push( UserInfoPage, { myUserId : theUserId })
   }
+  
 
 }

@@ -9,7 +9,7 @@
 
 
 <ion-content padding>
-  <div id="answerbox" *ngFor="let msg of appUser.messages">
+  <div class="answerbox" *ngFor="let msg of appUser.messages">
     <ion-row>
         <ion-col width-10>
           <div class="gm-circle" (click)="goToUserInfo(msg.fromUserId)">{{ extractFirstLetter(msg.fromUserName) | uppercase }}</div>
@@ -17,7 +17,17 @@
         <ion-col width-90>
           <span class="gm-dim" (click)="goToUserInfo(msg.fromUserId)">{{ msg.fromUserName }} </span>
         </ion-col>          
-    </ion-row>      
+    </ion-row>   
+    <ion-row>
+        <ion-col>
+          <p class="gm-main-content">{{ msg.mainMessage }}</p>
+        </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col>
+        <span class="gm-dim" style="font-size: 12px;">&nbsp; {{ msg.messageTime }} </span>
+      </ion-col>
+    </ion-row>  
   </div>
 
 </ion-content>
