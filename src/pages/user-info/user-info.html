@@ -20,6 +20,7 @@
 
 
 <ion-content>
+ 
   <div *ngIf="retrievedUser">
     <ion-row>
       <ion-col>
@@ -47,11 +48,13 @@
           </div>
       </ion-col>
 
-    <!--  <ion-col class="align-center" style="border-left: thin solid #ccc;">
-        <p class="gm-strong gm-dim">11</p>
-        <p class="gm-small-caps gm-dim">LIKES</p>
-      </ion-col>
-      -->
+        <ion-col class="align-center" *ngIf="isLoggedInUser" style="border-left: thin solid #ccc;">
+              <div (click)="showMessages()">
+                <p class="gm-strong gm-dim">{{ (loggedInUser.messages) ? loggedInUser.messages.length: 0 }}</p>
+                <p class="gm-small-caps gm-dim" style="font-weight: 700">MESSAGES</p>
+              </div>
+          </ion-col>
+  
     </ion-row>
   </div>
   <div id="form-div" *ngIf="isLoggedInUser && retrievedUser">

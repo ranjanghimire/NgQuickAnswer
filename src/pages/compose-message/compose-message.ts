@@ -55,7 +55,7 @@ submitForm(): void{
   this._dataService.updateUserById(this.toUser.id, this.toUser)
         .subscribe((data:AppUser) => this.retUser = data, 
           error => console.log(error), 
-          () => {            
+          () => {   
             this.saveMessage = '';
             this.subject = '';              
             loadingPopup.dismiss();

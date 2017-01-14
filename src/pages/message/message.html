@@ -1,0 +1,23 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>My Messages</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="answerbox" *ngFor="let msg of appUser.messages">
+    <ion-row>
+        <ion-col width-10>
+          <div class="gm-circle" (click)="goToUserInfo(msg.fromUserId)">{{ extractFirstLetter(msg.fromUserName) | uppercase }}</div>
+        </ion-col>
+        <ion-col width-90>
+          <span class="gm-dim" (click)="goToUserInfo(msg.fromUserId)">{{ msg.fromUserName }} </span>
+        </ion-col>          
+    </ion-row>      
+  </div>
+
+</ion-content>

@@ -21,6 +21,7 @@ import { AllTopicsPage } from '../pages/all-topics/all-topics';
 import { PopoverPage } from '../pages/popover/popover';
 import { UserQuestionsPage} from '../pages/user-questions/user-questions';
 import { UserAnswersPage } from '../pages/user-answers/user-answers';
+import { MessagePage } from '../pages//message/message'; 
 import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswered-questions';
 import { SearchPage } from '../pages/search/search';
 import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
@@ -47,7 +48,8 @@ import { DatePipe } from '@angular/common';
     UnansweredQuestionsPage,
     SearchPage,
     CategoryQuestionsPage, 
-    ComposeMessagePage
+    ComposeMessagePage,
+    MessagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -70,7 +72,8 @@ import { DatePipe } from '@angular/common';
     UnansweredQuestionsPage,
     SearchPage,
     CategoryQuestionsPage, 
-    ComposeMessagePage
+    ComposeMessagePage,
+    MessagePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, 
