@@ -15,6 +15,8 @@ export class AppUser {
 
     messages : Message[];
 
+    likedIds : string [];
+
     askedQuestionIDs : string[];
 
     repliedAnswersIDs : string[];
