@@ -38,7 +38,12 @@ export class ComposeMessagePage {
         this.tmpSubject = this.navParams.get('subject');
 
         if (this.tmpSubject){
-          this.subject = 'RE: ' + this.tmpSubject;
+          if(!this.tmpSubject.startsWith('RE: ')){
+            this.subject = 'RE: ' + this.tmpSubject;
+          }
+          else{
+            this.subject = this.tmpSubject;
+          }
         }
       
     }
