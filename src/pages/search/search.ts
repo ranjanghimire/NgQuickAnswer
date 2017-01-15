@@ -16,11 +16,7 @@ export class SearchPage {
   private retWordSearchDto: WordSearchDto[];
 
   private actQuestion: Question;
-
-  private myInput: string;
-
-  private shouldShowCancel: boolean;
-
+  
   private topics: string[] = [];
 
   private categories: string[] = [];
