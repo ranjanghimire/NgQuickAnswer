@@ -13,25 +13,25 @@
 
     <div class="gm-toolbar">
       <ion-row>
-        <ion-col>
-          <button class="extra-small gm-btn-white" ion-button small clear icon-left (click)="refreshPage()">
-            <ion-icon name="paper"></ion-icon>
-              Feed
+        <ion-col width-20>
+          <button class="extra-small gm-btn-white" ion-button small clear icon-left (click)="askNewQuestion()">
+            <ion-icon name="add-circle"></ion-icon>
+              Ask
           </button>
         </ion-col>
-        <ion-col>
+        <ion-col width-30>
           <button class="extra-small gm-btn-white" ion-button small clear icon-left (click)="goToUnansweredQuestions()">
             <ion-icon name="create"></ion-icon>
               Answer
           </button>
         </ion-col>
-        <ion-col>
+        <ion-col width-25>
           <button class="extra-small gm-btn-white" ion-button small clear icon-left (click)="goToAllTopicsPage()">
             <ion-icon name="browsers"></ion-icon>
               Topics
           </button>
         </ion-col>
-        <ion-col>
+        <ion-col width-25>
           <button class="extra-small gm-btn-white" ion-button small clear icon-left (click)="goToSearchPage()">
             <ion-icon name="search"></ion-icon>
               Search
@@ -107,9 +107,11 @@
     </ion-row>
   </div>
 
+<!--
   <ion-fab right bottom>
         <button ion-fab mini color="primary" (click)="askNewQuestion()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
+-->
 
   <ion-infinite-scroll (ionInfinite)="loadMore($event)" threshold="40%">
    <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
