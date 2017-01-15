@@ -93,4 +93,12 @@ export class UserInfoPage {
     this.navCtrl.push(ComposeMessagePage, {toUser: toUser});
   }
 
+  updateUserPassword(): void{
+    this._dataService.updatePassword(this.retrievedUser.userName, this.retrievedUser.password)
+        .subscribe((data:AppUser) => this.retrievedUser = data, 
+          error => console.log(error), 
+          () => console.log('Changed password')
+        );
+  }
+
 }

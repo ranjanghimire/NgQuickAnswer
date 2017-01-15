@@ -40,6 +40,17 @@ export class DataService {
                 .catch(this.handleError);
     }
 
+    ///user/{username}/{password}
+    //Update user's password by username
+    public updatePassword = (username: string, password: string): Observable<AppUser> => {
+        let bodyString = JSON.stringify("");
+        let options = new RequestOptions({headers: this.headers});
+
+        return this._http.put(this.actionUrl + '/' + username + '/' + password, bodyString, options)
+                .map((res: Response) => <AppUser>res.json())
+                .catch(this.handleError);
+    }
+
     public updateUserById = (id: string, updateUser: AppUser): Observable<AppUser> => {
         let bodyString = JSON.stringify(updateUser);
         let options = new RequestOptions({headers: this.headers});
