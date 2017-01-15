@@ -24,6 +24,7 @@ import { UserAnswersPage } from '../pages/user-answers/user-answers';
 import { MessagePage } from '../pages//message/message'; 
 import { UnansweredQuestionsPage } from '../pages/unanswered-questions/unanswered-questions';
 import { SearchPage } from '../pages/search/search';
+import { UserLikesPage } from '../pages/user-likes/user-likes';
 import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
 import { ComposeMessagePage } from '../pages/compose-message/compose-message';
 import { DatePipe } from '@angular/common';
@@ -49,7 +50,8 @@ import { DatePipe } from '@angular/common';
     SearchPage,
     CategoryQuestionsPage, 
     ComposeMessagePage,
-    MessagePage
+    MessagePage,
+    UserLikesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -73,7 +75,8 @@ import { DatePipe } from '@angular/common';
     SearchPage,
     CategoryQuestionsPage, 
     ComposeMessagePage,
-    MessagePage
+    MessagePage,
+    UserLikesPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, 

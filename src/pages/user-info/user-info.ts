@@ -7,6 +7,7 @@ import { DataService } from '../../shared/app.dataservice';
 import { UserQuestionsPage } from '../user-questions/user-questions';
 import { UserAnswersPage } from '../user-answers/user-answers';
 import { MessagePage } from '../message/message'; 
+import { UserLikesPage } from '../user-likes/user-likes';
 import { ComposeMessagePage } from '../compose-message/compose-message';
 
 @Component({
@@ -81,6 +82,10 @@ export class UserInfoPage {
 
   showRepliedAnswers(): void{
     this.navCtrl.push(UserAnswersPage, {userId: this.retrievedUserId});
+  }
+
+  goToLikedQuestionsPage(userId: string): void{
+    this.navCtrl.push(UserLikesPage, {userId: userId});
   }
 
   goToComposeMessagePage(toUser: AppUser){

@@ -5,6 +5,7 @@ import { Question } from '../../models/app.question';
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
+import { UserInfoPage } from '../user-info/user-info';
 import { AppUser } from '../../models/app.user';
 import { PopoverPage } from '../popover/popover';
 
@@ -58,6 +59,10 @@ export class TopicQuestionsPage {
 
   extractFirstLetter(userName: string){
     return userName.charAt(0);
+  }
+
+  goToUserInfo(theUserId: string) : void{
+    this.navCtrl.push( UserInfoPage, { myUserId : theUserId })
   }
 
   decrementVotes(question: Question): void{

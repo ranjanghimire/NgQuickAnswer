@@ -21,8 +21,8 @@
       <ion-col><p class="gm-main-content">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
     </ion-row>
     <ion-row>
-      <ion-col width-10><div class="gm-circle" *ngIf="question.author.appUserName">{{ extractFirstLetter(question.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
-      <ion-col width-90><span class="gm-dim" *ngIf="question.author.appUserName">{{ question.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
+      <ion-col width-10><div class="gm-circle" *ngIf="question.author.appUserName" (click)="goToUserInfo(question.author.appUserId)">{{ extractFirstLetter(question.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
+      <ion-col width-90><span class="gm-dim" *ngIf="question.author.appUserName" (click)="goToUserInfo(question.author.appUserId)">{{ question.author.appUserName }} </span></ion-col> <!-- UserName on left side. Make it dim. -->         
     </ion-row>
     <ion-row>
       <ion-col>       
@@ -37,7 +37,7 @@
         <ion-buttons end>
           <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
           <button class="gm-button" (click) = "incrementVotes(question)">            
-            <ion-icon [ngClass]="{'gm-red-heart': question.liked }" name="heart"></ion-icon>
+            <ion-icon [ngClass]="{'gm-red-heart': question.liked }" name="bookmark"></ion-icon>
           </button>      
           <button class="gm-button" (click)="presentPopover($event, question.id)">
             <ion-icon name="more"></ion-icon>

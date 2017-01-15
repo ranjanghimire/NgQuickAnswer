@@ -41,16 +41,23 @@
           </div>
       </ion-col>
 
-      <ion-col class="align-center">
+      <ion-col class="align-center" style="border-right: thin solid #ccc;">
           <div (click)="showRepliedAnswers()">
             <p class="gm-strong gm-dim">{{ answerCount }}</p>
             <p class="gm-small-caps gm-dim" style="font-weight: 700">ANSWERS</p>
           </div>
       </ion-col>
 
-        <ion-col class="align-center" *ngIf="isLoggedInUser" style="border-left: thin solid #ccc;">
+      <ion-col class="align-center">
+          <div (click)="goToLikedQuestionsPage(retrievedUser.id)">
+            <p class="gm-strong gm-dim">{{ (retrievedUser.likedIds) ? retrievedUser.likedIds.length: 0 }}</p>
+            <p class="gm-small-caps gm-dim" style="font-weight: 700">BOOKMARKS</p>
+          </div>
+      </ion-col>
+
+        <ion-col class="align-center" *ngIf="isLoggedInUser && retrievedUser" style="border-left: thin solid #ccc;">
               <div (click)="showMessages()">
-                <p class="gm-strong gm-dim">{{ (loggedInUser.messages) ? loggedInUser.messages.length: 0 }}</p>
+                <p class="gm-strong gm-dim">{{ (retrievedUser.messages) ? retrievedUser.messages.length: 0 }}</p>
                 <p class="gm-small-caps gm-dim" style="font-weight: 700">MESSAGES</p>
               </div>
           </ion-col>

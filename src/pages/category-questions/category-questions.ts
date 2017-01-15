@@ -4,6 +4,7 @@ import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question'; 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
+import { UserInfoPage } from '../user-info/user-info';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { AppUser } from '../../models/app.user';
@@ -72,6 +73,11 @@ export class CategoryQuestionsPage {
     this.incrementLikesOfQuestion(question, this.myUserData.id);
 
   }
+
+  goToUserInfo(theUserId: string) : void{
+    this.navCtrl.push( UserInfoPage, { myUserId : theUserId })
+  }
+  
 
   goToTopicQuestions(topic: string) : void{
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );

@@ -32,7 +32,7 @@
         <ion-buttons end>
           
           <button class="gm-button" (click) = "incrementVotes(myQuestion)">            
-            <ion-icon [ngClass]="{'gm-red-heart': myQuestion.liked }" name="heart"></ion-icon>
+            <ion-icon [ngClass]="{'gm-red-heart': myQuestion.liked }" name="bookmark"></ion-icon>
           </button>      
           <button class="gm-button" (click)="presentPopover($event, myQuestion.id)">
             <ion-icon name="more"></ion-icon>
@@ -66,7 +66,7 @@
           <ion-buttons end>
             <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
             <button class="gm-button" (click)="incrementAnswerVotes(answer)">            
-              <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="heart"></ion-icon>
+              <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="bookmark"></ion-icon>
             </button>      
             <button class="gm-button">
               <ion-icon name="more"></ion-icon>
