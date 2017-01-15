@@ -3,12 +3,6 @@ import { NavController, ViewController, NavParams, ToastController } from 'ionic
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { Question } from '../../models/app.question';
 
-/*
-  Generated class for the Popover page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-popover',
   templateUrl: 'popover.html'

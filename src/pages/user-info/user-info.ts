@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { Page2 } from '../page2/page2';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -23,8 +23,8 @@ export class UserInfoPage {
   isLoggedInUser: boolean = false;
   loggedInUser: AppUser;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-              private _dataService: DataService, private _questionServicev2: QuestionServicev2) {
+  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, 
+              private _dataService: DataService, private _questionServicev2: QuestionServicev2, private toastCtrl: ToastController) {
     this.retrievedUserId = this.navParams.get('myUserId');   
     
     this.loggedInUser = JSON.parse(localStorage.getItem("myUser"))
@@ -94,11 +94,40 @@ export class UserInfoPage {
   }
 
   updateUserPassword(): void{
+
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'Updating ...'
+    });
+
+    loadingPopup.present();
+
     this._dataService.updatePassword(this.retrievedUser.userName, this.retrievedUser.password)
         .subscribe((data:AppUser) => this.retrievedUser = data, 
-          error => console.log(error), 
-          () => console.log('Changed password')
+          error => {
+            loadingPopup.dismiss();
+            this.presentToast('There was an ERROR updating your information..');
+            console.log(error)
+          }, 
+          () => {
+            loadingPopup.dismiss();
+            this.presentToast('Your information has been updated!');
+            console.log('Changed password')
+          }
         );
   }
+
+  presentToast(msg: string) {
+  let toast = this.toastCtrl.create({
+    message: msg,
+    duration: 3000,
+    position: 'bottom',
+  });
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
+}
 
 }
