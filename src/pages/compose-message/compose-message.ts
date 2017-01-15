@@ -12,8 +12,11 @@ import { DatePipe } from '@angular/common';
 export class ComposeMessagePage {
 
   private toUser: AppUser;
+  private toUserId: string;
+
   private saveMessage: string;
   private subject: string;
+  private tmpSubject: string;
 
   private msg: Message;
   private retUser: AppUser;
@@ -22,6 +25,23 @@ export class ComposeMessagePage {
               private loadingCtrl: LoadingController, private _dataService: DataService,
               private toastCtrl: ToastController) {
     this.toUser = this.navParams.get('toUser');  
+
+    if (!this.toUser){
+      this.toUserId = this.navParams.get('toUserId');
+      this._dataService.findUserById(this.toUserId)
+          .subscribe((data:AppUser) => this.toUser = data, 
+          error => console.log(error),
+          () => {
+            console.log('Loaded user data');
+            //console.log(this.toUser);
+          });
+        this.tmpSubject = this.navParams.get('subject');
+
+        if (this.tmpSubject){
+          this.subject = 'RE: ' + this.tmpSubject;
+        }
+      
+    }
 
   }
 

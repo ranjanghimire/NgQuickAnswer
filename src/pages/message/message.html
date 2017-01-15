@@ -26,9 +26,17 @@
     </ion-row> 
     <ion-row>
       <ion-col>
-        <span class="gm-dim" style="font-size: 12px;">&nbsp; {{ msg.messageTime }} </span>
+        <button class="gm-dim gm-button" (click)="goToComposeMessage(msg.fromUserId, msg.subject)">
+            <span class="answers">
+              <span>Reply</span>
+            </span>
+        </button>
+      </ion-col>
+      <ion-col>
+        <span class="gm-dim" style="font-size: 12px;" style="margin-left:auto">&nbsp; {{ msg.messageTime }} </span>
       </ion-col>
     </ion-row>  
+    
   </div>
 
 </ion-content>
