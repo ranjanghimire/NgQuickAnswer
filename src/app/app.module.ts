@@ -28,7 +28,8 @@ import { UserLikesPage } from '../pages/user-likes/user-likes';
 import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
 import { ComposeMessagePage } from '../pages/compose-message/compose-message';
 import { DatePipe } from '@angular/common';
-
+import { BrowserModule  } from '@angular/platform-browser';
+import {MomentModule} from 'angular2-moment';
 
 
 @NgModule({
@@ -54,7 +55,9 @@ import { DatePipe } from '@angular/common';
     UserLikesPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp), 
+    BrowserModule,
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,7 +78,7 @@ import { DatePipe } from '@angular/common';
     SearchPage,
     CategoryQuestionsPage, 
     ComposeMessagePage,
-    MessagePage,
+    MessagePage, 
     UserLikesPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 

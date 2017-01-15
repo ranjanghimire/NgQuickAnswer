@@ -24,6 +24,13 @@
           <p class="gm-main-content">{{ msg.mainMessage }}</p>
         </ion-col>
     </ion-row> 
+
+    <ion-row>
+      <ion-col>
+        <span class="gm-dim" style="font-size: 12px; margin-left: 5px;">Received <time> {{ msg.messageTime | amTimeAgo }} </time></span>
+      </ion-col>
+    </ion-row>
+
     <ion-row>
       <ion-col>
         <button class="gm-dim gm-button" (click)="goToComposeMessage(msg.fromUserId, msg.subject)">
@@ -31,9 +38,6 @@
               <span>Reply</span>
             </span>
         </button>
-      </ion-col>
-      <ion-col>
-        <span class="gm-dim" style="font-size: 12px;" style="margin-left:auto">&nbsp; {{ msg.messageTime }} </span>
       </ion-col>
     </ion-row>  
     

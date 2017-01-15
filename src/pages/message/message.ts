@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
 import { ComposeMessagePage } from '../compose-message/compose-message';
+import { MomentModule  } from 'angular2-moment/module';
 
 @Component({
   selector: 'page-message',
