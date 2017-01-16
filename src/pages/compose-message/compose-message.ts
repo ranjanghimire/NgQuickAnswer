@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 export class ComposeMessagePage {
 
   private toUser: AppUser;
+  private fromUser; AppUser;
   private toUserId: string;
 
   private saveMessage: string;
@@ -19,12 +20,25 @@ export class ComposeMessagePage {
   private tmpSubject: string;
 
   private msg: Message;
+
+  private sentMsg: Message;
+
   private retUser: AppUser;
+  private retFromUser: AppUser;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private datePipe: DatePipe,
               private loadingCtrl: LoadingController, private _dataService: DataService,
               private toastCtrl: ToastController) {
     this.toUser = this.navParams.get('toUser');  
+    
+    this._dataService.findUserById(JSON.parse(localStorage.getItem("myUser")).id)
+        .subscribe((data:AppUser) => this.fromUser = data, 
+          error => console.log(error), 
+          () => {   
+            console.log('Loaded this user');  
+                                  
+          }
+        );
 
     if (!this.toUser){
       this.toUserId = this.navParams.get('toUserId');
@@ -67,7 +81,7 @@ submitForm(): void{
    var formattedDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm');
 
   this.msg.messageTime = formattedDate;
-    
+
   if(this.toUser.messages){
     this.toUser.messages.push(this.msg);
   }
@@ -77,8 +91,32 @@ submitForm(): void{
     
   }
 
+  this.sentMsg = new Message();
+  this.sentMsg.mainMessage = this.saveMessage;
+  this.sentMsg.subject = this.subject;
+  this.sentMsg.toUserId = this.toUser.id;
+  this.sentMsg.toUserName = this.toUser.userName;
+  this.sentMsg.messageTime = formattedDate;
+
+  if (this.fromUser.sentMessages && this.fromUser.sentMessages.length > 0){
+    this.fromUser.sentMessages.push(this.sentMsg);
+  }
+  else{
+    this.fromUser.sentMessages = new Array<Message>(); 
+    this.fromUser.sentMessages.push(this.sentMsg);
+  }
+
   this._dataService.updateUserById(this.toUser.id, this.toUser)
         .subscribe((data:AppUser) => this.retUser = data, 
+          error => console.log(error), 
+          () => {   
+            this.saveMessage = '';
+            this.subject = '';                          
+          }
+        );
+
+    this._dataService.updateUserById(this.fromUser.id, this.fromUser)
+        .subscribe((data:AppUser) => this.retFromUser = data, 
           error => console.log(error), 
           () => {   
             this.saveMessage = '';

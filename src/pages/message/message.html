@@ -17,7 +17,7 @@
 
 <ion-content padding>
 
-  <div *ngIf="inboxFlag">
+  <div *ngIf="inboxFlag && appUser">
     <div class="answerbox" *ngFor="let msg of appUser.messages">
       <ion-row>
           <ion-col> 
@@ -51,7 +51,29 @@
     </div>
   </div>
   <div *ngIf="!inboxFlag">
-    <p>test element</p>
+   
+    <div class="answerbox" *ngFor="let msg of appUser.sentMessages">
+      <ion-row>
+          <ion-col> 
+            <span class="gm-dim" style="padding-left:5px; font-size:12px;">To: </span>
+            <span class="gm-dim answers" (click)="goToUserInfo(msg.ToUserId)">{{ msg.toUserName }} </span>
+          </ion-col>          
+      </ion-row>   
+      <ion-row>
+          <ion-col>
+            <p class="gm-subject">{{ msg.subject }}</p>
+            <p class="gm-main-content">{{ msg.mainMessage }}</p>
+          </ion-col>
+      </ion-row> 
+
+      <ion-row>
+        <ion-col>
+          <span class="gm-dim" style="font-size: 12px; margin-left: 5px;">Sent <time> {{ msg.messageTime | amTimeAgo }} </time></span>
+        </ion-col>
+      </ion-row>
+      
+    </div>
+
   </div>
 
 </ion-content>

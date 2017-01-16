@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
 import { ComposeMessagePage } from '../compose-message/compose-message';
-import { MomentModule  } from 'angular2-moment/module';
+import { DataService } from '../../shared/app.dataservice';
 
 @Component({
   selector: 'page-message',
@@ -17,9 +17,20 @@ export class MessagePage {
 
   selectedText: string = 'Inbox';
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, 
+          private _dataService: DataService) {
 
-    this.appUser = JSON.parse(localStorage.getItem("myUser"));
+    this._dataService.findUserById(JSON.parse(localStorage.getItem("myUser")).id)
+        .subscribe((data:AppUser) => this.appUser = data, 
+          error => console.log(error), 
+          () => {   
+            console.log('Loaded this user');  
+            //console.log(this.appUser);                       
+          }
+        );
+
+    //this.appUser = JSON.parse(localStorage.getItem("myUser"));
+    //console.log(this.appUser);
 
   }
 
