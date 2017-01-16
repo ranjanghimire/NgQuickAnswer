@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, ToastController, AlertController } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question';
 import { Answer } from '../../models/app.answer';
@@ -10,6 +10,7 @@ import { CategoryQuestionsPage } from '../category-questions/category-questions'
 import { UserInfoPage } from '../user-info/user-info';
 import { PopoverPage } from '../popover/popover';
 import { QuestionService } from '../../shared/app.questionservice';
+
 
 
 @Component({
@@ -35,7 +36,9 @@ export class AnswersToTheQuestionPage {
         public popoverCtrl: PopoverController,public navCtrl: NavController,
         public navParams: NavParams, 
         private _questionService : QuestionService, 
-        private _conf : Configuration) {
+        private toastCtrl: ToastController,
+        private _conf : Configuration, 
+        public alertCtrl: AlertController) {
     
     this.myQuestion = this.navParams.get("question");
     this.myUserData = _conf.myUser;
@@ -156,6 +159,48 @@ export class AnswersToTheQuestionPage {
         this.myQuestion.answers.push(answer);
       }
       console.log('Answer submitted');
+  }
+
+  flagAnswer(ans: Answer){
+    console.log('flagAnswer() invoked');
+    this.showConfirm();
+    
+    //TODO: Implementation pending
+  }
+
+  showConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: 'Report this?',
+      message: 'We will review this answer and remove if found offensive.',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.presentToast();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Thanks! Our team will review the answer and remove if necessary. ',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
   }
 
   ionViewDidLoad() {

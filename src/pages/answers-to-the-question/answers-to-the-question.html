@@ -67,9 +67,14 @@
             <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
             <button class="gm-button" (click)="incrementAnswerVotes(answer)">            
               <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="bookmark"></ion-icon>
-            </button>      
+            </button>   
+            <!--   
             <button class="gm-button">
               <ion-icon name="more"></ion-icon>
+            </button>
+            -->
+            <button class="gm-button" (click)="flagAnswer(answer)" >
+                <ion-icon name="flag"></ion-icon>
             </button>
           </ion-buttons>  
         </ion-col>
