@@ -57,7 +57,13 @@ export class NewQuestionPage {
 
     this.askedQuestion.weight = 1;
 
+    if (!this.selectedCategory){
+      this.selectedCategory = 'General';
+    }
+
     this.askedQuestion.category = this.selectedCategory;
+
+
 
     this.postQuestion(this.askedQuestion);
    

@@ -2,43 +2,56 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>My Messages</ion-title>
+    <ion-item class="gm-blue-background">
+    
+      <ion-select [(ngModel)]="selectedText" (ionChange)="onChange()" style="background-color: #387ef5">
+        <ion-option selected="true">Inbox</ion-option>
+        <ion-option>Sent</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-navbar>
+
 
 </ion-header>
 
 
 <ion-content padding>
-  <div class="answerbox" *ngFor="let msg of appUser.messages">
-    <ion-row>
-        <ion-col> 
-          <span class="gm-dim" style="padding-left:5px; font-size:12px;">From: </span>
-          <span class="gm-dim answers" (click)="goToUserInfo(msg.fromUserId)">{{ msg.fromUserName }} </span>
-        </ion-col>          
-    </ion-row>   
-    <ion-row>
+
+  <div *ngIf="inboxFlag">
+    <div class="answerbox" *ngFor="let msg of appUser.messages">
+      <ion-row>
+          <ion-col> 
+            <span class="gm-dim" style="padding-left:5px; font-size:12px;">From: </span>
+            <span class="gm-dim answers" (click)="goToUserInfo(msg.fromUserId)">{{ msg.fromUserName }} </span>
+          </ion-col>          
+      </ion-row>   
+      <ion-row>
+          <ion-col>
+            <p class="gm-subject">{{ msg.subject }}</p>
+            <p class="gm-main-content">{{ msg.mainMessage }}</p>
+          </ion-col>
+      </ion-row> 
+
+      <ion-row>
         <ion-col>
-          <p class="gm-subject">{{ msg.subject }}</p>
-          <p class="gm-main-content">{{ msg.mainMessage }}</p>
+          <span class="gm-dim" style="font-size: 12px; margin-left: 5px;">Received <time> {{ msg.messageTime | amTimeAgo }} </time></span>
         </ion-col>
-    </ion-row> 
+      </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <span class="gm-dim" style="font-size: 12px; margin-left: 5px;">Received <time> {{ msg.messageTime | amTimeAgo }} </time></span>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <button class="gm-dim gm-button" (click)="goToComposeMessage(msg.fromUserId, msg.subject)">
-            <span class="answers">
-              <span>Reply</span>
-            </span>
-        </button>
-      </ion-col>
-    </ion-row>  
-    
+      <ion-row>
+        <ion-col>
+          <button class="gm-dim gm-button" (click)="goToComposeMessage(msg.fromUserId, msg.subject)">
+              <span class="answers">
+                <span>Reply</span>
+              </span>
+          </button>
+        </ion-col>
+      </ion-row>  
+      
+    </div>
+  </div>
+  <div *ngIf="!inboxFlag">
+    <p>test element</p>
   </div>
 
 </ion-content>

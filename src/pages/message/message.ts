@@ -13,10 +13,23 @@ export class MessagePage {
 
   appUser: AppUser;
 
+  inboxFlag: boolean = true;
+
+  selectedText: string = 'Inbox';
+
   constructor(public navCtrl: NavController) {
 
     this.appUser = JSON.parse(localStorage.getItem("myUser"));
 
+  }
+
+  onChange(): void{
+    if (this.selectedText == 'Inbox'){
+      this.inboxFlag = true;
+    }
+    else{
+      this.inboxFlag = false;
+    }
   }
 
   extractFirstLetter(userName: string){

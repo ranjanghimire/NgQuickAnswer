@@ -11,26 +11,17 @@
   </ion-navbar>
 
   <ion-item>
-  <ion-label>Filter By Category</ion-label>
-  <ion-select [(ngModel)]="myCategory" (ionChange)="onChange()">
-    <ion-option selected="true">All Categories</ion-option>
-    <ion-option *ngFor="let i of categories">{{i}}</ion-option>
-  </ion-select>
-</ion-item>
+    <ion-label>Filter By Category</ion-label>
+    <ion-select [(ngModel)]="myCategory" (ionChange)="onChange()">
+      <ion-option selected="true">All Categories</ion-option>
+      <ion-option *ngFor="let i of categories">{{i}}</ion-option>
+    </ion-select>
+  </ion-item>
       
 </ion-header>
 
 
 <ion-content no-padding>
- 
-    <!--<div class="gm-container">
-
-        <select (change)="onChange($event.target.value)">
-          <option selected>All Categories</option>
-          <option *ngFor="let i of categories">{{i}}</option>
-        </select>
-      
-    </div>-->
 
     <div>       
         <ion-item-group>   

@@ -13,4 +13,26 @@ page-message {
         padding-left: 5px;
         padding-bottom: 5px;
     }
+   
+    .gm-blue-background{
+        background-color: #387ef5; 
+        color: white;
+        border: 0px !important;
+        border-bottom-color: transparent !important;
+        background-image: none !important;
+        border-bottom: none !important;
+    }
+
+    ion-select{
+        border: 0px !important;
+        border-bottom-color: transparent !important;
+        background-image: none !important;
+        border-bottom: none !important;
+    }
+    ion-option{
+        border: 0px !important;
+        border-bottom-color: transparent !important;
+        background-image: none !important;
+        border-bottom: none !important;
+    }
 }
