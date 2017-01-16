@@ -13,13 +13,13 @@
     <form (ngSubmit)="submitForm()">
       <ion-item>
           <ion-label>To: </ion-label>
-          <ion-input placeholder="Topic" type="text" [(ngModel)]="toUser.userName" name="userName" disabled></ion-input>
+          <ion-input placeholder="To" type="text" [(ngModel)]="toUser.userName" name="userName" disabled></ion-input>
       </ion-item>
       <ion-item>
-          <ion-input placeholder="Subject" type="text" [(ngModel)]="subject" name="subject"></ion-input>
+          <ion-input placeholder="Subject" type="text" [(ngModel)]="subject" name="subject" maxlength="200"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-textarea rows="4" placeholder="Your message.." [(ngModel)]="saveMessage" name="saveMessage"></ion-textarea>
+          <ion-textarea rows="4" placeholder="Your message.." [(ngModel)]="saveMessage" name="saveMessage" maxlength="1000"></ion-textarea>
       </ion-item>
         <button ion-button type="submit" block>Submit</button>
         

@@ -86,7 +86,7 @@
       <ion-item>
         <ion-icon class="gm-dim" name="create" item-left></ion-icon>
           
-          <ion-input type="text" [(ngModel)] = "_tmpAnswer" #input name="_tmpAnswer" placeholder="Write your answer.."></ion-input>  
+          <ion-input type="text" [(ngModel)] = "_tmpAnswer" #input name="_tmpAnswer" placeholder="Write your answer.." maxlength="1000"></ion-input>  
 
           <button ion-button clear icon-only item-right (click)="logAnswer()">
             <ion-icon name="paper-plane"></ion-icon>
