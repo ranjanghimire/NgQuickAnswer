@@ -34,14 +34,17 @@ export class Page2 {
 
     this._service.findByUserNameAndPassword(this.formUser.userName, this.formUser.password)
         .subscribe((data:AppUser) => this.retUser = data,
-                error => console.log(error), //TODO: Display a modal with error message
+                error => {
+                  loadingPopup.dismiss();
+                  console.log(error);
+                }, //TODO: Display a modal with error message
                 () => {
                   localStorage.clear();
                   localStorage.setItem("myUser", JSON.stringify(this.retUser));
                   loadingPopup.dismiss();
                   this.navCtrl.setRoot(Page1);
                 });  
-                //TODO: Save retUser in localStorage and remove it on logout
+                
 
   }
 

@@ -1,17 +1,16 @@
 
 
 <ion-content no-padding>
-  <p style="font-family: 'Rockwell'; color:#3c948b; margin-top: 120px; font-size: 36px; font-weight: 700; text-align: center">Quick Answer</p>
+  <div>
+    <p style="font-family: 'Rockwell'; color:#3c948b; margin-top: 120px; font-size: 36px; font-weight: 700; text-align: center">Quick Answer</p>
+  </div>
+
   <div class="aligner" style="margin-top:-60px">
     <form (ngSubmit)="loginUser()">
-        <ion-item>
-          <!--<ion-label>Topic:  </ion-label> -->
-          <!-- <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input> -->
+        <ion-item>          
           <ion-input placeholder="UserName" type="text" [(ngModel)]="formUser.userName" name="userName" autocapitalize="off"></ion-input>
         </ion-item>
         <ion-item>
-          <!--<ion-label>Question: </ion-label> -->
-          <!-- <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea> -->
           <ion-input placeholder="Password" type="password" [(ngModel)]="formUser.password" name="password"></ion-input>
         </ion-item>
         <br /><br />        
@@ -22,18 +21,4 @@
   </div>
 
 
-  <!--
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
-  -->
 </ion-content>
