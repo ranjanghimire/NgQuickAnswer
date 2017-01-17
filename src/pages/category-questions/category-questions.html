@@ -9,6 +9,7 @@
 
 <ion-content padding>
 
+<div *ngIf="retQuestions">
   <div *ngFor="let question of retQuestions" class="questionbox">    
     
     <ion-row>
@@ -44,5 +45,6 @@
       </ion-col> <!-- icons on the right: Heart, Three dots for more options -->
     </ion-row>
   </div>
+</div>
 
 </ion-content>

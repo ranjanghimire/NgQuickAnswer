@@ -58,6 +58,7 @@
     </div>
   </div>
 
+<div *ngIf="retQuestions">
   <div *ngFor="let question of retQuestions" id="questionbox">
     <ion-row>
       <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
@@ -106,7 +107,7 @@
       </ion-col> <!-- icons on the right: Heart, Three dots for more options -->
     </ion-row>
   </div>
-
+</div>
 <!--
   <ion-fab right bottom>
         <button ion-fab mini color="primary" (click)="askNewQuestion()"><ion-icon name="add"></ion-icon></button>

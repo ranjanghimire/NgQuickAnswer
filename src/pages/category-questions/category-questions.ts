@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Configuration } from '../../app/app.constants';
-import { Question } from '../../models/app.question'; 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
+import { Configuration } from '../../app/app.constants';
+import { Question } from '../../models/app.question'; 
+
 import { UserInfoPage } from '../user-info/user-info';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
@@ -15,14 +16,14 @@ import { AppUser } from '../../models/app.user';
 })
 export class CategoryQuestionsPage {
 
-  myCategory: string;
+  private myCategory: string;
   public retIncQuestion : Question;
   private myUserData : AppUser;
 
   public retQuestions : Question[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
-            private _conf : Configuration, private _questionservicev2: QuestionServicev2) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public _questionService: QuestionService,
+            public _conf : Configuration, public _questionservicev2: QuestionServicev2) {
     this.myCategory = this.navParams.get("category");
     
     this.myUserData = this._conf.myUser;

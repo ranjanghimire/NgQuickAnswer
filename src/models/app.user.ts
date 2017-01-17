@@ -11,6 +11,8 @@ export class AppUser {
 
     fullName : string;
 
+    email: string;
+
     address : Address;
 
     messages : Message[];

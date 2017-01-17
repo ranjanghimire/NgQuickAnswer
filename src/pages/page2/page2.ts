@@ -11,6 +11,14 @@ import { Page1 } from '../page1/page1'
 })
 export class Page2 {
 
+  logoFlag: boolean = false;
+
+  signInFlag: boolean = false;
+
+  regFlag: boolean = false;
+
+  forgetFlag: boolean = false;
+
   private formUser : AppUser = new AppUser();
 
   private retUser: AppUser;
@@ -20,8 +28,47 @@ export class Page2 {
       this.navCtrl.setRoot(Page1);
     }
     else{
+      this.signInFlag = true;
+      this.logoFlag = true;
       localStorage.clear();
     }
+    
+  }
+
+  showForget(): void{
+    this.signInFlag = false;
+    this.logoFlag = true;
+    this.regFlag = false;
+    this.forgetFlag = true;
+
+    this.formUser.userName = '';
+    this.formUser.fullName = '';
+    this.formUser.password = '';
+    this.formUser.email = '';
+  }
+
+  showRegister(): void{
+    this.signInFlag = false;
+    this.forgetFlag = false;
+    this.logoFlag = true;
+    this.regFlag = true;
+
+    this.formUser.userName = '';
+    this.formUser.fullName = '';
+    this.formUser.password = '';
+    this.formUser.email = '';
+  }
+
+  showSignIn(): void{
+    this.regFlag = false;
+    this.forgetFlag = false;
+    this.signInFlag = true;
+    this.logoFlag = true;
+
+    this.formUser.userName = '';
+    this.formUser.fullName = '';
+    this.formUser.password = '';
+    this.formUser.email = '';
   }
 
   loginUser() : void{
