@@ -40,9 +40,13 @@ export class Page2 {
                 }, //TODO: Display a modal with error message
                 () => {
                   localStorage.clear();
+                  
                   localStorage.setItem("myUser", JSON.stringify(this.retUser));
                   loadingPopup.dismiss();
-                  this.navCtrl.setRoot(Page1);
+                 
+                  setTimeout(() => {
+                    this.navCtrl.setRoot(Page1);
+                  }, 300);  
                 });  
                 
 
