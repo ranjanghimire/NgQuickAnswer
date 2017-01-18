@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { DataService } from '../../shared/app.dataservice';
 import { Page1 } from '../page1/page1'
@@ -23,9 +23,10 @@ export class Page2 {
 
   private retUser: AppUser;
   
-  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private _service: DataService) {   
+  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, 
+              private viewCtrl: ViewController, public navParams: NavParams, private _service: DataService) {   
     if (localStorage.getItem("myUser") != null){
-      this.navCtrl.setRoot(Page1);
+      this.navCtrl.push(Page1, {page2User: JSON.parse(localStorage.getItem("myUser"))});
     }
     else{
       this.signInFlag = true;
@@ -86,14 +87,18 @@ export class Page2 {
                   console.log(error);
                 }, //TODO: Display a modal with error message
                 () => {
-                  localStorage.clear();
+                  setTimeout(() => {
+                    localStorage.clear();
                   
-                  localStorage.setItem("myUser", JSON.stringify(this.retUser));
+                    localStorage.setItem("myUser", JSON.stringify(this.retUser));
+                  }, 300);
                   loadingPopup.dismiss();
                  
-                  setTimeout(() => {
-                    this.navCtrl.setRoot(Page1);
-                  }, 300);  
+                  this.navCtrl.push(Page1, {page2User: this.retUser}).then(() => {
+                      const index = this.viewCtrl.index;
+                      this.navCtrl.remove(index);
+                    });
+                    
                 });  
                 
 

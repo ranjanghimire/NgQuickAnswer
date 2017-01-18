@@ -1,6 +1,6 @@
 import { Component, ViewChild} from '@angular/core';
 
-import { NavController, PopoverController, Content } from 'ionic-angular';
+import { NavController, PopoverController, Content, NavParams } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -45,9 +45,11 @@ private size: number = 10;
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
               private _questionService : QuestionService, private _conf : Configuration,
               private _questionSeervicev2 : QuestionServicev2, 
-              private _questionServicev3: QuestionServicev3) {
+              private _questionServicev3: QuestionServicev3, 
+              private navParams: NavParams) {
     //this.myUserData = this._conf.myUser;
-    this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
+    this.myUserData = this.navParams.get("page2User");  
+    //console.log(this.myUserData);
     this.page = 0;
     //this.size =20 ;
     this.getAllQuestions();
