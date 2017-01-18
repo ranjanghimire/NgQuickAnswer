@@ -1,11 +1,11 @@
 
 
 <ion-content no-padding>
-  <div *ngIf="logoFlag">
-    <p style="font-family: 'Rockwell'; color:#3c948b; margin-top: 120px; font-size: 36px; font-weight: 700; text-align: center">Quick Answer</p>
+  <div>
+    <p class="logo-text">Quick Answer</p>
   </div>
 
-  <div class="aligner" style="margin-top:-60px" *ngIf="signInFlag">
+  <div class="aligner" style="margin-top:-30px">
     <form (ngSubmit)="loginUser()">
         <ion-item>          
           <ion-input placeholder="UserName" type="text" [(ngModel)]="formUser.userName" name="userName" autocapitalize="off"></ion-input>
@@ -16,46 +16,10 @@
         <br /><br />      
           
         <button ion-button type="submit" block>SIGN IN</button>
-        <ion-row><a (click)="showRegister()">Register</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="showForget()">Forgot Password?</a></ion-row>   
+        <ion-row><a (click)="goToRegistrationPage()">Register</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="gotToForgetPasswordPage()">Forgot Password?</a></ion-row>   
            
       </form><br />      
-  </div>
+  </div> 
 
-  <div class="aligner" style="margin-top:-20px" *ngIf="regFlag">
-    <form>
-      <ion-item>
-        <ion-input placeholder="Full Name" type="text" [(ngModel)]="formUser.fullName" name="fullName"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="User Name" type="text" [(ngModel)]="formUser.userName" name="userName" autocapitalize="off"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Email" type="text" [(ngModel)]="formUser.email" name="email" autocapitalize="off"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-input placeholder="Password" type="password" [(ngModel)]="formUser.password" name="password"></ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <button ion-button type="submit" block>REGISTER</button>
-        </ion-col>
-      </ion-row>
-      <ion-row><ion-col style="text-align: center"><a (click)="showSignIn()">Back to Sign In</a></ion-col></ion-row> 
-    </form>
-  </div>
-
-  <div class = "aligner" style="margin-top:-75px" *ngIf="forgetFlag">
-    <form>
-      <ion-item>
-        <ion-input placeholder="Email" type="text" [(ngModel)]="formUser.email" name="email" autocapitalize="off"></ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <button ion-button type="submit" block>RECOVER</button>
-        </ion-col>
-      </ion-row>
-      <ion-row><ion-col style="text-align: center"><a (click)="showSignIn()">Back to Sign In</a></ion-col></ion-row>
-    </form>
-  </div>
-
+  
 </ion-content>

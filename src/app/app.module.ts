@@ -27,6 +27,8 @@ import { SearchPage } from '../pages/search/search';
 import { UserLikesPage } from '../pages/user-likes/user-likes';
 import { CategoryQuestionsPage } from '../pages/category-questions/category-questions';
 import { ComposeMessagePage } from '../pages/compose-message/compose-message';
+import { RegistrationPage } from '../pages/registration/registration';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { BrowserModule  } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import {MomentModule} from 'angular2-moment';
@@ -52,7 +54,9 @@ import {MomentModule} from 'angular2-moment';
     CategoryQuestionsPage, 
     ComposeMessagePage,
     MessagePage,
-    UserLikesPage
+    UserLikesPage, 
+    RegistrationPage, 
+    ForgotPasswordPage
   ],
   imports: [
     IonicModule.forRoot(MyApp), 
@@ -79,7 +83,9 @@ import {MomentModule} from 'angular2-moment';
     CategoryQuestionsPage, 
     ComposeMessagePage,
     MessagePage, 
-    UserLikesPage
+    UserLikesPage, 
+    RegistrationPage, 
+    ForgotPasswordPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, 

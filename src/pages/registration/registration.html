@@ -1,0 +1,33 @@
+
+
+<ion-content no-padding>
+
+  <div>
+    <p class="logo-text">Quick Answer</p>
+  </div>
+
+  <div class="aligner" style="margin-top:-10px">
+    <form (ngSubmit)="registerUser()">
+      <ion-item>
+        <ion-input placeholder="Full Name" type="text" [(ngModel)]="formUser.fullName" name="fullName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="User Name" type="text" [(ngModel)]="formUser.userName" name="userName" autocapitalize="off"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Email" type="text" [(ngModel)]="formUser.email" name="email" autocapitalize="off"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input placeholder="Password" type="password" [(ngModel)]="formUser.password" name="password"></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <button ion-button type="submit" block>REGISTER</button>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col style="text-align: center"><a (click)="showSignIn()">Back to Sign In</a></ion-col></ion-row> 
+
+    </form>
+  </div>
+
+</ion-content>

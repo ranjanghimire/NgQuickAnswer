@@ -3,22 +3,16 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 import { DataService } from '../../shared/app.dataservice';
-import { Page1 } from '../page1/page1'
+import { Page1 } from '../page1/page1';
+import { RegistrationPage } from '../registration/registration';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
 @Component({
   selector: 'page-page2',
   templateUrl: 'page2.html'
 })
 export class Page2 {
-
-  logoFlag: boolean = false;
-
-  signInFlag: boolean = false;
-
-  regFlag: boolean = false;
-
-  forgetFlag: boolean = false;
-
+ 
   private formUser : AppUser = new AppUser();
 
   private retUser: AppUser;
@@ -29,47 +23,17 @@ export class Page2 {
       this.navCtrl.push(Page1, {page2User: JSON.parse(localStorage.getItem("myUser"))});
     }
     else{
-      this.signInFlag = true;
-      this.logoFlag = true;
       localStorage.clear();
     }
     
   }
 
-  showForget(): void{
-    this.signInFlag = false;
-    this.logoFlag = true;
-    this.regFlag = false;
-    this.forgetFlag = true;
-
-    this.formUser.userName = '';
-    this.formUser.fullName = '';
-    this.formUser.password = '';
-    this.formUser.email = '';
+  goToRegistrationPage(){
+    this.navCtrl.push(RegistrationPage);
   }
 
-  showRegister(): void{
-    this.signInFlag = false;
-    this.forgetFlag = false;
-    this.logoFlag = true;
-    this.regFlag = true;
-
-    this.formUser.userName = '';
-    this.formUser.fullName = '';
-    this.formUser.password = '';
-    this.formUser.email = '';
-  }
-
-  showSignIn(): void{
-    this.regFlag = false;
-    this.forgetFlag = false;
-    this.signInFlag = true;
-    this.logoFlag = true;
-
-    this.formUser.userName = '';
-    this.formUser.fullName = '';
-    this.formUser.password = '';
-    this.formUser.email = '';
+  gotToForgetPasswordPage(){
+    this.navCtrl.push(ForgotPasswordPage);
   }
 
   loginUser() : void{
