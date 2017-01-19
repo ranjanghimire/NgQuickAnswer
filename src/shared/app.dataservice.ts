@@ -60,6 +60,16 @@ export class DataService {
                 .catch(this.handleError);
     }
 
+    //register user
+    public registerUser = (appUser: AppUser): Observable<AppUser> => {
+        let bodyString = JSON.stringify(appUser);
+        let options = new RequestOptions({ headers: this.headers });
+
+        return this._http.post(this.actionUrl, bodyString, options)
+            .map((res:Response) => res.json())
+            .catch(this.handleError);
+    }
+
     private handleError(error: Response) {
          console.error(error);
          return Observable.throw(error.json().error || 'Server error');
