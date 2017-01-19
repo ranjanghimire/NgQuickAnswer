@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Configuration } from '../../app/app.constants';
 import { AppUser } from '../../models/app.user';
 import { CategoryDto } from '../../models/app.categorydto';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -21,9 +20,9 @@ export class AllTopicsPage {
   private retCatDto: CategoryDto[];
   private myCategory: string;
 
-  constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2,
+  constructor(public navCtrl: NavController, private _questionSeervicev2 : QuestionServicev2,
       private _catService: CategoryService) {
-    this.myUserData = _conf.myUser;    
+    this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
     this.listTopTopicsByTopCategory();
     this.getAllCategories();
   }

@@ -15,10 +15,13 @@
         <ion-input placeholder="User Name" type="text" [(ngModel)]="formUser.userName" name="userName" autocapitalize="off"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Email" type="text" [(ngModel)]="formUser.email" name="email" autocapitalize="off"></ion-input>
+        <ion-input placeholder="Email" type="email" [(ngModel)]="formUser.email" name="email" autocapitalize="off"></ion-input>
       </ion-item>
       <ion-item>
           <ion-input placeholder="Password" type="password" [(ngModel)]="formUser.password" name="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formUser.address">
+          <ion-input placeholder="City" type="text" [(ngModel)]="formUser.address.city" name="city"></ion-input>
       </ion-item>
       <ion-row>
         <ion-col>

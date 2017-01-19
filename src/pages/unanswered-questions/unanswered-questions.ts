@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
-import { Configuration } from '../../app/app.constants';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { QuestionService } from '../../shared/app.questionservice';
 import { Question } from '../../models/app.question';
@@ -25,9 +24,9 @@ export class UnansweredQuestionsPage {
   private retIncQuestion: Question;
   private myUser: AppUser;
 
-  constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2, 
+  constructor(public navCtrl: NavController, private _questionSeervicev2 : QuestionServicev2, 
                 private navParams: NavParams, private _questionService: QuestionService, private popoverCtrl: PopoverController) {
-                    this.myUser = this._conf.myUser;
+                    this.myUser = JSON.parse(localStorage.getItem("myUser"));
                     this.getUnansweredQuestions();
                 }
 

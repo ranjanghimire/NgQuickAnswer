@@ -1,6 +1,6 @@
 import { Component, ViewChild} from '@angular/core';
 
-import { NavController, PopoverController, Content, NavParams } from 'ionic-angular';
+import { NavController, PopoverController, Content } from 'ionic-angular';
 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -12,7 +12,6 @@ import { Configuration } from '../../app/app.constants';
 import { NewQuestionPage } from '../new-question/new-question';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
-import { NewAnswerPage } from '../new-answer-page/new-answer-page';
 import { AllTopicsPage } from '../all-topics/all-topics';
 import { SearchPage } from '../search/search';
 import { PopoverPage } from '../popover/popover';
@@ -45,10 +44,10 @@ private size: number = 10;
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
               private _questionService : QuestionService, private _conf : Configuration,
               private _questionSeervicev2 : QuestionServicev2, 
-              private _questionServicev3: QuestionServicev3, 
-              private navParams: NavParams) {
+              private _questionServicev3: QuestionServicev3
+              ) {
     //this.myUserData = this._conf.myUser;
-    this.myUserData = this.navParams.get("page2User");  
+    this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     //console.log(this.myUserData);
     this.page = 0;
     //this.size =20 ;
@@ -175,10 +174,6 @@ private size: number = 10;
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
-  goToNewAnswersPage(question: Question): void{    
-    this.navCtrl.push(NewAnswerPage, {question: question});
-  }
-
   extractFirstLetter(userName: string){
     return userName.charAt(0);
   }
@@ -196,6 +191,7 @@ private size: number = 10;
   }
 
   goToCategoryQuestions(category: string): void{
+    console.log('In page 1: ' + category);
     this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
 

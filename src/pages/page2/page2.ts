@@ -20,7 +20,7 @@ export class Page2 {
   constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, 
               private viewCtrl: ViewController, public navParams: NavParams, private _service: DataService) {   
     if (localStorage.getItem("myUser") != null){
-      this.navCtrl.push(Page1, {page2User: JSON.parse(localStorage.getItem("myUser"))});
+      this.navCtrl.push(Page1);
     }
     else{
       localStorage.clear();
@@ -51,17 +51,14 @@ export class Page2 {
                   console.log(error);
                 }, //TODO: Display a modal with error message
                 () => {
-                  setTimeout(() => {
+                  
                     localStorage.clear();
                   
                     localStorage.setItem("myUser", JSON.stringify(this.retUser));
-                  }, 300);
+                  
                   loadingPopup.dismiss();
                  
-                  this.navCtrl.push(Page1, {page2User: this.retUser}).then(() => {
-                      const index = this.viewCtrl.index;
-                      this.navCtrl.remove(index);
-                    });
+                  this.navCtrl.push(Page1);
                     
                 });  
                 

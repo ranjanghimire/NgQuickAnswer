@@ -1,5 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { BrowserModule  } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
+import {MomentModule} from 'angular2-moment';
 import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
@@ -16,7 +19,6 @@ import  { NewQuestionPage} from '../pages/new-question/new-question';
 import { QuestionPublishedPage } from '../pages/question-published/question-published';
 import { AnswersToTheQuestionPage } from '../pages/answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../pages/topic-questions/topic-questions';
-import { NewAnswerPage } from '../pages/new-answer-page/new-answer-page';
 import { AllTopicsPage } from '../pages/all-topics/all-topics';
 import { PopoverPage } from '../pages/popover/popover';
 import { UserQuestionsPage} from '../pages/user-questions/user-questions';
@@ -29,9 +31,7 @@ import { CategoryQuestionsPage } from '../pages/category-questions/category-ques
 import { ComposeMessagePage } from '../pages/compose-message/compose-message';
 import { RegistrationPage } from '../pages/registration/registration';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-import { BrowserModule  } from '@angular/platform-browser';
-import { DatePipe } from '@angular/common';
-import {MomentModule} from 'angular2-moment';
+
 
 
 @NgModule({
@@ -44,7 +44,6 @@ import {MomentModule} from 'angular2-moment';
     QuestionPublishedPage,
     AnswersToTheQuestionPage,
     TopicQuestionsPage,
-    NewAnswerPage,
     AllTopicsPage,
     PopoverPage,
     UserQuestionsPage,
@@ -73,7 +72,6 @@ import {MomentModule} from 'angular2-moment';
     QuestionPublishedPage,
     AnswersToTheQuestionPage,
     TopicQuestionsPage,
-    NewAnswerPage,
     AllTopicsPage,
     PopoverPage,
     UserQuestionsPage,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
-import { Configuration } from '../../app/app.constants';
+
 import { Question } from '../../models/app.question'; 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -23,10 +23,10 @@ export class TopicQuestionsPage {
   public retQuestions : Question[];
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
-            private _conf : Configuration, private _questionservicev2: QuestionServicev2) {
+             private _questionservicev2: QuestionServicev2) {
     this.myTopic = this.navParams.get("topic");
     
-    this.myUserData = this._conf.myUser;
+    this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     this.getAllQuestionsByTopic(this.myTopic, this.myUserData.id);
   }
 

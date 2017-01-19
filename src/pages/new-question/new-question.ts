@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ViewController, LoadingController } from 'ionic-angular';
 import { Question } from '../../models/app.question';
-import { Configuration } from '../../app/app.constants';
 import { AppUser } from '../../models/app.user';
 import { Author } from '../../models/app.author';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
@@ -27,9 +26,9 @@ export class NewQuestionPage {
   askedQuestion : Question = new Question();
 
   constructor(private _questionService : QuestionServicev2,public navCtrl: NavController,
-       private loadingCtrl: LoadingController, private _conf : Configuration, 
+       private loadingCtrl: LoadingController, 
        private viewCtrl: ViewController, private _catService: CategoryService) {
-    this.myUserData = _conf.myUser;
+    this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     this.getAllCategories();
   }
 

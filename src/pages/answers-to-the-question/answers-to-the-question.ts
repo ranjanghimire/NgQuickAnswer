@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, PopoverController, ToastController, AlertController } from 'ionic-angular';
-import { Configuration } from '../../app/app.constants';
 import { Question } from '../../models/app.question';
 import { Answer } from '../../models/app.answer';
 import { AppUser } from '../../models/app.user';
@@ -36,12 +35,11 @@ export class AnswersToTheQuestionPage {
         public popoverCtrl: PopoverController,public navCtrl: NavController,
         public navParams: NavParams, 
         private _questionService : QuestionService, 
-        private toastCtrl: ToastController,
-        private _conf : Configuration, 
+        private toastCtrl: ToastController,       
         public alertCtrl: AlertController) {
     
     this.myQuestion = this.navParams.get("question");
-    this.myUserData = _conf.myUser;
+    this.myUserData = JSON.parse(localStorage.getItem("myUser"));
   }
   
   logAnswer(): void{
