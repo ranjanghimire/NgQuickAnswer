@@ -5,7 +5,7 @@
     <ion-title>{{ myTopic | uppercase}}</ion-title>
 
     <ion-buttons end>
-        <button ion-button icon-left>
+        <button ion-button icon-only (click)="followTopic()">
           <!-- iconName can be changed through variable iconName -->
           <ion-icon [name]="iconName" class=larger></ion-icon> 
         </button>

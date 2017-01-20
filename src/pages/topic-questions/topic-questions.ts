@@ -16,7 +16,7 @@ import { PopoverPage } from '../popover/popover';
 })
 export class TopicQuestionsPage {
 
-  iconName: string = 'add-circle';
+  iconName: string = "add-circle";
 
   myTopic: string;
   public retIncQuestion : Question;
@@ -26,6 +26,7 @@ export class TopicQuestionsPage {
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
              private _questionservicev2: QuestionServicev2) {
+
     this.myTopic = this.navParams.get("topic");
     
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
@@ -45,6 +46,29 @@ export class TopicQuestionsPage {
     popover.present({
       ev: myEvent
     });
+  }
+
+  followTopic(): void{
+    console.log('followTopic() invoked');
+    this.toggleIconName();
+
+
+    
+  }
+
+  toggleIconName(): void{
+    
+    switch(this.iconName){
+
+      case "add-circle":
+        this.iconName = "checkmark";
+        break;
+      default:
+        this.iconName = "add-circle";
+
+    }
+
+
   }
 
   ionViewDidLoad() {
