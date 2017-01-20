@@ -61,7 +61,11 @@
 <div *ngIf="retQuestions">
   <div *ngFor="let question of retQuestions" id="questionbox">
     <ion-row>
-      <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
+      <ion-col>
+        <button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button>
+        
+      </ion-col> 
+      
     </ion-row>
     <div *ngIf="question.category">
       <ion-row>
@@ -97,8 +101,11 @@
         
         <ion-buttons end>
           <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
+          <button class="gm-button">
+            <ion-icon name="bookmark"></ion-icon>
+          </button>
           <button class="gm-button" (click) = "incrementVotes(question)">            
-            <ion-icon [ngClass]="{'gm-red-heart': question.liked }" name="bookmark"></ion-icon>
+            <ion-icon [ngClass]="{'gm-red-heart': question.liked }" name="heart"></ion-icon>
           </button>      
           <button class="gm-button" (click)="presentPopover($event, question.id)">
             <ion-icon name="more"></ion-icon>
