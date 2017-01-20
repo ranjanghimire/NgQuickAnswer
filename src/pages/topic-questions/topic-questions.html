@@ -6,7 +6,8 @@
 
     <ion-buttons end>
         <button ion-button icon-left>
-          <ion-icon name="add" class=larger></ion-icon> Follow
+          <!-- iconName can be changed through variable iconName -->
+          <ion-icon [name]="iconName" class=larger></ion-icon> 
         </button>
     </ion-buttons>
   </ion-navbar>

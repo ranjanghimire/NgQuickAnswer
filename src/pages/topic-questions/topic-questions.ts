@@ -16,6 +16,7 @@ import { PopoverPage } from '../popover/popover';
 })
 export class TopicQuestionsPage {
 
+  iconName: string = 'add-circle';
 
   myTopic: string;
   public retIncQuestion : Question;
