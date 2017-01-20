@@ -6,6 +6,7 @@ import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { UserInfoPage } from '../user-info/user-info';
+import { CategoryQuestionsPage } from '../category-questions/category-questions';
 import { AppUser } from '../../models/app.user';
 import { PopoverPage } from '../popover/popover';
 
@@ -93,6 +94,11 @@ export class TopicQuestionsPage {
     this.incrementLikesOfQuestion(question, this.myUserData.id);
 
   }
+
+  goToCategoryQuestions(category: string): void{   
+    this.navCtrl.push(CategoryQuestionsPage, {category: category});
+  }
+
 
   private incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)

@@ -190,8 +190,7 @@ private size: number = 10;
     this.navCtrl.push(SearchPage);
   }
 
-  goToCategoryQuestions(category: string): void{
-    console.log('In page 1: ' + category);
+  goToCategoryQuestions(category: string): void{   
     this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
 
