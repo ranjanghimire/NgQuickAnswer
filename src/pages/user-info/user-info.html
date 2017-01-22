@@ -17,60 +17,23 @@
 <ion-content>
  
   <div *ngIf="retrievedUser">
-    <ion-row>
-      <ion-col>
-        <div class="gm-circle align-center" *ngIf="retrievedUser.userName" id="circleLetter-div">{{ extractFirstLetter(retrievedUser.userName) | uppercase }}</div>  
-      </ion-col> <!-- round image -->
-    </ion-row>
-    <ion-row> 
-      <ion-col><div class="align-center gm-dim" style="margin-bottom:20px">{{retrievedUser.userName | uppercase}}</div></ion-col> <!-- username -->
-    </ion-row>
+    <div *ngIf="!isLoggedInUser">
+      <ion-row>
+        <ion-col>
+          <div class="gm-circle align-center" *ngIf="retrievedUser.userName" id="circleLetter-div">{{ extractFirstLetter(retrievedUser.userName) | uppercase }}</div>  
+        </ion-col> <!-- round image -->
+      </ion-row>
+      <ion-row> 
+        <ion-col><div class="align-center gm-dim" style="margin-bottom:5px">{{retrievedUser.userName | uppercase}}</div></ion-col> <!-- username -->
+      </ion-row>
+    </div>
 
-
-    <ion-row>
-      
-      <ion-col class="align-center" style="border-right: thin solid #ccc;">
-          <div (click)="showAskedQuestions()">
-            <p class="gm-strong gm-dim">{{ questionCount }}</p>
-            <p class="gm-small-caps gm-dim" style="font-weight:700">QUESTIONS</p>
-          </div>
-      </ion-col>
-
-      <ion-col class="align-center" style="border-right: thin solid #ccc;">
-          <div (click)="showRepliedAnswers()">
-            <p class="gm-strong gm-dim">{{ answerCount }}</p>
-            <p class="gm-small-caps gm-dim" style="font-weight: 700">ANSWERS</p>
-          </div>
-      </ion-col>
-
-      <ion-col class="align-center">
-          <div (click)="goToLikedQuestionsPage(retrievedUser.id)">
-            <p class="gm-strong gm-dim">{{ (retrievedUser.likedIds) ? retrievedUser.likedIds.length: 0 }}</p>
-            <p class="gm-small-caps gm-dim" style="font-weight: 700">LIKES</p>
-          </div>
-      </ion-col>
-
-
-        <ion-col class="align-center" *ngIf="isLoggedInUser && retrievedUser" style="border-left: thin solid #ccc;">
-              <div (click)="showMessages()">
-                <p class="gm-strong gm-dim">{{ (retrievedUser.messages) ? retrievedUser.messages.length: 0 }}</p>
-                <p class="gm-small-caps gm-dim" style="font-weight: 700">MESSAGES</p>
-              </div>
-          </ion-col>
-  
-    </ion-row>
-    <ion-row>
-      <ion-col class="align-center" *ngIf="retrievedUser">
-        <div (click)="goToBookmarksPage()">
-            <p class="gm-strong gm-dim">{{ (retrievedUser.bookmarkedIDs)? retrievedUser.bookmarkedIDs.length: 0 }}</p>
-            <p class="gm-small-caps gm-dim" style="font-weight:700">BOOKMARKS</p>
-          </div>
-      </ion-col>
-    </ion-row>
-  </div>
-  <div id="form-div" *ngIf="isLoggedInUser && retrievedUser">
+    <div id="form-div" *ngIf="isLoggedInUser && retrievedUser">
     <ion-list inset>
-
+      <ion-item>
+        <ion-label>User Name</ion-label>
+        <ion-input disabled type="text" placeholder="{{retrievedUser.userName}}"></ion-input>
+      </ion-item>
       <ion-item>
         <ion-label>Full Name</ion-label>
         <ion-input type="text" [(ngModel)]="retrievedUser.fullName" name="fullName" placeholder="Full Name"></ion-input>
@@ -89,7 +52,31 @@
   <div *ngIf="!isLoggedInUser" padding>
       <button ion-button block (click)="goToComposeMessagePage(retrievedUser)">Send Private Message</button>
   </div>
-  
 
+    <ion-list>
+      <ion-item class="gm-dim"  (click)="showAskedQuestions()" style="width:90%">
+        <ion-icon name="paper" item-left></ion-icon>
+          {{ questionCount }} Questions        
+      </ion-item>
+      <ion-item class="gm-dim" (click)="showRepliedAnswers()" style="width:90%">
+        <ion-icon name="chatbubbles" item-left></ion-icon>
+          {{ answerCount }} Answers         
+      </ion-item>
+      <ion-item class="gm-dim" (click)="goToLikedQuestionsPage(retrievedUser.id)" style="width:90%">
+        <ion-icon name="heart" item-left></ion-icon>
+          {{ (retrievedUser.likedIds) ? retrievedUser.likedIds.length: 0 }} LIKES        
+      </ion-item>
+      <ion-item class="gm-dim" (click)="goToBookmarksPage()" style="width:90%">
+        <ion-icon name="bookmarks" item-left></ion-icon>
+          {{ (retrievedUser.bookmarkedIDs)? retrievedUser.bookmarkedIDs.length: 0 }} BOOKMARKED        
+      </ion-item>
+      <div *ngIf="isLoggedInUser">
+        <ion-item class="gm-dim" (click)="showMessages()" style="width:90%">
+          <ion-icon name="mail" item-left></ion-icon>
+            {{ (retrievedUser.messages) ? retrievedUser.messages.length: 0 }} MESSAGES        
+        </ion-item>
+      </div>
+    </ion-list>   
+  </div>
 
 </ion-content>
