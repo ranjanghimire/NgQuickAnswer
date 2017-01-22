@@ -3,7 +3,9 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { QuestionService } from '../../shared/app.questionservice';
+import { DataService } from '../../shared/app.dataservice';
 import { Question } from '../../models/app.question';
+import { AppUser } from '../../models/app.user';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
 import { PopoverPage } from '../popover/popover';
@@ -15,11 +17,15 @@ import { PopoverPage } from '../popover/popover';
 export class UserAnswersPage {
   
   private userId : string;
+
+  private retBookmarkUser: AppUser;
+
   private retQuestions : Question[];
   private retIncQuestion: Question;
 
   constructor(public navCtrl: NavController, private _conf : Configuration, private _questionSeervicev2 : QuestionServicev2, 
-                private navParams: NavParams, private _questionService: QuestionService, private popoverCtrl: PopoverController) {
+                private navParams: NavParams, private _questionService: QuestionService, private popoverCtrl: PopoverController, 
+                private _dataService: DataService) {
                     this.userId = this.navParams.get("userId");
                     this.questionsRepliedByUser();
                 }
@@ -84,6 +90,31 @@ export class UserAnswersPage {
     popover.present({
       ev: myEvent
     });
+  }
+
+  bookmarkQuestion(question: Question){
+    if (question.bookmarked){
+      this.unBookmarkQuestion(question);
+      return;
+    }
+
+    question.bookmarked = true;
+
+    this.bookmarkQuestionService(question.id, true);
+  }
+
+  unBookmarkQuestion(question: Question){
+    question.bookmarked = false;
+
+    this.bookmarkQuestionService(question.id, false);
+  }
+
+  private bookmarkQuestionService(questionId: string, flag: boolean){
+    this._dataService.updateBookmark(this.userId, questionId, flag)
+        .subscribe((data: AppUser) => this.retBookmarkUser = data, 
+          error => console.log(error), 
+        () => console.log('Bookmark updated'));
+
   }
 
 }

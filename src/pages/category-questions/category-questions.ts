@@ -5,6 +5,7 @@ import { AppUser } from '../../models/app.user';
 import { Question } from '../../models/app.question'; 
 
 import { QuestionService } from '../../shared/app.questionservice';
+import { DataService } from '../../shared/app.dataservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { UserInfoPage } from '../user-info/user-info';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
@@ -19,12 +20,13 @@ export class CategoryQuestionsPage {
 
   private myCategory: string;
   public retIncQuestion : Question;
+  private retBookmarkUser: AppUser;
   private myUserData : AppUser;
 
   public retQuestions : Question[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
-            private _questionservicev2: QuestionServicev2) {
+            private _questionservicev2: QuestionServicev2, private _dataService: DataService) {
     this.myCategory = this.navParams.get("category");
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     
@@ -92,6 +94,31 @@ export class CategoryQuestionsPage {
       .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),
                 () => console.log('Updated the question votes in server.'));
+  }
+
+  bookmarkQuestion(question: Question){
+    if (question.bookmarked){
+      this.unBookmarkQuestion(question);
+      return;
+    }
+
+    question.bookmarked = true;
+
+    this.bookmarkQuestionService(question.id, true);
+  }
+
+  unBookmarkQuestion(question: Question){
+    question.bookmarked = false;
+
+    this.bookmarkQuestionService(question.id, false);
+  }
+
+  private bookmarkQuestionService(questionId: string, flag: boolean){
+    this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
+        .subscribe((data: AppUser) => this.retBookmarkUser = data, 
+          error => console.log(error), 
+        () => console.log('Bookmark updated'));
+
   }
 
 }
