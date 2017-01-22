@@ -7,7 +7,7 @@
 
   <ion-item>
     <ion-label>Filter By Category</ion-label>
-    <ion-select [(ngModel)]="myCategory" (ionChange)="onChange()">
+    <ion-select [(ngModel)]="myCategory" (ionChange)="onChange()" class="gm-dim">
       <ion-option selected="true">All Categories</ion-option>
       <ion-option *ngFor="let i of categories">{{i}}</ion-option>
     </ion-select>

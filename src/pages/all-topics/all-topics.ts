@@ -23,6 +23,7 @@ export class AllTopicsPage {
   constructor(public navCtrl: NavController, private _questionSeervicev2 : QuestionServicev2,
       private _catService: CategoryService) {
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
+    this.myCategory = 'All Categories';
     this.listTopTopicsByTopCategory();
     this.getAllCategories();
   }

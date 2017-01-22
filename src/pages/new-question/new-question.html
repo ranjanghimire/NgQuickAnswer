@@ -29,7 +29,7 @@
       <!-- Use 'let category of Categories. Populate categories from server' -->
       <ion-item>
         <ion-label>Choose a category</ion-label>
-        <ion-select [(ngModel)]="selectedCategory" name="selectedCategory">
+        <ion-select [(ngModel)]="selectedCategory" name="selectedCategory" class="gm-dim">
           <ion-option *ngFor="let category of categories">{{ category }}</ion-option>
         </ion-select>
       </ion-item>
