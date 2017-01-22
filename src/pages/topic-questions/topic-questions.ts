@@ -24,6 +24,7 @@ export class TopicQuestionsPage {
   public retIncQuestion : Question;
   private myUserData : AppUser;
 
+  private retBookmarkUser: AppUser;
   private retUser : AppUser;
 
   public retQuestions : Question[];
@@ -140,7 +141,6 @@ export class TopicQuestionsPage {
   incrementVotes(question: Question) : void{
 
     if(question.liked){
-      //TODO: invoke decrementVotes and toggle class.
       this.decrementVotes(question);
       return;
     }
@@ -148,21 +148,41 @@ export class TopicQuestionsPage {
     console.log("This question has " + question.votes + " votes.");
 
     question.liked = true;
-    
-    //TODO: Allow like only once. 
-    //User shouldn't be able to like multiple times.
-    //Also, server should know if a question has already been liked.
 
     ++question.votes;
 
     this.incrementLikesOfQuestion(question, this.myUserData.id);
+
+  }  
+
+  bookmarkQuestion(question: Question){
+    if (question.bookmarked){
+      this.unBookmarkQuestion(question);
+      return;
+    }
+
+    question.bookmarked = true;
+
+    this.bookmarkQuestionService(question.id, true);
+  }
+
+  unBookmarkQuestion(question: Question){
+    question.bookmarked = false;
+
+    this.bookmarkQuestionService(question.id, false);
+  }
+
+  private bookmarkQuestionService(questionId: string, flag: boolean){
+    this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
+        .subscribe((data: AppUser) => this.retBookmarkUser = data, 
+          error => console.log(error), 
+        () => console.log('Bookmark updated'));
 
   }
 
   goToCategoryQuestions(category: string): void{   
     this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
-
 
   private incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)

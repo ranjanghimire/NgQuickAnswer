@@ -5,6 +5,7 @@ import { NavController, PopoverController, Content } from 'ionic-angular';
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { QuestionServicev3 } from '../../shared/app.questionservicev3';
+import { DataService } from '../../shared/app.dataservice';
 import { Question } from '../../models/app.question';
 import { AppUser } from '../../models/app.user';
 import { UserInfoPage } from '../user-info/user-info';
@@ -36,6 +37,8 @@ private myUserData : AppUser;
 
 private retTopics : String[];
 
+private retBookmarkUser: AppUser;
+
 private page: number;
 
 private size: number = 10;
@@ -44,6 +47,7 @@ private size: number = 10;
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
               private _questionService : QuestionService, private _conf : Configuration,
               private _questionSeervicev2 : QuestionServicev2, 
+              private _dataService: DataService,
               private _questionServicev3: QuestionServicev3
               ) {
     //this.myUserData = this._conf.myUser;
@@ -192,6 +196,31 @@ private size: number = 10;
 
   goToCategoryQuestions(category: string): void{   
     this.navCtrl.push(CategoryQuestionsPage, {category: category});
+  }
+
+  bookmarkQuestion(question: Question){
+    if (question.bookmarked){
+      this.unBookmarkQuestion(question);
+      return;
+    }
+
+    question.bookmarked = true;
+
+    this.bookmarkQuestionService(question.id, true);
+  }
+
+  unBookmarkQuestion(question: Question){
+    question.bookmarked = false;
+
+    this.bookmarkQuestionService(question.id, false);
+  }
+
+  private bookmarkQuestionService(questionId: string, flag: boolean){
+    this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
+        .subscribe((data: AppUser) => this.retBookmarkUser = data, 
+          error => console.log(error), 
+        () => console.log('Bookmark updated'));
+
   }
 
 

@@ -57,13 +57,20 @@ export class DataService {
         let bodyString = JSON.stringify(updateTopics);
         let options = new RequestOptions({headers: this.headers});
 
-        console.log(bodyString);
-        console.log(flag);
-        console.log(userId);
-        console.log(this.actionUrl + "/userid/" + userId + "/follow/" + flag);
-
         return this._http.put(this.actionUrl + "/userid/" + userId + "/follow/" + flag, bodyString, options)
                 .map((res: Response) => <AppUser>res.json())
+                .catch(this.handleError);
+    }
+
+    //updateBookmark
+    ///user/userid/{userId}/questionid/{questionId}/bookmark/{flag}
+    public updateBookmark = (userId: string, questionId: string, flag: boolean): Observable<AppUser> => {
+        let bodyString = "";
+        let options = new RequestOptions({headers: this.headers});
+
+        return this._http.put(this.actionUrl + "/userid/" + userId 
+                    + "/questionid/" + questionId + "/bookmark/" + flag, bodyString, options)
+                    .map((res: Response) => <AppUser>res.json())
                 .catch(this.handleError);
     }
 

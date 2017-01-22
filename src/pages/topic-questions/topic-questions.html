@@ -50,8 +50,8 @@
         
         <ion-buttons end>
           <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
-          <button class="gm-button">
-            <ion-icon name="bookmark"></ion-icon>
+          <button class="gm-button" (click)="bookmarkQuestion(question)">
+            <ion-icon [ngClass]="{'gm-red-heart': question.bookmarked }" name="bookmark"></ion-icon>
           </button>
           <button class="gm-button" (click) = "incrementVotes(question)">            
             <ion-icon [ngClass]="{'gm-red-heart': question.liked }" name="heart"></ion-icon>

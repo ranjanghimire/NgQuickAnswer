@@ -25,6 +25,8 @@ export class AppUser {
 
     repliedAnswersIDs : string[];
 
+    bookmarkedIDs : string[];
+
     vouchedByUsers : AppUser[];
 
     loginTime : string;
