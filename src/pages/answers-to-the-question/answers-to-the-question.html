@@ -67,15 +67,11 @@
         </ion-col>
         <ion-col>
           <ion-buttons end>
-            <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
+            
             <button class="gm-button" (click)="incrementAnswerVotes(answer)">            
               <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="heart"></ion-icon>
             </button>   
-            <!--   
-            <button class="gm-button">
-              <ion-icon name="more"></ion-icon>
-            </button>
-            -->
+          
             <button class="gm-button" (click)="flagAnswer(answer)" >
                 <ion-icon name="flag"></ion-icon>
             </button>
@@ -94,7 +90,8 @@
       <ion-item>
         <ion-icon class="gm-dim" name="create" item-left></ion-icon>
           
-          <ion-input type="text" [(ngModel)] = "_tmpAnswer" #input name="_tmpAnswer" placeholder="Write your answer.." maxlength="1000"></ion-input>  
+          <!--<ion-input type="text" [(ngModel)] = "_tmpAnswer" #input name="_tmpAnswer" placeholder="Write your answer.." maxlength="1000"></ion-input>-->  
+          <ion-textarea [(ngModel)] = "_tmpAnswer" #input name="_tmpAnswer" placeholder="Write your answer.." maxlength="3000"></ion-textarea>
 
           <button ion-button clear icon-only item-right (click)="logAnswer()">
             <ion-icon name="paper-plane"></ion-icon>
