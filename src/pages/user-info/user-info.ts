@@ -9,6 +9,7 @@ import { UserAnswersPage } from '../user-answers/user-answers';
 import { MessagePage } from '../message/message'; 
 import { UserLikesPage } from '../user-likes/user-likes';
 import { ComposeMessagePage } from '../compose-message/compose-message';
+import { BookmarkedQuestionsPage } from '../bookmarked-questions/bookmarked-questions';
 
 @Component({
   selector: 'page-user-info',
@@ -61,6 +62,10 @@ export class UserInfoPage {
           error => console.log(error),
           () => console.log('Loaded answer count')
         );
+  }
+
+  goToBookmarksPage(): void{
+    this.navCtrl.push(BookmarkedQuestionsPage, {userId: this.retrievedUserId});
   }
 
   showMessages(): void{

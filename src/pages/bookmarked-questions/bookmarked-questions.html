@@ -2,14 +2,13 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Unanswered</ion-title>
+    <ion-title>BOOKMARKED</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
   <div *ngFor="let question of retQuestions" class="questionbox">    
     <ion-row>
       <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
@@ -47,3 +46,4 @@
   </div>
 
 </ion-content>
+

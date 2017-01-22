@@ -31,8 +31,7 @@ import { CategoryQuestionsPage } from '../pages/category-questions/category-ques
 import { ComposeMessagePage } from '../pages/compose-message/compose-message';
 import { RegistrationPage } from '../pages/registration/registration';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-
-
+import { BookmarkedQuestionsPage } from '../pages/bookmarked-questions/bookmarked-questions';
 
 @NgModule({
   declarations: [
@@ -55,7 +54,8 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     MessagePage,
     UserLikesPage, 
     RegistrationPage, 
-    ForgotPasswordPage
+    ForgotPasswordPage, 
+    BookmarkedQuestionsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp), 
@@ -83,7 +83,8 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     MessagePage, 
     UserLikesPage, 
     RegistrationPage, 
-    ForgotPasswordPage
+    ForgotPasswordPage, 
+    BookmarkedQuestionsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Configuration, DataService, 
                 QuestionService, AnswerService, 

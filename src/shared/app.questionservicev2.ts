@@ -46,6 +46,14 @@ export class QuestionServicev2{
             .catch(this.handleError);
     }
 
+    //list of all bookmarked questions by user
+    ///v2/question/bookmarks/user/{userId}
+    public bookmarkedByUser = (userId: string): Observable<Question[]> =>{
+        return this._http.get(this.actionUrl + 'question/bookmarks/user/' + userId, this.headers)
+            .map((response: Response) => <Question[]> response.json())
+            .catch(this.handleError);
+    }
+
     //list of liked questions by user
     //v2/questions/likes/userid/{userId}
     public getLikesByUser = (userId: string): Observable<Question[]>=> {

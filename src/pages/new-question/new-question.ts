@@ -29,6 +29,7 @@ export class NewQuestionPage {
        private loadingCtrl: LoadingController, 
        private viewCtrl: ViewController, private _catService: CategoryService) {
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
+    this.selectedCategory = 'General';
     this.getAllCategories();
   }
 
