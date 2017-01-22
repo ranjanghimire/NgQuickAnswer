@@ -51,6 +51,22 @@ export class DataService {
                 .catch(this.handleError);
     }
 
+    //update followFlag 
+    ///user/userid/{userId}/follow/{flag}
+    public followTopics = (userId: string, flag: boolean, updateTopics: string[]): Observable<AppUser> => {
+        let bodyString = JSON.stringify(updateTopics);
+        let options = new RequestOptions({headers: this.headers});
+
+        console.log(bodyString);
+        console.log(flag);
+        console.log(userId);
+        console.log(this.actionUrl + "/userid/" + userId + "/follow/" + flag);
+
+        return this._http.put(this.actionUrl + "/userid/" + userId + "/follow/" + flag, bodyString, options)
+                .map((res: Response) => <AppUser>res.json())
+                .catch(this.handleError);
+    }
+
     public updateUserById = (id: string, updateUser: AppUser): Observable<AppUser> => {
         let bodyString = JSON.stringify(updateUser);
         let options = new RequestOptions({headers: this.headers});

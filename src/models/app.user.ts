@@ -33,6 +33,8 @@ export class AppUser {
 
     desiredTopics : string[];
 
+    followedTopics: string[];
+
     weight : any;
 
     vouchCount : any;

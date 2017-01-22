@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
-
 import { Question } from '../../models/app.question'; 
 import { QuestionService } from '../../shared/app.questionservice';
 import { QuestionServicev2 } from '../../shared/app.questionservicev2';
+import { DataService } from '../../shared/app.dataservice';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { UserInfoPage } from '../user-info/user-info';
 import { CategoryQuestionsPage } from '../category-questions/category-questions';
@@ -16,16 +16,22 @@ import { PopoverPage } from '../popover/popover';
 })
 export class TopicQuestionsPage {
 
-  iconName: string = "add-circle";
+  iconName: string;// = "add-circle";
 
   myTopic: string;
+
+  updateTopics: string[];
   public retIncQuestion : Question;
   private myUserData : AppUser;
 
+  private retUser : AppUser;
+
   public retQuestions : Question[];
 
-  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
-             private _questionservicev2: QuestionServicev2) {
+  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
+              public navParams: NavParams, private _questionService: QuestionService,
+              private _dataService: DataService,
+              private _questionservicev2: QuestionServicev2) {
 
     this.myTopic = this.navParams.get("topic");
     
@@ -38,7 +44,17 @@ export class TopicQuestionsPage {
             .getAllQuestionsByTopic(topic, userId)
             .subscribe((data:Question[]) => this.retQuestions = data,
                 error => console.log(error),
-                () => console.log('Loaded questions'));
+                () => {
+                    console.log('flag inside: ' + this.retQuestions[0].followed);
+                    if (this.retQuestions[0].followed == true){
+                    this.iconName = "checkmark";
+                    console.log('Loaded questions');
+                  }
+                  else{
+                    this.iconName = "add-circle";
+                    console.log('Loaded questions');
+                  }
+                });
   }
 
   presentPopover(myEvent, questionId: string) {
@@ -51,9 +67,6 @@ export class TopicQuestionsPage {
   followTopic(): void{
     console.log('followTopic() invoked');
     this.toggleIconName();
-
-
-    
   }
 
   toggleIconName(): void{
@@ -62,13 +75,39 @@ export class TopicQuestionsPage {
 
       case "add-circle":
         this.iconName = "checkmark";
+        this.updateFollowFlagInServer();
         break;
       default:
         this.iconName = "add-circle";
+        this.removeFollowFlagInServer();
 
     }
 
 
+  }
+
+  //need listOfTopics, userId, followFlag  
+  updateFollowFlagInServer(): void{
+  
+    this.updateTopics = [];
+    this.updateTopics.push(this.myTopic);
+
+    this._dataService.followTopics(this.myUserData.id, true, this.updateTopics)
+        .subscribe((data:AppUser) => this.retUser = data, 
+        error => console.log(error), 
+        () => console.log('Updated the followTopics'));
+
+  }
+
+  removeFollowFlagInServer(): void{
+    this.updateTopics = [];
+    this.updateTopics.push(this.myTopic);
+
+
+    this._dataService.followTopics(this.myUserData.id, false, this.updateTopics)
+        .subscribe((data:AppUser) => this.retUser = data, 
+        error => console.log(error), 
+        () => console.log('Updated the followTopics'));
   }
 
   ionViewDidLoad() {

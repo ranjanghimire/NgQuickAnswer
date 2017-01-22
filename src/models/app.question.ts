@@ -18,6 +18,8 @@ export class Question {
 
     liked: boolean;
 
+    followed: boolean;
+
     topic : string;
 
     category : string;
