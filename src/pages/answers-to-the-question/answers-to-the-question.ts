@@ -5,6 +5,7 @@ import { Answer } from '../../models/app.answer';
 import { AppUser } from '../../models/app.user';
 import {Author} from '../../models/app.author';
 import { AnswerServicev2 } from '../../shared/app.answerservicev2';
+import { DataService} from '../../shared/app.dataservice';
 import { CategoryQuestionsPage } from '../category-questions/category-questions';
 import { UserInfoPage } from '../user-info/user-info';
 import { PopoverPage } from '../popover/popover';
@@ -27,6 +28,8 @@ export class AnswersToTheQuestionPage {
   private retQuestion: Question;
   private retIncAnsQuestion: Question;
 
+  private retBookmarkUser: AppUser;
+
   private retIncQuestion: Question;
   
   private _tmpAnswer: string;
@@ -36,7 +39,8 @@ export class AnswersToTheQuestionPage {
         public navParams: NavParams, 
         private _questionService : QuestionService, 
         private toastCtrl: ToastController,       
-        public alertCtrl: AlertController) {
+        public alertCtrl: AlertController, 
+        private _dataService: DataService) {
     
     this.myQuestion = this.navParams.get("question");
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
@@ -230,6 +234,31 @@ export class AnswersToTheQuestionPage {
     setTimeout(() => {
       this.myInput.setFocus();
     },150);
+  }
+
+  bookmarkQuestion(question: Question){
+    if (question.bookmarked){
+      this.unBookmarkQuestion(question);
+      return;
+    }
+
+    question.bookmarked = true;
+
+    this.bookmarkQuestionService(question.id, true);
+  }
+
+  unBookmarkQuestion(question: Question){
+    question.bookmarked = false;
+
+    this.bookmarkQuestionService(question.id, false);
+  }
+
+  private bookmarkQuestionService(questionId: string, flag: boolean){
+    this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
+        .subscribe((data: AppUser) => this.retBookmarkUser = data, 
+          error => console.log(error), 
+        () => console.log('Bookmark updated'));
+
   }
 
 }

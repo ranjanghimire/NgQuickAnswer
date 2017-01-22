@@ -31,8 +31,8 @@
         
         <ion-buttons end>
           
-          <button class="gm-button" (click)="bookmarkQuestion(question)">
-            <ion-icon [ngClass]="{'gm-red-heart': question.bookmarked }" name="bookmark"></ion-icon>
+          <button class="gm-button" (click)="bookmarkQuestion(myQuestion)">
+            <ion-icon [ngClass]="{'gm-red-heart': myQuestion.bookmarked }" name="bookmark"></ion-icon>
           </button>
           <button class="gm-button" (click) = "incrementVotes(myQuestion)">            
             <ion-icon [ngClass]="{'gm-red-heart': myQuestion.liked }" name="heart"></ion-icon>
@@ -69,7 +69,7 @@
           <ion-buttons end>
             <!--<div class="gm-dim" *ngIf="question.votes">{{question.votes}}</div>-->
             <button class="gm-button" (click)="incrementAnswerVotes(answer)">            
-              <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="bookmark"></ion-icon>
+              <ion-icon [ngClass]="{'gm-red-heart': answer.liked }" name="heart"></ion-icon>
             </button>   
             <!--   
             <button class="gm-button">
