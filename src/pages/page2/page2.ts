@@ -20,7 +20,7 @@ export class Page2 {
   constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, 
               private viewCtrl: ViewController, public navParams: NavParams, private _service: DataService) {   
     if (localStorage.getItem("myUser") != null){
-      this.navCtrl.push(Page1);
+      this.navCtrl.setRoot(Page1);
     }
     else{
       localStorage.clear();
@@ -58,7 +58,7 @@ export class Page2 {
                   
                   loadingPopup.dismiss();
                  
-                  this.navCtrl.push(Page1);
+                  this.navCtrl.setRoot(Page1);
                     
                 });  
                 
