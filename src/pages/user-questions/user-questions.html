@@ -15,7 +15,7 @@
       <ion-col><button class="gm-button topic-button" (click)="goToTopicQuestions(question.topic)">{{question.topic | uppercase}}</button></ion-col> <!-- This is for Topic. Make it all caps Bold. Undeline as well. -->
     </ion-row>
     <ion-row>
-      <ion-col><p class="gm-main-content">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
+      <ion-col><p class="gm-main-content" (click) = "goToAnswersPage(question)">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
     </ion-row>
     <ion-row>
       <ion-col width-10><div class="gm-circle" *ngIf="question.author.appUserName">{{ extractFirstLetter(question.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->

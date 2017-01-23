@@ -32,7 +32,7 @@
       </ion-row>
     </div>
     <ion-row>
-      <ion-col><p class="gm-main-content">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
+      <ion-col><p class="gm-main-content" (click) = "goToAnswersPage(question)">{{question.mainQuestion}}</p></ion-col> <!-- content goes here. overflow to next line -->
     </ion-row>
     <ion-row>
       <ion-col width-10><div class="gm-circle" *ngIf="question.author.appUserName" (click)="goToUserInfo(question.author.appUserId)">{{ extractFirstLetter(question.author.appUserName) | uppercase }}</div></ion-col><!--Use a round circle with First letter of username in front -->
