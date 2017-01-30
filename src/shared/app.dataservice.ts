@@ -3,7 +3,8 @@ import { RequestOptions, Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
-import { AppUser } from '../models/app.user'
+import { AppUser } from '../models/app.user';
+import { Notification } from '../models/app.notification';
 import { Configuration } from '../app/app.constants';
 
 
@@ -21,6 +22,16 @@ export class DataService {
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
     }
+
+    
+    //Get all notifications
+    ///user/notification/{userId}
+    public getNotifications = (userId: string): Observable<Notification[]> =>{
+        return this._http.get(this.actionUrl + "/notification/" + userId, this.headers)
+                    .map((response: Response) => <Notification[]> response.json())
+                    .catch(this.handleError);
+    }
+
 
     public getAllUsers = (): Observable<AppUser[]> => {
         return this._http.get(this.actionUrl, this.headers)

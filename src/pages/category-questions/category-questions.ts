@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AppUser } from '../../models/app.user';
 
 import { Question } from '../../models/app.question'; 
@@ -10,6 +10,7 @@ import { QuestionServicev2 } from '../../shared/app.questionservicev2';
 import { UserInfoPage } from '../user-info/user-info';
 import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 import { TopicQuestionsPage } from '../topic-questions/topic-questions';
+import { PopoverPage } from '../popover/popover';
 
 
 @Component({
@@ -25,8 +26,12 @@ export class CategoryQuestionsPage {
 
   public retQuestions : Question[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _questionService: QuestionService,
-            private _questionservicev2: QuestionServicev2, private _dataService: DataService) {
+  constructor(public popoverCtrl: PopoverController,
+              public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private _questionService: QuestionService,
+              private _questionservicev2: QuestionServicev2, 
+              private _dataService: DataService) {
     this.myCategory = this.navParams.get("category");
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     
@@ -53,6 +58,13 @@ export class CategoryQuestionsPage {
 
   extractFirstLetter(userName: string){
     return userName.charAt(0);
+  }
+
+  presentPopover(myEvent, questionId: string) {
+    let popover = this.popoverCtrl.create(PopoverPage, { qId: questionId });
+    popover.present({
+      ev: myEvent
+    });
   }
 
   decrementVotes(question: Question): void{

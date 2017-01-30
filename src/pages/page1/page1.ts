@@ -18,6 +18,7 @@ import { SearchPage } from '../search/search';
 import { PopoverPage } from '../popover/popover';
 import { UnansweredQuestionsPage } from '../unanswered-questions/unanswered-questions';
 import { CategoryQuestionsPage } from '../category-questions/category-questions';
+import { NotificationPage } from '../notification/notification';
 
 @Component({
   selector: 'page-page1',
@@ -196,6 +197,10 @@ private size: number = 10;
 
   goToCategoryQuestions(category: string): void{   
     this.navCtrl.push(CategoryQuestionsPage, {category: category});
+  }
+
+  goToNotificationPage(): void{
+    this.navCtrl.push(NotificationPage);
   }
 
   bookmarkQuestion(question: Question){
