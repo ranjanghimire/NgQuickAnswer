@@ -13,9 +13,9 @@
 
     <ion-row class="answerbox" *ngFor="let noti of notifications">
       <ion-col>
-        <span *ngIf="noti.notificationType == 'answer'">
-          <p class="gm-main-content">
-            {{noti.fromUserId}} replied to the question "".
+        <span *ngIf="noti.notificationType == 'answer' && noti.fromUserId != myUserId">
+          <p class="gm-main-content" (click)="goToAnswersPage(noti.question)">
+            <span style="font-weight: 700">{{noti.fromUserName}}</span> replied to the question <span style="font-weight: 700">{{noti.question.mainQuestion}}</span>.
           </p>
         </span>
       </ion-col>

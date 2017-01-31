@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Configuration } from '../../app/app.constants';
 import { DataService } from '../../shared/app.dataservice';
 import { Notification } from '../../models/app.notification';
+import { Question } from '../../models/app.question';
+import { AnswersToTheQuestionPage } from '../answers-to-the-question/answers-to-the-question';
 
 @Component({
   selector: 'page-notification',
@@ -28,6 +30,10 @@ export class NotificationPage {
           error => console.log(error),
           () => console.log(this.notifications)
         );
+  }
+
+  goToAnswersPage(question : Question) : void{
+    this.navCtrl.push( AnswersToTheQuestionPage, { question : question });
   }
 
 }

@@ -1,3 +1,5 @@
+import { Question } from './app.question';
+
 export class Notification{
     
     id: string;
@@ -9,8 +11,12 @@ export class Notification{
     toUserId: string[];
 	
 	fromUserId: string;
+
+	fromUserName: string;
 	
 	isViewed: boolean;
 
     notificationTime: string;
+
+	question: Question;
 }
