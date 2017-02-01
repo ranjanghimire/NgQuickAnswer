@@ -10,16 +10,22 @@
 <ion-content no-padding>
 
   <div *ngIf="notifications">
-
-    <ion-row class="answerbox" *ngFor="let noti of notifications">
-      <ion-col>
-        <span *ngIf="noti.notificationType == 'answer' && noti.fromUserId != myUserId && noti.question != null">
-          <p class="gm-main-content" (click)="goToAnswersPage(noti.question)">
-            <span style="font-weight: 700">{{noti.fromUserName}}</span> replied to the question <span style="font-weight: 700">{{noti.question.mainQuestion}}</span>.
-          </p>
-        </span>
-      </ion-col>
-    </ion-row>
+    <div class="answerbox" *ngFor="let noti of notifications">
+      <ion-row>
+        <ion-col>
+          <span *ngIf="noti.notificationType == 'answer' && noti.fromUserId != myUserId && noti.question != null">
+            <p class="gm-main-content" (click)="goToAnswersPage(noti.question)">
+              <span style="font-weight: 700">{{noti.fromUserName}}</span> replied to the question <span style="font-weight: 700">{{noti.question.mainQuestion}}</span>.
+            </p>
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <span class="gm-dim" style="font-size: 12px; margin-left: 5px;"><time> {{ getTheTime(noti.notificationTime) | amTimeAgo }} </time></span>
+          </ion-col>
+        </ion-row>
+    </div>
 
   </div>
 
