@@ -13,6 +13,8 @@ export class MessagePage {
 
   appUser: AppUser;
 
+  retUser: AppUser;
+
   inboxFlag: boolean = true;
 
   selectedText: string = 'Inbox';
@@ -31,6 +33,20 @@ export class MessagePage {
 
     //this.appUser = JSON.parse(localStorage.getItem("myUser"));
     //console.log(this.appUser);
+
+  }
+
+  ionViewDidLoad() {
+
+    //Mark the read flag to true for all messages
+    this._dataService.updateReadFlagInMessages(JSON.parse(localStorage.getItem("myUser")).id)
+        .subscribe((data:AppUser) => this.retUser = data, 
+          error => console.log(error), 
+          () => {   
+            console.log('Loaded this user');  
+            //console.log(this.appUser);                       
+          }
+        );
 
   }
 

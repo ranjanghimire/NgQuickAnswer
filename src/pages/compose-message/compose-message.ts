@@ -77,6 +77,8 @@ submitForm(): void{
   this.msg.fromUserId = JSON.parse(localStorage.getItem("myUser")).id;
   this.msg.fromUserName = JSON.parse(localStorage.getItem("myUser")).userName;
   this.msg.subject = this.subject;
+  this.msg.read = false;
+
 
    var formattedDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm');
 

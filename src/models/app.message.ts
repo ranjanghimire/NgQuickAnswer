@@ -7,6 +7,8 @@ export class Message{
 	messageTime: string;
 	subject: string;
 
+	read: boolean;
+
     constructor(){
         
     }

@@ -94,6 +94,17 @@ export class DataService {
                 .catch(this.handleError);
     }
 
+    //Update Read flag to true for all messages
+    ///user/userid/{id}/messageread/{flag}
+    public updateReadFlagInMessages = (userId: string): Observable<AppUser> =>{
+        let bodyString = "";
+        let options = new RequestOptions({headers: this.headers});
+
+        return this._http.put(this.actionUrl + '/userid/' + userId + '/messageread/true', bodyString, options )
+                    .map((res: Response) => <AppUser>res.json())
+                .catch(this.handleError);
+    }
+
     //register user
     public registerUser = (appUser: AppUser): Observable<AppUser> => {
         let bodyString = JSON.stringify(appUser);

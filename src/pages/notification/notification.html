@@ -2,8 +2,16 @@
 
   <ion-navbar color="primary">
     <ion-title>Notifications</ion-title>
+
+    <ion-buttons end>
+        <button ion-button (click)="goToMessagesPage()">
+          <ion-icon name="mail" class=larger></ion-icon>
+          <ion-badge *ngIf="showBadge" style="position:absolute; top:20px; left:-7px" color="danger">NEW</ion-badge>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 
+  
 </ion-header>
 
 
