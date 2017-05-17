@@ -24,8 +24,8 @@ export class UserInfoPage {
   isLoggedInUser: boolean = false;
   loggedInUser: AppUser;
 
-  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, 
-              private _dataService: DataService, private _questionServicev2: QuestionServicev2, private toastCtrl: ToastController) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, 
+              public _dataService: DataService, public _questionServicev2: QuestionServicev2, public toastCtrl: ToastController) {
     this.retrievedUserId = this.navParams.get('myUserId');   
     
     this.loggedInUser = JSON.parse(localStorage.getItem("myUser"))

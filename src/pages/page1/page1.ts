@@ -34,22 +34,22 @@ public retIncQuestion : Question;
 
 public retMoreQuestions : Question[];
 
-private myUserData : AppUser;
+public myUserData : AppUser;
 
-private retTopics : String[];
+public retTopics : String[];
 
-private retBookmarkUser: AppUser;
+public retBookmarkUser: AppUser;
 
-private page: number;
+public page: number;
 
-private size: number = 10;
+public size: number = 10;
 
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
-              private _questionService : QuestionService, private _conf : Configuration,
-              private _questionSeervicev2 : QuestionServicev2, 
-              private _dataService: DataService,
-              private _questionServicev3: QuestionServicev3
+              public _questionService : QuestionService, public _conf : Configuration,
+              public _questionSeervicev2 : QuestionServicev2, 
+              public _dataService: DataService,
+              public _questionServicev3: QuestionServicev3
               ) {
     //this.myUserData = this._conf.myUser;
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
@@ -104,7 +104,7 @@ private size: number = 10;
               );    
   }
 
-  private findAllTopicsTen(): void{
+  public findAllTopicsTen(): void{
 
     this._questionSeervicev2.findAllTopicsTen()
         .subscribe((data:String[]) => this.retTopics = data, 
@@ -113,7 +113,7 @@ private size: number = 10;
         );
   }
 
-  private getAllQuestions() : void{
+  public getAllQuestions() : void{
    
     this._questionServicev3
             .pagedQuestionsAskedByUser(this.myUserData.id, String(this.page), String(this.size))
@@ -123,7 +123,7 @@ private size: number = 10;
   }
 
   //incrementLikesOfQuestion
-  private incrementLikesOfQuestion(question: Question, userId: string){
+  public incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)
       .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),
@@ -220,7 +220,7 @@ private size: number = 10;
     this.bookmarkQuestionService(question.id, false);
   }
 
-  private bookmarkQuestionService(questionId: string, flag: boolean){
+  public bookmarkQuestionService(questionId: string, flag: boolean){
     this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
         .subscribe((data: AppUser) => this.retBookmarkUser = data, 
           error => console.log(error), 

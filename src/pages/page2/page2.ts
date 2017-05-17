@@ -13,12 +13,12 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 })
 export class Page2 {
  
-  private formUser : AppUser = new AppUser();
+  public formUser : AppUser = new AppUser();
 
-  private retUser: AppUser;
+  public retUser: AppUser;
   
-  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, 
-              private viewCtrl: ViewController, public navParams: NavParams, private _service: DataService) {   
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, 
+              public viewCtrl: ViewController, public navParams: NavParams, public _service: DataService) {   
     if (localStorage.getItem("myUser") != null){
       this.navCtrl.setRoot(Page1);
     }

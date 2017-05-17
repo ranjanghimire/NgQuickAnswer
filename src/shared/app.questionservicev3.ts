@@ -8,10 +8,10 @@ import { Question } from '../models/app.question';
 
 @Injectable()
 export class QuestionServicev3{
-    private actionUrl: string;
-    private headers: Headers;
+    public actionUrl: string;
+    public headers: Headers;
 
-    constructor(private _http: Http, private _configuration: Configuration) {
+    constructor(public _http: Http, public _configuration: Configuration) {
 
         this.actionUrl = _configuration.ServerWithApiUrl + "v2/";
 
@@ -28,7 +28,7 @@ export class QuestionServicev3{
             .catch(this.handleError);
     }
 
-    private handleError(error: Response) {
+    public handleError(error: Response) {
          console.error(error);
          return Observable.throw(error.json().error || 'Server error');
      }

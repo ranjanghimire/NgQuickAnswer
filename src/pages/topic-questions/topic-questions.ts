@@ -22,17 +22,17 @@ export class TopicQuestionsPage {
 
   updateTopics: string[];
   public retIncQuestion : Question;
-  private myUserData : AppUser;
+  public myUserData : AppUser;
 
-  private retBookmarkUser: AppUser;
-  private retUser : AppUser;
+  public retBookmarkUser: AppUser;
+  public retUser : AppUser;
 
   public retQuestions : Question[];
 
   constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, 
-              public navParams: NavParams, private _questionService: QuestionService,
-              private _dataService: DataService,
-              private _questionservicev2: QuestionServicev2) {
+              public navParams: NavParams, public _questionService: QuestionService,
+              public _dataService: DataService,
+              public _questionservicev2: QuestionServicev2) {
 
     this.myTopic = this.navParams.get("topic");
     
@@ -172,7 +172,7 @@ export class TopicQuestionsPage {
     this.bookmarkQuestionService(question.id, false);
   }
 
-  private bookmarkQuestionService(questionId: string, flag: boolean){
+  public bookmarkQuestionService(questionId: string, flag: boolean){
     this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
         .subscribe((data: AppUser) => this.retBookmarkUser = data, 
           error => console.log(error), 
@@ -184,7 +184,7 @@ export class TopicQuestionsPage {
     this.navCtrl.push(CategoryQuestionsPage, {category: category});
   }
 
-  private incrementLikesOfQuestion(question: Question, userId: string){
+  public incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)
       .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),

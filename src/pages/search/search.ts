@@ -13,19 +13,21 @@ import { CategoryQuestionsPage } from '../category-questions/category-questions'
 })
 export class SearchPage {
 
-  private retWordSearchDto: WordSearchDto[];
+ public shouldShowCancel:boolean = false;
 
-  private actQuestion: Question;
-  
-  private topics: string[] = [];
+  public retWordSearchDto: WordSearchDto[];
 
-  private categories: string[] = [];
+  public actQuestion: Question;
   
-  private mainQuestions: WordSearchDto[] = [];
+  public topics: string[] = [];
 
-  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, private _questionServicev2: QuestionServicev2) {}
+  public categories: string[] = [];
   
-  private searchByWord(word: string): void{
+  public mainQuestions: WordSearchDto[] = [];
+
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public _questionServicev2: QuestionServicev2) {}
+  
+  public searchByWord(word: string): void{
 
     let loadingPopup = this.loadingCtrl.create({
       content: 'Please wait ...'

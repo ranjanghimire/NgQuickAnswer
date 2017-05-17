@@ -13,11 +13,11 @@ import { Page1 } from '../page1/page1';
 })
 export class RegistrationPage {
 
-  private formUser : AppUser = new AppUser();
-  private addr: Address;
-  private retUser: AppUser;
+  public formUser : AppUser = new AppUser();
+  public addr: Address;
+  public retUser: AppUser;
 
-  constructor(private loadingCtrl: LoadingController, public navCtrl: NavController, private _dataService: DataService) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public _dataService: DataService) {
     this.addr = new Address();
     this.addr.city = '';
     this.formUser.address = this.addr;

@@ -9,7 +9,7 @@ import { Page2 } from '../page2/page2';
 })
 export class ForgotPasswordPage {
 
-  private formUser : AppUser = new AppUser();
+  public formUser : AppUser = new AppUser();
 
   constructor(public navCtrl: NavController) {}
 

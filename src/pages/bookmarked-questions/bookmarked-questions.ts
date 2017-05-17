@@ -16,17 +16,17 @@ import { PopoverPage } from '../popover/popover';
 })
 export class BookmarkedQuestionsPage {
 
-  private userId : string;
-  private retQuestions: Question[];
-  private retIncQuestion: Question;
-  private retBookmarkUser: AppUser;
+  public userId : string;
+  public retQuestions: Question[];
+  public retIncQuestion: Question;
+  public retBookmarkUser: AppUser;
 
   constructor(public navCtrl: NavController, 
-              private navParams: NavParams,
-              private _questionServicev2 : QuestionServicev2, 
-              private _questionService: QuestionService, 
-              private popoverCtrl: PopoverController, 
-              private _dataService: DataService) {
+              public navParams: NavParams,
+              public _questionServicev2 : QuestionServicev2, 
+              public _questionService: QuestionService, 
+              public popoverCtrl: PopoverController, 
+              public _dataService: DataService) {
 
     this.userId = this.navParams.get("userId");
     this.getBookmarksByUser();
@@ -71,7 +71,7 @@ export class BookmarkedQuestionsPage {
     this.incrementLikesOfQuestion(question, this.userId);
 
   }
-    private incrementLikesOfQuestion(question: Question, userId: string){
+    public incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)
       .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),
@@ -110,7 +110,7 @@ export class BookmarkedQuestionsPage {
     this.bookmarkQuestionService(question.id, false);
   }
 
-  private bookmarkQuestionService(questionId: string, flag: boolean){
+  public bookmarkQuestionService(questionId: string, flag: boolean){
     this._dataService.updateBookmark(this.userId, questionId, flag)
         .subscribe((data: AppUser) => this.retBookmarkUser = data, 
           error => console.log(error), 

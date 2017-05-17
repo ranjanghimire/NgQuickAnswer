@@ -13,10 +13,10 @@ export class PopoverPage {
   
   constructor(
           public navCtrl: NavController, 
-          private navParams: NavParams,
+          public navParams: NavParams,
           public viewCtrl: ViewController, 
-          private _questionServicev2: QuestionServicev2,
-          private toastCtrl: ToastController,
+          public _questionServicev2: QuestionServicev2,
+          public toastCtrl: ToastController,
           public alertCtrl: AlertController
         ) 
         {

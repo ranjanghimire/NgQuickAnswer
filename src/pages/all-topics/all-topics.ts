@@ -13,15 +13,15 @@ import { CategoryQuestionsPage } from '../category-questions/category-questions'
 })
 export class AllTopicsPage {
 
-  private myUserData: AppUser;
-  private retTopics : String[];
-  private categories: string[];
-  private catDto: CategoryDto[];
-  private retCatDto: CategoryDto[];
-  private myCategory: string;
+  public myUserData: AppUser;
+  public retTopics : String[];
+  public categories: string[];
+  public catDto: CategoryDto[];
+  public retCatDto: CategoryDto[];
+  public myCategory: string;
 
-  constructor(public navCtrl: NavController, private _questionSeervicev2 : QuestionServicev2,
-      private _catService: CategoryService) {
+  constructor(public navCtrl: NavController, public _questionSeervicev2 : QuestionServicev2,
+      public _catService: CategoryService) {
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));  
     this.myCategory = 'All Categories';
     this.listTopTopicsByTopCategory();
@@ -36,7 +36,7 @@ export class AllTopicsPage {
         );
      }
 
-  private listTopTopicsByTopCategory(): void{
+  public listTopTopicsByTopCategory(): void{
     this._questionSeervicev2.listTopTopicsByTopCategory()
         .subscribe((data:CategoryDto[]) => this.retCatDto = data, 
           error => console.log(error),

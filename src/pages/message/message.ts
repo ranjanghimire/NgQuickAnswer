@@ -20,7 +20,7 @@ export class MessagePage {
   selectedText: string = 'Inbox';
 
   constructor(public navCtrl: NavController, 
-          private _dataService: DataService) {
+          public _dataService: DataService) {
 
     this._dataService.findUserById(JSON.parse(localStorage.getItem("myUser")).id)
         .subscribe((data:AppUser) => this.appUser = data, 

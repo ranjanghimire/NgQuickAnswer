@@ -21,26 +21,26 @@ export class AnswersToTheQuestionPage {
 
   @ViewChild('input') myInput ;
 
-  private myQuestion : Question;
-  private myUserData : AppUser;
-  private myAnswer : Answer;
-  private newAuthor : Author;
-  private retQuestion: Question;
-  private retIncAnsQuestion: Question;
+  public myQuestion : Question;
+  public myUserData : AppUser;
+  public myAnswer : Answer;
+  public newAuthor : Author;
+  public retQuestion: Question;
+  public retIncAnsQuestion: Question;
 
-  private retBookmarkUser: AppUser;
+  public retBookmarkUser: AppUser;
 
-  private retIncQuestion: Question;
+  public retIncQuestion: Question;
   
-  private _tmpAnswer: string;
+  public _tmpAnswer: string;
 
-  constructor(private _answerService: AnswerServicev2, 
+  constructor(public _answerService: AnswerServicev2, 
         public popoverCtrl: PopoverController,public navCtrl: NavController,
         public navParams: NavParams, 
-        private _questionService : QuestionService, 
-        private toastCtrl: ToastController,       
+        public _questionService : QuestionService, 
+        public toastCtrl: ToastController,       
         public alertCtrl: AlertController, 
-        private _dataService: DataService) {
+        public _dataService: DataService) {
     
     this.myQuestion = this.navParams.get("question");
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
@@ -65,7 +65,7 @@ export class AnswersToTheQuestionPage {
     this.postAnswer(this.myAnswer, this.myQuestion.id, this.myUserData.id);
   }
 
-   private incrementLikesOfQuestion(question: Question, userId: string){
+   public incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)
       .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),
@@ -127,14 +127,14 @@ export class AnswersToTheQuestionPage {
     }
   }
 
-  private incrementLikesOfAnswer(answer: Answer, userId: string): void{
+  public incrementLikesOfAnswer(answer: Answer, userId: string): void{
     this._answerService.incrementLikes(answer, userId)
           .subscribe((data:Question) => this.retIncAnsQuestion = data, 
           error=> console.log(error), 
           () => console.log('Increased/Decreased likes of answer'))
   }
 
-  private postAnswer(answer: Answer, id: string, userId: string): void{
+  public postAnswer(answer: Answer, id: string, userId: string): void{
     this._answerService
             .postAnswer(id, answer, userId)
             .subscribe((data:Question) => this.retQuestion = data,
@@ -253,7 +253,7 @@ export class AnswersToTheQuestionPage {
     this.bookmarkQuestionService(question.id, false);
   }
 
-  private bookmarkQuestionService(questionId: string, flag: boolean){
+  public bookmarkQuestionService(questionId: string, flag: boolean){
     this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
         .subscribe((data: AppUser) => this.retBookmarkUser = data, 
           error => console.log(error), 

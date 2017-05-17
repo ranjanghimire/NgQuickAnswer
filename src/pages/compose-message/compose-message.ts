@@ -11,24 +11,24 @@ import { DatePipe } from '@angular/common';
 })
 export class ComposeMessagePage {
 
-  private toUser: AppUser;
-  private fromUser; AppUser;
-  private toUserId: string;
+  public toUser: AppUser;
+  public fromUser; AppUser;
+  public toUserId: string;
 
-  private saveMessage: string;
-  private subject: string;
-  private tmpSubject: string;
+  public saveMessage: string;
+  public subject: string;
+  public tmpSubject: string;
 
-  private msg: Message;
+  public msg: Message;
 
-  private sentMsg: Message;
+  public sentMsg: Message;
 
-  private retUser: AppUser;
-  private retFromUser: AppUser;
+  public retUser: AppUser;
+  public retFromUser: AppUser;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private datePipe: DatePipe,
-              private loadingCtrl: LoadingController, private _dataService: DataService,
-              private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datePipe: DatePipe,
+              public loadingCtrl: LoadingController, public _dataService: DataService,
+              public toastCtrl: ToastController) {
     this.toUser = this.navParams.get('toUser');  
     
     this._dataService.findUserById(JSON.parse(localStorage.getItem("myUser")).id)

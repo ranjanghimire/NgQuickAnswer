@@ -13,21 +13,21 @@ import { QuestionPublishedPage } from '../question-published/question-published'
 })
 export class NewQuestionPage {
 
-  private myUserData : AppUser;
+  public myUserData : AppUser;
 
-  private newAuthor : Author;
+  public newAuthor : Author;
 
-  private retPostQuestion : Question;
+  public retPostQuestion : Question;
 
-  private categories : string[];
+  public categories : string[];
 
-  private selectedCategory : string;
+  public selectedCategory : string;
 
   askedQuestion : Question = new Question();
 
-  constructor(private _questionService : QuestionServicev2,public navCtrl: NavController,
-       private loadingCtrl: LoadingController, 
-       private viewCtrl: ViewController, private _catService: CategoryService) {
+  constructor(public _questionService : QuestionServicev2,public navCtrl: NavController,
+       public loadingCtrl: LoadingController, 
+       public viewCtrl: ViewController, public _catService: CategoryService) {
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     this.selectedCategory = 'General';
     this.getAllCategories();
@@ -71,7 +71,7 @@ export class NewQuestionPage {
 
   //TODO: create new page for error() and show nice message.
   //TODO: Once question is asked, its id should be saved in User table.
-  private postQuestion(question : Question) : void{
+  public postQuestion(question : Question) : void{
     
     let loadingPopup = this.loadingCtrl.create({
       content: 'Please wait ...'

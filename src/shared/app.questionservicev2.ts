@@ -10,10 +10,10 @@ import { WordSearchDto } from '../models/app.wordsearchdto';
 
 @Injectable()
 export class QuestionServicev2{
-    private actionUrl: string;
-    private headers: Headers;
+    public actionUrl: string;
+    public headers: Headers;
 
-    constructor(private _http: Http, private _configuration: Configuration) {
+    constructor(public _http: Http, public _configuration: Configuration) {
 
         this.actionUrl = _configuration.ServerWithApiUrl + "v2/";
 
@@ -148,7 +148,7 @@ export class QuestionServicev2{
             .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }
 
-    private handleError(error: Response) {
+    public handleError(error: Response) {
          console.error(error);
          return Observable.throw(error.json().error || 'Server error');
      }

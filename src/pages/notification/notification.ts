@@ -22,9 +22,9 @@ export class NotificationPage {
 
   notifications: Notification[];
 
-  constructor(private _dataService: DataService,
+  constructor(public _dataService: DataService,
               public navCtrl: NavController, 
-              private _conf : Configuration, 
+              public _conf : Configuration, 
               public navParams: NavParams) {
                 
               }

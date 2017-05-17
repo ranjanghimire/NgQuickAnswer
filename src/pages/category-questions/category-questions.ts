@@ -19,19 +19,19 @@ import { PopoverPage } from '../popover/popover';
 })
 export class CategoryQuestionsPage {
 
-  private myCategory: string;
+  public myCategory: string;
   public retIncQuestion : Question;
-  private retBookmarkUser: AppUser;
-  private myUserData : AppUser;
+  public retBookmarkUser: AppUser;
+  public myUserData : AppUser;
 
   public retQuestions : Question[];
 
   constructor(public popoverCtrl: PopoverController,
               public navCtrl: NavController, 
               public navParams: NavParams, 
-              private _questionService: QuestionService,
-              private _questionservicev2: QuestionServicev2, 
-              private _dataService: DataService) {
+              public _questionService: QuestionService,
+              public _questionservicev2: QuestionServicev2, 
+              public _dataService: DataService) {
     this.myCategory = this.navParams.get("category");
     this.myUserData = JSON.parse(localStorage.getItem("myUser"));
     
@@ -101,7 +101,7 @@ export class CategoryQuestionsPage {
     this.navCtrl.push(TopicQuestionsPage, { topic: topic} );
   }
 
-  private incrementLikesOfQuestion(question: Question, userId: string){
+  public incrementLikesOfQuestion(question: Question, userId: string){
     this._questionService.incrementLikesOfQuestion(question, userId)
       .subscribe((data:Question) => this.retIncQuestion = data,
                 error => console.log(error),
@@ -125,7 +125,7 @@ export class CategoryQuestionsPage {
     this.bookmarkQuestionService(question.id, false);
   }
 
-  private bookmarkQuestionService(questionId: string, flag: boolean){
+  public bookmarkQuestionService(questionId: string, flag: boolean){
     this._dataService.updateBookmark(this.myUserData.id, questionId, flag)
         .subscribe((data: AppUser) => this.retBookmarkUser = data, 
           error => console.log(error), 
